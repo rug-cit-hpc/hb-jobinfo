@@ -21,6 +21,9 @@ import re
 # Value to use for missing data
 missing_data = '--'
 
+# Label that should be in GPU partitions
+gpu_partition_label = 'gpu'
+
 # Convert values with suffix to bytes
 def byte_size(s=None):
     if s is None or s == "16?":
@@ -40,7 +43,6 @@ def format_bs(x):
 
 def f_time(x, output_data):
     all_times = [output_data['Timelimit'], output_data['Elapsed'], output_data['TotalCPU'],'-']
-    print(all_times)
     days_len = max(len(y.split('-')[0]) for y in all_times if '-' in y)
     ss, mm, hh, dd = parse_time(x)
     if days_len == 0:
@@ -50,7 +52,6 @@ def f_time(x, output_data):
             dd = ("{:d}-".format(dd)).rjust(days_len)
         else:
             dd = " " * (days_len + 1)
-    print(dd,hh,mm,ss)
     res = '{}{:02d}:{:02d}:{:02.0f}'.format(dd, hh, mm, ss)
     if res.strip() == '00:00:00':
         return "--"
@@ -326,27 +327,27 @@ job_output = [
     [ 'NodeList',             ['NodeList'],                         '{}',       True],
     [ 'Number of Nodes',      ['NNodes'],                           '{}',       True],
     [ 'Cores',                ['NCPUs'],                            '{}',       True],
-    [ 'Number of Tasks',      ['NTasks'],                           '{}',       True],
+    [ 'Number of Tasks',      ['NTasks'],                           '{}',       False],
     [ 'State',                ['State', 'reason', 'dependencies'],  '{} {} {}', True],
     [ 'Submit',               ['Submit'],                           '{}',       True],
     [ 'Start',                ['Start'],                            '{}',       True],
     [ 'End',                  ['End'],                              '{}',       True],
     [ 'Reserved walltime',    ['Timelimit'],                        '{}',       True],
     [ 'Used walltime',        ['Elapsed'],                          '{}',       True],
-    [ 'Used walltime*CPUs',   ['CPUTime'],                          '{}',       True],
+    [ 'Used walltime*CPUs',   ['CPUTime'],                          '{}',       False],
     [ 'Used CPU time',        ['TotalCPU','Efficiency'],            '{} {}',    True],
     [ '% User (Computation)', ['UserCPU'],                          '{}',       True],
     [ '% System (I/O)',       ['SystemCPU'],                        '{}',       True],
     [ 'Mem reserved',         ['ReqMem'],                           '{}',       True],
     [ 'Max Mem (Node/step)',  ['MaxRSS', 'MaxRSSNode'],             '{} ({})',  True],
-    [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})',  True],
-    [ 'Requested GPUs',       ['ReqGPUs'],                          '{}',       True],
-    [ 'Allocated GPUs',       ['AllocGPUs'],                        '{}',       True],
-    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',       True],
-    [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',       True],
-    [ 'TotalMem',             ['TotalMem'],                         '{}',       True],
-    [ 'TotalDiskRead',        ['TotalDiskRead'],                    '{}',       True],
-    [ 'TotalDiskWrite',       ['TotalDiskWrite'],                   '{}',       True],
+    [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})',  False],
+    [ 'Requested GPUs',       ['ReqGPUs'],                          '{}',       False],
+    [ 'Allocated GPUs',       ['AllocGPUs'],                        '{}',       False],
+    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',       False],
+    [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',       False],
+    [ 'TotalMem',             ['TotalMem'],                         '{}',       False],
+    [ 'TotalDiskRead',        ['TotalDiskRead'],                    '{}',       False],
+    [ 'TotalDiskWrite',       ['TotalDiskWrite'],                   '{}',       False],
     [ 'MaxDiskRead',          ['MaxDiskRead', 'MaxDiskReadNode'],   '{} ({})',  True],
     [ 'MaxDiskWrite',         ['MaxDiskWrite', 'MaxDiskWriteNode'], '{} ({})',  True],
 ]
@@ -407,6 +408,11 @@ def format_timings(output_data):
     output_data['CPUTime'] = f_time(output_data['CPUTime'], output_data)
     output_data['TotalCPU'] = f_time(output_data['TotalCPU'], output_data)
 
+def format_gpu(output_data, job_output):
+    if gpu_partition_label in output_data['Partition'] or output_data['ReqGPUs'] != missing_data:
+        for i in range(len(job_output)):
+            if 'GPU' in job_output[i]['description']:
+                job_output[i]['show'] =  True
 
 def parse_arguments():
     global debug
@@ -477,13 +483,17 @@ def main():
     # Calculate efficiency and change user and system time into percentage
     format_timings(output_data)
 
+    # Check if we want to show GPU information
+    format_gpu(output_data, job_output)
+
     # Determine field width for description
     name_format = '{{:{}}}:'.format(max(len(d['description']) for d in job_output))
 
     # Display the information gathered in the format described by job_output
     for item in job_output:
-        data = [ output_data[x] for x in item['fieldnames'] ]
-        print(name_format.format(item['description']),item['format'].format(*data))
+        if item['show'] or debug:
+           data = [ output_data[x] for x in item['fieldnames'] ]
+           print(name_format.format(item['description']),item['format'].format(*data))
 
 
 def usage(pipe):
