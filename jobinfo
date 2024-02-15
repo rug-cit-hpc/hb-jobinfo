@@ -1,0 +1,390 @@
+#!/usr/bin/env python3.6
+# -*- coding, utf-8 -*-
+#
+# jobinfo - collect job information from Slurm
+#
+# Written by Fokke Dijkstra <f.dijkstra@rug.nl>
+# University of Groningen, NL
+#
+# Inspired by https://github.com/birc-aeh/slurm-utils/blob/master/jobinfo
+# from Anders Halager  <aeh@birc.au.dk>
+#
+# LICENSE, MIT
+
+import sys
+import subprocess
+import argparse
+import datetime
+import re
+
+# Convert values with suffix to bytes
+def byte_size(s=None):
+    if s is None or s == "16?":
+        return 0.0
+    m = {'K': 10, 'M': 20, 'G': 30, 'T': 40, 'P': 50, 'E': 60}
+    scale = 2**m.get(s[-1], 0)
+    if scale != 1:
+        s = s[:-1]
+    return scale * float(s)
+
+def date_str(s=None):
+    if s is None or s.strip() == "":
+        return "9999-01-01T00:00:00"
+    return s
+
+def parse_time(t):
+    # Format: [DD-[hh:]]mm:ss
+    time_parts = re.compile(r'(((?P<days>\d+)-)?(?P<hours>\d\d):)?' +
+                            r'(?P<minutes>\d\d):(?P<seconds>\d\d(\.\d+)?)')
+    m = time_parts.match(t)
+    if m is None:
+        return 0.0, 0, 0, 0
+    ss = float(m.group('seconds'))
+    mm = int(m.group('minutes'))
+    hh = int(m.group('hours') or '0')
+    dd = int(m.group('days') or '0')
+    return ss, mm, hh, dd
+
+def time_max(a, b):
+    if 'UNLIMITED' in [a, b]:
+        return 'UNLIMITED'
+    if a in ['', 'INVALID']:
+        return b
+    if b in ['', 'INVALID']:
+        return a
+    return max(a, b)
+
+def tres_key(key, s=None):
+    if s is None or s == '':
+        return None
+    value = re.search(fr'(?<=,{key}=)([0-9\.]+[KMGTPE]?)'.format(key), s)
+    if value == None:
+       return 0.0
+    else:
+       value = byte_size(value.group(1))
+    return value
+
+def get_first(jobstate, name, fieldname):
+    if debug:
+        print('** Debugging output for {} using {}'.format(name, fieldname))
+    result = '-'
+    for line in jobstate:
+        result = line[fieldname]
+        if debug:
+            print('{}: {}'.format(line['JobID'], result))
+        if result != '' and result != None:
+           return result 
+    return result
+    
+    return value
+
+def get_max(jobstate, name, fieldname):
+    if debug:
+        print('** Debugging output for {} using {}'.format(name, fieldname))
+    value = ''
+    for line in jobstate:
+        item = line[fieldname]
+        if debug:
+            print('{}: {}'.format(line['JobID'], item))
+        if item != '':
+           value = max(item, value)
+    return value
+
+def get_append(jobstate, name,  fieldname):
+    if debug:
+        print('** Debugging output for {} using'.format(name, fieldname))
+    output = ''
+    for line in jobstate:
+        item = line[fieldname]
+        if debug:
+            print('{}: {}'.format(line['JobID'], item))
+        if item != '':
+            if output == '':
+               output = item
+            else:
+               output = ','.join(sorted(set(output.split(',') + [item])))
+        item = line[fieldname]
+    return output          
+
+def get_min_date(jobstate, name, fieldname):
+    if debug:
+        print('** Debugging output for {} using'.format(name, fieldname))
+    value = 'z'
+    for line in jobstate:
+        item = line[fieldname]
+        if debug:
+            print('{}: {}'.format(line['JobID'], item))
+        if item != '':
+           value = min(date_str(item), value)
+    if str(value).lower() == 'unknown':
+       value = '--'
+    return value
+
+def get_max_date(jobstate, name, fieldname):
+    if debug:
+        print('** Debugging output for {} using {}'.format(name, fieldname))
+    value = ''
+    for line in jobstate:
+        item = line[fieldname]
+        if debug:
+            print('{}: {}'.format(line['JobID'], item))
+        if item != '':
+           value = time_max(value, date_str(item))
+    if str(value).lower() == 'unknown':
+       value = '--'
+    return value
+
+def get_max_key(jobstate, name, fieldname, key):
+    value = -1.0
+    if debug:
+        print('** Debugging output for {} using {}'.format(name, fieldname))
+    for line in jobstate:
+        item = line[fieldname]
+        if debug:
+            print('{}: {}'.format(line['JobID'], item))
+        current_value = tres_key(key, item)
+        if current_value != None:
+           gpuutil = max(value, current_value)
+    if value < 0:
+        value = '--'
+    return value
+
+def get_max_gpuutil(jobstate, name, fieldname):
+    return get_max_key(jobstate, name, fieldname, 'gres/gpuutil')
+
+def get_max_gpumem(jobstate, name, fieldname):
+    return get_max_key(jobstate, name, fieldname, 'gres/gpumem')
+
+def get_max_byte(jobstate, name, fieldname):
+    if debug:
+        print('** Debugging output for {} using {}'.format(name, fieldname))
+    value = -1.0
+    for line in jobstate:
+        item = line[fieldname]
+        if debug:
+            print('{}: {}'.format(line['JobID'], item))
+        if item != '':
+           value = max(byte_size(item), value)
+    if value < 0:
+        value = '--'
+    return value
+
+def get_tot_key(jobstate, name, fieldname, key):
+    total = -1.0
+    if debug:
+        print('** Debugging output for {} using {}'.format(name, fieldname))
+    for line in jobstate:
+        item = line[fieldname]
+        if debug:
+            print('{}: {}'.format(line['JobID'], item))
+        value = tres_key(key, item)
+        if value != None:
+           total = total + value
+    if total < 0:
+        total = '--'
+    else:
+       total = total + 1.0
+    return total
+
+def get_tot_mem(jobstate, name, fieldname):
+    return get_tot_key(jobstate, name, fieldname, 'mem')
+
+def get_tot_disk(jobstate, name, fieldname):
+    return get_tot_key(jobstate, name, fieldname, 'disk')
+
+# Dictionary keys
+dict_keys = [
+    'name',              'function',       'fieldname',        'prefer_live']
+
+job_data = [
+    [ 'JobID',            get_first,       'JobID',            True  ],
+    [ 'JobName',          get_first,       'JobName',          False ],
+    [ 'User',             get_first,       'User',             False ],
+    [ 'Partition',        get_first,       'Partition',        False ],
+    [ 'NodeList',         get_first,       'NodeList',         False ],
+    [ 'NNodes',           get_max,         'NNodes',           False ],
+    [ 'NCPUs',            get_max,         'NCPUs',            False ],
+    [ 'NTasks',           get_max,         'NTasks',           True  ],
+    [ 'State',            get_append,      'State',            False ],
+    [ 'Submit',           get_first,       'Submit',           False ],
+    [ 'Start',            get_min_date,    'Start',            False ],
+    [ 'End',              get_max_date,    'End',              False ],
+    [ 'Timelimit',        get_max_date,    'Timelimit',        False ],
+    [ 'Elapsed',          get_max_date,    'Elapsed',          False ],
+    [ 'TotalCPU',         get_max,         'TotalCPU',         False ],
+    [ 'UserCPU',          get_max,         'UserCPU',          False ],
+    [ 'SystemCPU',        get_max,         'SystemCPU',        False ],
+    [ 'ReqMem',           get_first,       'ReqMem',           False ],
+    [ 'MaxRSS',           get_max_byte,    'MaxRSS',           True  ],
+    [ 'MaxVMSize',        get_max_byte,    'MaxVMSize',        True  ],
+    [ 'GPUUtilization',   get_max_gpuutil, 'TRESUsageInMax',   True  ],
+    [ 'GPUMemory',        get_max_gpumem,  'TRESUsageInMax',   True  ],
+    [ 'TotalMem',         get_tot_mem,     'TRESUsageInTot',   True  ],
+    [ 'TotalDiskRead',    get_tot_disk,    'TRESUsageInTot',   True  ],
+    [ 'TotalDiskWrite',   get_tot_disk,    'TRESUsageOutTot',  True  ],
+    [ 'MaxDiskRead',      get_max_byte,    'MaxDiskRead',      True  ],
+    [ 'MaxDiskWrite',     get_max_byte,    'MaxDiskWrite',     True  ],
+    [ 'MaxRSSNode',       get_first,       'MaxRSSNode',       True  ],
+    [ 'MaxVMSizeNode',    get_first,       'MaxVMSizeNode',    True  ],
+    [ 'MaxDiskReadNode',  get_first,       'MaxDiskReadNode',  True  ],
+    [ 'MaxDiskWriteNode', get_first,       'MaxDiskWriteNode', True  ],
+]
+
+# Convert list of lists into list of dictionaries.
+job_data = list(map(lambda x: dict(zip(dict_keys, x)), job_data))
+
+FIELD_NAMES = [ x['fieldname'] for x in job_data]
+FIELD_NAMES_LIVE = [ x['fieldname'] for x in job_data if x['prefer_live']]
+
+FORMAT_STR = '--format={}'.format(','.join(FIELD_NAMES))
+FORMAT_STR_LIVE = '--format={}'.format(','.join(FIELD_NAMES_LIVE))
+
+dict_keys = [
+      'description',          'fieldnames',                         'format', 'show'
+]
+
+# Output lines
+job_output = [
+    [ 'JobId',                ['JobID'],                            '{}',      True],
+    [ 'JobName',              ['JobName'],                          '{}',      True],
+    [ 'User',                 ['User'],                             '{}',      True],
+    [ 'Partition',            ['Partition'],                        '{}',      True],
+    [ 'NodeList',             ['NodeList'],                         '{}',      True],
+    [ 'Number of Nodes',      ['NNodes'],                           '{}',      True],
+    [ 'Cores',                ['NCPUs'],                            '{}',      True],
+    [ 'Number of Tasks',      ['NTasks'],                           '{}',      True],
+    [ 'State',                ['State'],                            '{}',      True],
+    [ 'Submit',               ['Submit'],                           '{}',      True],
+    [ 'Start',                ['Start'],                            '{}',      True],
+    [ 'End',                  ['End'],                              '{}',      True],
+    [ 'Reserved walltime',    ['Timelimit'],                        '{}',      True],
+    [ 'Used walltime',        ['Elapsed'],                          '{}',      True],
+    [ 'Used CPU time',        ['TotalCPU'],                         '{}',      True],
+    [ '% User (Computation)', ['UserCPU'],                          '{}%',     True],
+    [ '% System (I/O)',       ['SystemCPU'],                        '{}%',     True],
+    [ 'Mem reserved',         ['ReqMem'],                           '{}',      True],
+    [ 'Max Mem (Node/step)',  ['MaxRSS', 'MaxRSSNode'],             '{} ({})', True],
+    [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})', True],
+    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',      True],
+    [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',      True],
+    [ 'TotalMem',             ['TotalMem'],                         '{}',      True],
+    [ 'TotalDiskRead',        ['TotalDiskRead'],                    '{}',      True],
+    [ 'TotalDiskWrite',       ['TotalDiskWrite'],                   '{}',      True],
+    [ 'MaxDiskRead',          ['MaxDiskRead', 'MaxDiskReadNode'],   '{} ({})', True],
+    [ 'MaxDiskWrite',         ['MaxDiskWrite', 'MaxDiskWriteNode'], '{} ({})', True],
+]
+
+# Convert list of lists into list of dictionaries.
+job_output = list(map(lambda x: dict(zip(dict_keys, x)), job_output))
+
+
+debug = False
+
+def get_values_sacct(jobid):
+    field_sep = u'\u2603'
+    sacct_cmd = [
+        'sacct', FORMAT_STR, '--parsable', '--noheader', '--delimiter', field_sep, '-j', jobid
+    ]
+    info = subprocess.Popen(
+        map(lambda s: s.encode('utf-8'), sacct_cmd),
+        stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+    sacct_job_data = []
+    for line in info.stdout:
+       sacct_job_data.append(dict(zip(FIELD_NAMES, line.decode('utf-8').strip().split(field_sep))))
+    if len(sacct_job_data) == 0:
+        print("No such job", file=sys.stderr)
+        sys.exit(1)
+    job_status = sacct_job_data[0]['State']
+    return sacct_job_data, job_status
+
+
+def get_values_sstat(jobid):
+    sstat_cmd = [
+        'sstat', FORMAT_STR_LIVE, '--parsable', '--noheader', '-j', jobid
+    ]
+    info = subprocess.Popen(
+        map(lambda s: s.encode('utf-8'), sstat_cmd),
+        stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+    sstat_job_data = []
+    for line in info.stdout:
+       sstat_job_data.append(dict(zip(FIELD_NAMES_LIVE, line.decode('utf-8').strip().split('|'))))
+    return sstat_job_data
+
+def parse_arguments():
+    global debug
+
+    parser = argparse.ArgumentParser(prog = 'jobinfo', 
+                            description = \
+    '''collates job information from the 'sstat', 'sacct' and 'squeue' SLURM commands 
+to give a uniform interface for both current and historical jobs.'''
+    )
+
+    parser.add_argument('-d', '--debug', dest='debug', default=False, action='store_true',
+                      help="Shows extra information about how the data is gathered")
+
+    parser.add_argument('jobid', metavar='jobid', help='the jobid to query')
+
+    args = vars(parser.parse_args())
+    debug = args['debug']
+    return args['jobid']
+    
+def main():
+    jobid = parse_arguments()
+    
+    jobstate, job_status = get_values_sacct(jobid)
+    if job_status == 'RUNNING':
+        if debug:
+            print('** Getting values from sstat')
+        jobstate_sstat = get_values_sstat(jobid)
+        if debug and jobstate_sstat == []:
+            print('** No data obtained from from sstat')
+    else:
+       jobstate_sstat = []
+
+    output_data = {}
+    for job_item in job_data:
+        if job_item['prefer_live'] and jobstate_sstat != []:
+            if debug:
+               print('** Using live value from sstat data')
+            output = job_item['function'](jobstate_sstat, job_item['name'], job_item['fieldname'])
+        else:
+            output = job_item['function'](jobstate, job_item['name'], job_item['fieldname'])
+        output_data[job_item['name']] = output
+
+    if job_status == 'PENDING':
+        if debug:
+            print('** Getting values from squeue')
+        info = subprocess.Popen(
+            ['squeue', '--format=%E;%R;%C', '--noheader', '-a', '-j', jobid],
+            stdout=subprocess.PIPE)
+        dependencies, reason, ncpus = info.stdout.readline().decode('utf-8').strip().split(";")
+        output_data['NCPUs'] = ncpus
+    else:
+       dependencies = ''
+       reason = ''
+    output_data['dependencies'] = dependencies
+    output_data['reason'] = reason
+
+    # Determine field width
+    name_format = '{{:{}}}:'.format(max(len(d['description']) for d in job_output))
+
+    for item in job_output:
+        data = [ output_data[x] for x in item['fieldnames'] ]
+        print(name_format.format(item['description']),item['format'].format(*data))
+
+
+def usage(pipe):
+    usage_msg = \
+    '''jobinfo - collates job information from the 'sstat', 'sacct' and
+'squeue' SLURM commands to give a uniform interface for both current
+and historical jobs.
+
+Usage:
+    jobinfo <job id>
+
+Report problems to hpc@rug.nl'''
+
+    print(usage_msg, file=pipe)
+
+if __name__ == '__main__':
+    main()
