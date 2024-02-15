@@ -38,6 +38,24 @@ def format_bs(x):
     e = int(math.log(x + 1, 2) / 10)
     return "{:.2f}{}".format(x / 2**(10 * e), postfix[e])
 
+def f_time(x, output_data):
+    all_times = [output_data['Timelimit'], output_data['Elapsed'], output_data['TotalCPU'],'-']
+    print(all_times)
+    days_len = max(len(y.split('-')[0]) for y in all_times if '-' in y)
+    ss, mm, hh, dd = parse_time(x)
+    if days_len == 0:
+        dd = ""
+    else:
+        if dd > 0:
+            dd = ("{:d}-".format(dd)).rjust(days_len)
+        else:
+            dd = " " * (days_len + 1)
+    print(dd,hh,mm,ss)
+    res = '{}{:02d}:{:02d}:{:02.0f}'.format(dd, hh, mm, ss)
+    if res.strip() == '00:00:00':
+        return "--"
+    return res
+
 def date_str(s=None):
     if s is None or s.strip() == "":
         return "9999-01-01T00:00:00"
@@ -384,6 +402,11 @@ def format_timings(output_data):
         output_data['Efficiency'] = '(Efficiency: {:5.2f}%)'.format(100.0 * cputime / elapsed_cpu)
         output_data['UserCPU'] =  '{:5.2f}%'.format(100.0 * usertime / cputime)
         output_data['SystemCPU'] =  '{:5.2f}%'.format(100.0 * systemtime / cputime)
+    output_data['Timelimit'] =  f_time(output_data['Timelimit'], output_data)
+    output_data['Elapsed'] = f_time(output_data['Elapsed'], output_data)
+    output_data['CPUTime'] = f_time(output_data['CPUTime'], output_data)
+    output_data['TotalCPU'] = f_time(output_data['TotalCPU'], output_data)
+
 
 def parse_arguments():
     global debug
