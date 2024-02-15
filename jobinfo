@@ -15,7 +15,11 @@ import sys
 import subprocess
 import argparse
 import datetime
+import math
 import re
+
+# Value to use for missing data
+missing_data = '--'
 
 # Convert values with suffix to bytes
 def byte_size(s=None):
@@ -26,6 +30,13 @@ def byte_size(s=None):
     if scale != 1:
         s = s[:-1]
     return scale * float(s)
+
+def format_bs(x):
+    if x == missing_data:
+        return x
+    postfix = ' KMGTPE'
+    e = int(math.log(x + 1, 2) / 10)
+    return "{:.2f}{}".format(x / 2**(10 * e), postfix[e])
 
 def date_str(s=None):
     if s is None or s.strip() == "":
@@ -131,7 +142,7 @@ def get_min_date(jobstate, name, fieldname):
         if item != '':
            value = min(date_str(item), value)
     if str(value).lower() == 'unknown':
-       value = '--'
+       value = missing_data
     return value
 
 # Get maximum time value
@@ -146,20 +157,19 @@ def get_max_date(jobstate, name, fieldname):
         if item != '':
            value = time_max(value, date_str(item))
     if str(value).lower() == 'unknown':
-       value = '--'
+       value = missing_data
     return value
 
 def get_gpu_tres(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
-    result = '--'
     for line in jobstate:
         result = tres_gpu(line[fieldname])
         if debug:
             print('{}: {}'.format(line['JobID'], result))
         if result != '' and result != None:
            return result
-    return result
+    return missing_data
 
 # Find the maximum value from a list of entries with 'keys=value'
 def get_max_key(jobstate, name, fieldname, key):
@@ -174,20 +184,23 @@ def get_max_key(jobstate, name, fieldname, key):
         if current_value != None:
            value = max(value, current_value)
     if value < 0:
-        value = '--'
+        value = missing_data
     return value
 
 # Get maximum GPU utilization
 def get_max_gpuutil(jobstate, name, fieldname):
-    return get_max_key(jobstate, name, fieldname, 'gres/gpuutil')
+    value = get_max_key(jobstate, name, fieldname, 'gres/gpuutil')
+    if value != missing_data:
+       return '{:.0f}%'.format(value)
+    return value 
 
 # Get maximum for GPU memory used
 def get_max_gpumem(jobstate, name, fieldname):
-    return get_max_key(jobstate, name, fieldname, 'gres/gpumem')
+    return format_bs(get_max_key(jobstate, name, fieldname, 'gres/gpumem'))
 
 # Get maximum for memory used
 def get_max_mem(jobstate, name, fieldname):
-    return get_max_key(jobstate, name, fieldname, 'mem')
+    return format_bs(get_max_key(jobstate, name, fieldname, 'mem'))
 
 # Get maximum value from the job steps for values in byte format
 def get_max_byte(jobstate, name, fieldname):
@@ -201,7 +214,9 @@ def get_max_byte(jobstate, name, fieldname):
         if item != '':
            value = max(byte_size(item), value)
     if value < 0:
-        value = '--'
+        value = missing_data
+    else:
+       value = format_bs(value)
     return value
 
 # Sum the values from a list of entries with 'keys=value'
@@ -217,14 +232,14 @@ def get_tot_key(jobstate, name, fieldname, key):
         if value != None:
            total = total + value
     if total < 0:
-        total = '--'
+        total = missing_data
     else:
        total = total + 1.0
     return total
 
 # Get total disk I/O for all job steps
 def get_tot_disk(jobstate, name, fieldname):
-    return get_tot_key(jobstate, name, fieldname, 'fs/disk')
+    return format_bs(get_tot_key(jobstate, name, fieldname, 'fs/disk'))
 
 # Dictionary keys
 dict_keys = [
@@ -303,7 +318,7 @@ job_output = [
     [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})',  True],
     [ 'Requested GPUs',       ['ReqGPUs'],                          '{}',       True],
     [ 'Allocated GPUs',       ['AllocGPUs'],                        '{}',       True],
-    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{:.0f}%',  True],
+    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',       True],
     [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',       True],
     [ 'TotalMem',             ['TotalMem'],                         '{}',       True],
     [ 'TotalDiskRead',        ['TotalDiskRead'],                    '{}',       True],
