@@ -56,6 +56,10 @@ def parse_time(t):
     dd = int(m.group('days') or '0')
     return ss, mm, hh, dd
 
+def timestring_to_seconds(timestring):
+    ss, mm, hh, dd = parse_time(timestring)
+    return dd * 24 * 60 * 60 + hh * 60 * 60 + mm * 60 + ss
+
 def time_max(a, b):
     if 'UNLIMITED' in [a, b]:
         return 'UNLIMITED'
@@ -261,6 +265,7 @@ job_data = [
     [ 'Timelimit',        get_max_date,    'Timelimit',        False ],
     [ 'Elapsed',          get_max_date,    'Elapsed',          False ],
     [ 'TotalCPU',         get_max,         'TotalCPU',         False ],
+    [ 'CPUTime',          get_max,         'CPUTime',          False ],
     [ 'UserCPU',          get_max,         'UserCPU',          False ],
     [ 'SystemCPU',        get_max,         'SystemCPU',        False ],
     [ 'ReqMem',           get_first,       'ReqMem',           False ],
@@ -310,9 +315,10 @@ job_output = [
     [ 'End',                  ['End'],                              '{}',       True],
     [ 'Reserved walltime',    ['Timelimit'],                        '{}',       True],
     [ 'Used walltime',        ['Elapsed'],                          '{}',       True],
-    [ 'Used CPU time',        ['TotalCPU'],                         '{}',       True],
-    [ '% User (Computation)', ['UserCPU'],                          '{}%',      True],
-    [ '% System (I/O)',       ['SystemCPU'],                        '{}%',      True],
+    [ 'Used walltime*CPUs',   ['CPUTime'],                          '{}',       True],
+    [ 'Used CPU time',        ['TotalCPU','Efficiency'],            '{} {}',    True],
+    [ '% User (Computation)', ['UserCPU'],                          '{}',       True],
+    [ '% System (I/O)',       ['SystemCPU'],                        '{}',       True],
     [ 'Mem reserved',         ['ReqMem'],                           '{}',       True],
     [ 'Max Mem (Node/step)',  ['MaxRSS', 'MaxRSSNode'],             '{} ({})',  True],
     [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})',  True],
@@ -350,7 +356,6 @@ def get_values_sacct(jobid):
     job_status = sacct_job_data[0]['State']
     return sacct_job_data, job_status
 
-
 def get_values_sstat(jobid):
     sstat_cmd = [
         'sstat', FORMAT_STR_LIVE, '--parsable', '--noheader', '-j', jobid
@@ -362,6 +367,23 @@ def get_values_sstat(jobid):
     for line in info.stdout:
        sstat_job_data.append(dict(zip(FIELD_NAMES_LIVE, line.decode('utf-8').strip().split('|'))))
     return sstat_job_data
+
+def format_timings(output_data):
+    elapsed = timestring_to_seconds(output_data['Elapsed'])
+    elapsed_cpu = timestring_to_seconds(output_data['CPUTime'])
+    cputime = timestring_to_seconds(output_data['TotalCPU'])
+    usertime = timestring_to_seconds(output_data['UserCPU'])
+    systemtime = timestring_to_seconds(output_data['SystemCPU'])
+
+    if cputime == 0:
+        output_data['TotalCPU'] = missing_data
+        output_data['Efficiency'] = ''
+        output_data['SystemCPU'] = missing_data
+        output_data['UserCPU'] = missing_data
+    else:
+        output_data['Efficiency'] = '(Efficiency: {:5.2f}%)'.format(100.0 * cputime / elapsed_cpu)
+        output_data['UserCPU'] =  '{:5.2f}%'.format(100.0 * usertime / cputime)
+        output_data['SystemCPU'] =  '{:5.2f}%'.format(100.0 * systemtime / cputime)
 
 def parse_arguments():
     global debug
@@ -428,6 +450,9 @@ def main():
     # Add the additional information to the dictionary
     output_data['dependencies'] = dependencies
     output_data['reason'] = reason
+
+    # Calculate efficiency and change user and system time into percentage
+    format_timings(output_data)
 
     # Determine field width for description
     name_format = '{{:{}}}:'.format(max(len(d['description']) for d in job_output))
