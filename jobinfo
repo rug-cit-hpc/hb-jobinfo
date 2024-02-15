@@ -303,7 +303,7 @@ job_output = [
     [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})',  True],
     [ 'Requested GPUs',       ['ReqGPUs'],                          '{}',       True],
     [ 'Allocated GPUs',       ['AllocGPUs'],                        '{}',       True],
-    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',       True],
+    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{:.0f}%',  True],
     [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',       True],
     [ 'TotalMem',             ['TotalMem'],                         '{}',       True],
     [ 'TotalDiskRead',        ['TotalDiskRead'],                    '{}',       True],
