@@ -149,8 +149,9 @@ def get_max_key(jobstate, name, fieldname, key):
         if debug:
             print('{}: {}'.format(line['JobID'], item))
         current_value = tres_key(key, item)
+        print(current_value)
         if current_value != None:
-           gpuutil = max(value, current_value)
+           value = max(value, current_value)
     if value < 0:
         value = '--'
     return value
@@ -162,6 +163,10 @@ def get_max_gpuutil(jobstate, name, fieldname):
 # Get maximum for GPU memory used
 def get_max_gpumem(jobstate, name, fieldname):
     return get_max_key(jobstate, name, fieldname, 'gres/gpumem')
+
+# Get maximum for memory used
+def get_max_mem(jobstate, name, fieldname):
+    return get_max_key(jobstate, name, fieldname, 'mem')
 
 # Get maximum value from the job steps for values in byte format
 def get_max_byte(jobstate, name, fieldname):
@@ -196,13 +201,9 @@ def get_tot_key(jobstate, name, fieldname, key):
        total = total + 1.0
     return total
 
-# Get total memory used for all job steps
-def get_tot_mem(jobstate, name, fieldname):
-    return get_tot_key(jobstate, name, fieldname, 'mem')
-
 # Get total disk I/O for all job steps
 def get_tot_disk(jobstate, name, fieldname):
-    return get_tot_key(jobstate, name, fieldname, 'disk')
+    return get_tot_key(jobstate, name, fieldname, 'fs/disk')
 
 # Dictionary keys
 dict_keys = [
@@ -231,7 +232,7 @@ job_data = [
     [ 'MaxVMSize',        get_max_byte,    'MaxVMSize',        True  ],
     [ 'GPUUtilization',   get_max_gpuutil, 'TRESUsageInMax',   True  ],
     [ 'GPUMemory',        get_max_gpumem,  'TRESUsageInMax',   True  ],
-    [ 'TotalMem',         get_tot_mem,     'TRESUsageInTot',   True  ],
+    [ 'TotalMem',         get_max_mem,     'TRESUsageInTot',   True  ],
     [ 'TotalDiskRead',    get_tot_disk,    'TRESUsageInTot',   True  ],
     [ 'TotalDiskWrite',   get_tot_disk,    'TRESUsageOutTot',  True  ],
     [ 'MaxDiskRead',      get_max_byte,    'MaxDiskRead',      True  ],
