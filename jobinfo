@@ -245,33 +245,33 @@ dict_keys = [
 
 # Output lines
 job_output = [
-    [ 'JobId',                ['JobID'],                            '{}',      True],
-    [ 'JobName',              ['JobName'],                          '{}',      True],
-    [ 'User',                 ['User'],                             '{}',      True],
-    [ 'Partition',            ['Partition'],                        '{}',      True],
-    [ 'NodeList',             ['NodeList'],                         '{}',      True],
-    [ 'Number of Nodes',      ['NNodes'],                           '{}',      True],
-    [ 'Cores',                ['NCPUs'],                            '{}',      True],
-    [ 'Number of Tasks',      ['NTasks'],                           '{}',      True],
-    [ 'State',                ['State'],                            '{}',      True],
-    [ 'Submit',               ['Submit'],                           '{}',      True],
-    [ 'Start',                ['Start'],                            '{}',      True],
-    [ 'End',                  ['End'],                              '{}',      True],
-    [ 'Reserved walltime',    ['Timelimit'],                        '{}',      True],
-    [ 'Used walltime',        ['Elapsed'],                          '{}',      True],
-    [ 'Used CPU time',        ['TotalCPU'],                         '{}',      True],
-    [ '% User (Computation)', ['UserCPU'],                          '{}%',     True],
-    [ '% System (I/O)',       ['SystemCPU'],                        '{}%',     True],
-    [ 'Mem reserved',         ['ReqMem'],                           '{}',      True],
-    [ 'Max Mem (Node/step)',  ['MaxRSS', 'MaxRSSNode'],             '{} ({})', True],
-    [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})', True],
-    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',      True],
-    [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',      True],
-    [ 'TotalMem',             ['TotalMem'],                         '{}',      True],
-    [ 'TotalDiskRead',        ['TotalDiskRead'],                    '{}',      True],
-    [ 'TotalDiskWrite',       ['TotalDiskWrite'],                   '{}',      True],
-    [ 'MaxDiskRead',          ['MaxDiskRead', 'MaxDiskReadNode'],   '{} ({})', True],
-    [ 'MaxDiskWrite',         ['MaxDiskWrite', 'MaxDiskWriteNode'], '{} ({})', True],
+    [ 'JobId',                ['JobID'],                            '{}',       True],
+    [ 'JobName',              ['JobName'],                          '{}',       True],
+    [ 'User',                 ['User'],                             '{}',       True],
+    [ 'Partition',            ['Partition'],                        '{}',       True],
+    [ 'NodeList',             ['NodeList'],                         '{}',       True],
+    [ 'Number of Nodes',      ['NNodes'],                           '{}',       True],
+    [ 'Cores',                ['NCPUs'],                            '{}',       True],
+    [ 'Number of Tasks',      ['NTasks'],                           '{}',       True],
+    [ 'State',                ['State', 'reason', 'dependencies'],  '{} {} {}', True],
+    [ 'Submit',               ['Submit'],                           '{}',       True],
+    [ 'Start',                ['Start'],                            '{}',       True],
+    [ 'End',                  ['End'],                              '{}',       True],
+    [ 'Reserved walltime',    ['Timelimit'],                        '{}',       True],
+    [ 'Used walltime',        ['Elapsed'],                          '{}',       True],
+    [ 'Used CPU time',        ['TotalCPU'],                         '{}',       True],
+    [ '% User (Computation)', ['UserCPU'],                          '{}%',      True],
+    [ '% System (I/O)',       ['SystemCPU'],                        '{}%',      True],
+    [ 'Mem reserved',         ['ReqMem'],                           '{}',       True],
+    [ 'Max Mem (Node/step)',  ['MaxRSS', 'MaxRSSNode'],             '{} ({})',  True],
+    [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})',  True],
+    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',       True],
+    [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',       True],
+    [ 'TotalMem',             ['TotalMem'],                         '{}',       True],
+    [ 'TotalDiskRead',        ['TotalDiskRead'],                    '{}',       True],
+    [ 'TotalDiskWrite',       ['TotalDiskWrite'],                   '{}',       True],
+    [ 'MaxDiskRead',          ['MaxDiskRead', 'MaxDiskReadNode'],   '{} ({})',  True],
+    [ 'MaxDiskWrite',         ['MaxDiskWrite', 'MaxDiskWriteNode'], '{} ({})',  True],
 ]
 
 # Convert list of lists into list of dictionaries.
@@ -329,9 +329,14 @@ to give a uniform interface for both current and historical jobs.'''
     return args['jobid']
     
 def main():
+    # Get job id for which to get job information
     jobid = parse_arguments()
-    
+
+    # Retrieve job information fromt the Slurm sacct tool
     jobstate, job_status = get_values_sacct(jobid)
+
+    # If the job is running sstat will show information about any completed job steps
+    # Fetch this information from sstat
     if job_status == 'RUNNING':
         if debug:
             print('** Getting values from sstat')
@@ -341,6 +346,7 @@ def main():
     else:
        jobstate_sstat = []
 
+    # Get all needed values from the job data
     output_data = {}
     for job_item in job_data:
         if job_item['prefer_live'] and jobstate_sstat != []:
@@ -351,6 +357,7 @@ def main():
             output = job_item['function'](jobstate, job_item['name'], job_item['fieldname'])
         output_data[job_item['name']] = output
 
+    # Add information from squeue from jobs that are still pending
     if job_status == 'PENDING':
         if debug:
             print('** Getting values from squeue')
@@ -359,15 +366,20 @@ def main():
             stdout=subprocess.PIPE)
         dependencies, reason, ncpus = info.stdout.readline().decode('utf-8').strip().split(";")
         output_data['NCPUs'] = ncpus
+        # Don't display (null) as a dependency
+        if dependencies == '(null)':
+            dependencies = ''
     else:
        dependencies = ''
        reason = ''
+    # Add the additional information to the dictionary
     output_data['dependencies'] = dependencies
     output_data['reason'] = reason
 
-    # Determine field width
+    # Determine field width for description
     name_format = '{{:{}}}:'.format(max(len(d['description']) for d in job_output))
 
+    # Display the information gathered in the format described by job_output
     for item in job_output:
         data = [ output_data[x] for x in item['fieldnames'] ]
         print(name_format.format(item['description']),item['format'].format(*data))
