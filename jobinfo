@@ -64,6 +64,16 @@ def tres_key(key, s=None):
        value = byte_size(value.group(1))
     return value
 
+def tres_gpu(s=None):
+    if s is None or s == '':
+        return None
+    value = re.search(r'(?<=,gres/gpu[:=])([^,]+)[,$]', s)
+    if value == None:
+       return None
+    else:
+       value = value.group(1)
+    return value
+
 # Return first value from the list of job steps
 def get_first(jobstate, name, fieldname):
     if debug:
@@ -139,6 +149,18 @@ def get_max_date(jobstate, name, fieldname):
        value = '--'
     return value
 
+def get_gpu_tres(jobstate, name, fieldname):
+    if debug:
+        print('** Debugging output for {} using {}'.format(name, fieldname))
+    result = '--'
+    for line in jobstate:
+        result = tres_gpu(line[fieldname])
+        if debug:
+            print('{}: {}'.format(line['JobID'], result))
+        if result != '' and result != None:
+           return result
+    return result
+
 # Find the maximum value from a list of entries with 'keys=value'
 def get_max_key(jobstate, name, fieldname, key):
     value = -1.0
@@ -149,7 +171,6 @@ def get_max_key(jobstate, name, fieldname, key):
         if debug:
             print('{}: {}'.format(line['JobID'], item))
         current_value = tres_key(key, item)
-        print(current_value)
         if current_value != None:
            value = max(value, current_value)
     if value < 0:
@@ -230,6 +251,8 @@ job_data = [
     [ 'ReqMem',           get_first,       'ReqMem',           False ],
     [ 'MaxRSS',           get_max_byte,    'MaxRSS',           True  ],
     [ 'MaxVMSize',        get_max_byte,    'MaxVMSize',        True  ],
+    [ 'ReqGPUs',          get_gpu_tres,    'ReqTRES',          True  ],
+    [ 'AllocGPUs',        get_gpu_tres,    'AllocTRES',        True  ],
     [ 'GPUUtilization',   get_max_gpuutil, 'TRESUsageInMax',   True  ],
     [ 'GPUMemory',        get_max_gpumem,  'TRESUsageInMax',   True  ],
     [ 'TotalMem',         get_max_mem,     'TRESUsageInTot',   True  ],
@@ -278,6 +301,8 @@ job_output = [
     [ 'Mem reserved',         ['ReqMem'],                           '{}',       True],
     [ 'Max Mem (Node/step)',  ['MaxRSS', 'MaxRSSNode'],             '{} ({})',  True],
     [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})',  True],
+    [ 'Requested GPUs',       ['ReqGPUs'],                          '{}',       True],
+    [ 'Allocated GPUs',       ['AllocGPUs'],                        '{}',       True],
     [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',       True],
     [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',       True],
     [ 'TotalMem',             ['TotalMem'],                         '{}',       True],
