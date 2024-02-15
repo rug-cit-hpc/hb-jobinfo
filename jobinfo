@@ -64,6 +64,7 @@ def tres_key(key, s=None):
        value = byte_size(value.group(1))
     return value
 
+# Return first value from the list of job steps
 def get_first(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
@@ -78,6 +79,7 @@ def get_first(jobstate, name, fieldname):
     
     return value
 
+# Return the maximum value from the list of job steps
 def get_max(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
@@ -90,6 +92,7 @@ def get_max(jobstate, name, fieldname):
            value = max(item, value)
     return value
 
+# Append values from the list of job steps
 def get_append(jobstate, name,  fieldname):
     if debug:
         print('** Debugging output for {} using'.format(name, fieldname))
@@ -106,6 +109,7 @@ def get_append(jobstate, name,  fieldname):
         item = line[fieldname]
     return output          
 
+# Get lowest time value
 def get_min_date(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using'.format(name, fieldname))
@@ -120,6 +124,7 @@ def get_min_date(jobstate, name, fieldname):
        value = '--'
     return value
 
+# Get maximum time value
 def get_max_date(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
@@ -134,6 +139,7 @@ def get_max_date(jobstate, name, fieldname):
        value = '--'
     return value
 
+# Find the maximum value from a list of entries with 'keys=value'
 def get_max_key(jobstate, name, fieldname, key):
     value = -1.0
     if debug:
@@ -149,12 +155,15 @@ def get_max_key(jobstate, name, fieldname, key):
         value = '--'
     return value
 
+# Get maximum GPU utilization
 def get_max_gpuutil(jobstate, name, fieldname):
     return get_max_key(jobstate, name, fieldname, 'gres/gpuutil')
 
+# Get maximum for GPU memory used
 def get_max_gpumem(jobstate, name, fieldname):
     return get_max_key(jobstate, name, fieldname, 'gres/gpumem')
 
+# Get maximum value from the job steps for values in byte format
 def get_max_byte(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
@@ -169,6 +178,7 @@ def get_max_byte(jobstate, name, fieldname):
         value = '--'
     return value
 
+# Sum the values from a list of entries with 'keys=value'
 def get_tot_key(jobstate, name, fieldname, key):
     total = -1.0
     if debug:
@@ -186,9 +196,11 @@ def get_tot_key(jobstate, name, fieldname, key):
        total = total + 1.0
     return total
 
+# Get total memory used for all job steps
 def get_tot_mem(jobstate, name, fieldname):
     return get_tot_key(jobstate, name, fieldname, 'mem')
 
+# Get total disk I/O for all job steps
 def get_tot_disk(jobstate, name, fieldname):
     return get_tot_key(jobstate, name, fieldname, 'disk')
 
