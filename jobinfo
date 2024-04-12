@@ -393,6 +393,7 @@ def format_timings(output_data):
     cputime = timestring_to_seconds(output_data['TotalCPU'])
     usertime = timestring_to_seconds(output_data['UserCPU'])
     systemtime = timestring_to_seconds(output_data['SystemCPU'])
+    ncpus = int(output_data['NCPUs'])
 
     if cputime == 0:
         output_data['TotalCPU'] = missing_data
@@ -400,7 +401,7 @@ def format_timings(output_data):
         output_data['SystemCPU'] = missing_data
         output_data['UserCPU'] = missing_data
     else:
-        output_data['Efficiency'] = '(Efficiency: {:5.2f}%)'.format(100.0 * cputime / elapsed_cpu)
+        output_data['Efficiency'] = '(Efficiency: {:5.2f}%)'.format(100.0 * cputime / (elapsed * ncpus))
         output_data['UserCPU'] =  '{:5.2f}%'.format(100.0 * usertime / cputime)
         output_data['SystemCPU'] =  '{:5.2f}%'.format(100.0 * systemtime / cputime)
     output_data['Timelimit'] =  f_time(output_data['Timelimit'], output_data)
