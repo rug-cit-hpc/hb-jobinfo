@@ -18,6 +18,10 @@ import datetime
 import math
 import re
 
+# Parameters affecting when hints about job performance will be given.
+MIN_WALLTIME = 180          # Minimum walltime needed before printing job hints
+MIN_MEMORY = 1.0*1024**3    # Minimum amount of memory that may be left unused per core
+
 # Value to use for missing data
 missing_data = '--'
 
@@ -64,7 +68,7 @@ def date_str(s=None):
 
 def parse_time(t):
     # Format: [DD-[hh:]]mm:ss
-    time_parts = re.compile(r'(((?P<days>\d+)-)?(?P<hours>\d\d):)?' +
+    time_parts = re.compile(r'\s*(((?P<days>\d+)-)?(?P<hours>\d\d):)?' +
                             r'(?P<minutes>\d\d):(?P<seconds>\d\d(\.\d+)?)')
     m = time_parts.match(t)
     if m is None:
@@ -415,6 +419,101 @@ def format_gpu(output_data, job_output):
             if 'GPU' in job_output[i]['description']:
                 job_output[i]['show'] =  True
 
+def get_cpus_node(nodenames):
+    nodename = nodenames.split(',')[-1]
+    info = subprocess.Popen(['scontrol', 'show', '-o', 'node', nodename], stdout=subprocess.PIPE)
+    num_cpus_match = re.search(r'cpu=(\d+)', info.stdout.read().decode('UTF-8'))
+    if num_cpus_match:
+        return int(num_cpus_match.group(1))
+    else:
+        return 1
+
+def get_total_memory_request(memory_spec, ncpus, nnodes):
+    # Convert memory_spec to bytes, ignoring the c or n at the end
+    memory_req = byte_size(memory_spec)
+
+    # If the memory request was per core, multiply by the number of cpus used
+    # otherwise multiply by the number of nodes
+    if memory_spec[-1] == 'c':
+        memory_req = memory_req * ncpus
+    else:
+        memory_req = memory_req * nnodes
+    return memory_req
+
+def get_hints(output_data):
+    if output_data['End'].lower() == 'unknown':
+        return
+
+    cputime = timestring_to_seconds(output_data['TotalCPU'])
+    elapsed = timestring_to_seconds(output_data['Elapsed'])
+
+    # Ignore jobs without or too little time
+    if cputime == 0 or elapsed < MIN_WALLTIME:
+        return
+
+    hints = []
+
+    # CPU efficiency
+    ncpus = int(output_data['NCPUs'])
+    efficiency = 100 * cputime / (ncpus * elapsed)
+    # Only show efficiency hints when the efficiency is below 75% and the
+    # code is not running on a GPU.
+    if efficiency < 75 and gpu_partition_label not in output_data['Partition']:
+        if ncpus == 1:
+            hints.append(
+                ["The program efficiency is low.",
+                 "Check the file in- and output pattern of your application."]
+            )
+        elif efficiency <= (100.0 / ncpus):
+            hints.append(
+                ["The program efficiency is very low. Your program does not seem to run in",
+                 "parallel. Please check the program documentation to see how to make the",
+                 "program run in parallel.",
+                 "If you can't find information about this, the program will not run in",
+                 "parallel! Stop requesting multiple CPU cores if that is the case."]
+            )
+        else:
+            hints.append(
+                ["The program efficiency is low. Your program is not using the assigned cores",
+                 "effectively. Please check if you are using all the cores you requested.",
+                 "You may also need to check the file in- and output pattern of your program."]
+            )
+    # Memory efficiency
+    # Calculate the average number of cores per node used
+    nnodes = int(output_data['NNodes'])
+    cores_per_node = ncpus / nnodes
+    # Find the total number of cores for the node used
+    cores_max_node = get_cpus_node(output_data['MaxRSSNode'])
+    # If we have requested a full node, don't bother because all the memory is available.
+    if cores_per_node < cores_max_node:
+    # Calculate the total amount of memory requested
+        req_memory = get_total_memory_request(output_data['ReqMem'], ncpus, nnodes)
+        used_memory = byte_size(output_data['TotalMem'])
+    # Check if at least 75% of the memory has been used and that less than MIN_MEMORY
+    # per core has been left unused
+        if (used_memory / req_memory) < 0.75 and \
+                (req_memory - used_memory) > (MIN_MEMORY * ncpus):
+            hints.append(
+                ["You requested much more memory than your program used.",
+                 "Please reduce the requested amount of memory."]
+            )
+
+    if len(hints) > 0:
+        print("Hints and tips      :")
+        hint_number = 1
+        for hint in hints:
+            hint_line = 1
+            for line in hint:
+                if hint_line == 1:
+                    print(" %i) %s" % (hint_number, line))
+                else:
+                    print("    %s" % line)
+                hint_line = hint_line + 1
+            hint_number = hint_number + 1
+        print(" *) For more information on these issues see:")
+        print("    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints")
+
+
 def parse_arguments():
     global debug
 
@@ -495,6 +594,9 @@ def main():
         if item['show'] or debug:
            data = [ output_data[x] for x in item['fieldnames'] ]
            print(name_format.format(item['description']),item['format'].format(*data))
+
+    # Display potential job hints
+    get_hints(output_data)
 
 
 def usage(pipe):
