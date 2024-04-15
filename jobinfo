@@ -110,8 +110,7 @@ def tres_gpu(s=None):
     if value == None:
        return None
     else:
-       value = value.group(1)
-    return value
+       return value.group(1)
 
 # Return first value from the list of job steps
 def get_first(jobstate, name, fieldname):
