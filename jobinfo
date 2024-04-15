@@ -252,6 +252,7 @@ def get_max_entry(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {} and {}'.format(name, fieldname, max_field))
     value = -1.0
+    step = '--'
     for line in jobstate:
         item = line[max_field]
         if debug:
@@ -259,8 +260,11 @@ def get_max_entry(jobstate, name, fieldname):
         if item != '':
            value = max(byte_size(item), value)
            entry = line[fieldname]
+           step = line['JobID'].split('.')[1] if '.' in line['JobID'] else '-'
     if value < 0:
         entry = missing_data
+    if 'Node' in fieldname:
+        entry = entry + ',' + step
     return entry
 
 # Sum the values from a list of entries with 'keys=value'
@@ -364,17 +368,17 @@ job_output = [
     [ '% User (Computation)',             ['UserCPU'],                          '{}',       True],
     [ '% System (I/O)',                   ['SystemCPU'],                        '{}',       True],
     [ 'Total memory reserved',            ['ReqMem'],                           '{}',       True],
-    [ 'Max Mem (node,task)',              ['MaxRSS', 'MaxRSSNode','MaxRSSTask'],                   '{} ({},{})',  False],
+    [ 'Max Mem (node,step,task)',         ['MaxRSS', 'MaxRSSNode','MaxRSSTask'],                   '{} ({},{})',  False],
     [ 'MaxVMSize',                        ['MaxVMSize', 'MaxVMSizeNode', 'MaxVMSizeTask'],         '{} ({},{})',  False],
     [ 'Maximum memory used',              ['TotalMem'],                         '{}',       True],
     [ 'Requested GPUs',                   ['ReqGPUs'],                          '{}',       False],
     [ 'Allocated GPUs',                   ['AllocGPUs'],                        '{}',       False],
     [ 'Max GPU utilization',              ['GPUUtilization'],                   '{}',       False],
     [ 'Max GPU memory used',              ['GPUMemory'],                        '{}',       False],
-    [ 'TotalDiskRead',                    ['TotalDiskRead'],                    '{}',       False],
-    [ 'TotalDiskWrite',                   ['TotalDiskWrite'],                   '{}',       False],
-    [ 'Max Disk Read (node,task)',        ['MaxDiskRead', 'MaxDiskReadNode','MaxDiskReadTask'],    '{} ({},{})',  False],
-    [ 'Max Disk Write (node,task)',       ['MaxDiskWrite', 'MaxDiskWriteNode','MaxDiskWriteTask'], '{} ({},{})',  False],
+    [ 'Total Disk Read',                  ['TotalDiskRead'],                    '{}',       False],
+    [ 'Total Disk Write',                 ['TotalDiskWrite'],                   '{}',       False],
+    [ 'Max Disk Read (node,step,task)',   ['MaxDiskRead', 'MaxDiskReadNode','MaxDiskReadTask'],    '{} ({},{})',  False],
+    [ 'Max Disk Write (node,step,task)',  ['MaxDiskWrite', 'MaxDiskWriteNode','MaxDiskWriteTask'], '{} ({},{})',  False],
 ]
 
 # Convert list of lists into list of dictionaries.
