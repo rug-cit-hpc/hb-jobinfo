@@ -33,7 +33,7 @@ gpu_partition_label = 'gpu'
 # Convert values with suffix to bytes
 def byte_size(s=None):
     if s is None or s == "16?":
-        return 0.0
+        return -1.0
     m = {'K': 10, 'M': 20, 'G': 30, 'T': 40, 'P': 50, 'E': 60}
     scale = 2**m.get(s[-1], 0)
     if scale != 1:
@@ -99,10 +99,9 @@ def tres_key(key, s=None):
         return None
     value = re.search(fr'(?<=,{key}=)([0-9\.]+[KMGTPE]?)'.format(key), s)
     if value == None:
-       return 0.0
+       return None
     else:
-       value = byte_size(value.group(1))
-    return value
+       return byte_size(value.group(1))
 
 def tres_gpu(s=None):
     if s is None or s == '':
