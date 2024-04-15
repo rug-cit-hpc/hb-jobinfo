@@ -521,7 +521,8 @@ def get_hints(output_data):
     cores_per_node = ncpus / nnodes
     # Find the total number of cores for the node used
     cores_max_node = get_cpus_node(output_data['MaxRSSNode'])
-    # If we have requested a full node, don't bother because all the memory is available.
+    # If we have requested a full node, don't bother reporting not using
+    # the memory because all the memory is available.
     if cores_per_node < cores_max_node:
     # Calculate the total amount of memory requested
         req_memory = get_total_memory_request(output_data['ReqMem'], ncpus, nnodes)
