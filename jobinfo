@@ -19,8 +19,10 @@ import math
 import re
 
 # Parameters affecting when hints about job performance will be given.
-MIN_WALLTIME = 180          # Minimum walltime needed before printing job hints
-MIN_MEMORY = 1.5*1024**3    # Minimum amount of memory that may be left unused per core
+MIN_WALLTIME = 180         # Minimum walltime needed before printing job hints
+MIN_MEMORY_FRACTION = 0.75 # Minimum fraction of the requested memory that should be used
+MIN_MEMORY = 1.5           # Minimum amount of memory that may be left unused per core (GB)
+MIN_GPU_MEMORY = 32        # Minimum amount of memory that is always available on a GPU node (GB)
 
 # Value to use for missing data
 missing_data = '--'
@@ -529,8 +531,9 @@ def get_hints(output_data):
         used_memory = byte_size(output_data['TotalMem'])
     # Check if at least 75% of the memory has been used and that less than MIN_MEMORY
     # per core has been left unused
-        if (used_memory / req_memory) < 0.75 and \
-                (req_memory - used_memory) > (MIN_MEMORY * ncpus):
+        if (used_memory / req_memory) < MIN_MEMORY_FRACTION and \
+                (req_memory - used_memory) > (1024**3 * MIN_MEMORY * ncpus) and \
+                (gpu_partition_label not in output_data['Partition'] or req_memory > 1024**3 * MIN_GPU_MEMORY):
             hints.append(
                 ["You requested much more CPU memory than your program used.",
                  "Please reduce the requested amount of memory."]
