@@ -246,6 +246,23 @@ def get_max_byte(jobstate, name, fieldname):
        value = format_bs(value)
     return value
 
+def get_max_entry(jobstate, name, fieldname):
+    max_field = fieldname.replace('Node', '')
+    max_field = max_field.replace('Task', '')
+    if debug:
+        print('** Debugging output for {} using {} and {}'.format(name, fieldname, max_field))
+    value = -1.0
+    for line in jobstate:
+        item = line[max_field]
+        if debug:
+            print('{}: {}'.format(line['JobID'], item))
+        if item != '':
+           value = max(byte_size(item), value)
+           entry = line[fieldname]
+    if value < 0:
+        entry = missing_data
+    return entry
+
 # Sum the values from a list of entries with 'keys=value'
 def get_tot_key(jobstate, name, fieldname, key):
     total = -1.0
@@ -303,10 +320,14 @@ job_data = [
     [ 'TotalDiskWrite',   get_tot_disk,    'TRESUsageOutTot',  True  ],
     [ 'MaxDiskRead',      get_max_byte,    'MaxDiskRead',      True  ],
     [ 'MaxDiskWrite',     get_max_byte,    'MaxDiskWrite',     True  ],
-    [ 'MaxRSSNode',       get_first,       'MaxRSSNode',       True  ],
-    [ 'MaxVMSizeNode',    get_first,       'MaxVMSizeNode',    True  ],
-    [ 'MaxDiskReadNode',  get_first,       'MaxDiskReadNode',  True  ],
-    [ 'MaxDiskWriteNode', get_first,       'MaxDiskWriteNode', True  ],
+    [ 'MaxRSSNode',       get_max_entry,   'MaxRSSNode',       True  ],
+    [ 'MaxRSSTask',       get_max_entry,   'MaxRSSTask',       True  ],
+    [ 'MaxVMSizeNode',    get_max_entry,   'MaxVMSizeNode',    True  ],
+    [ 'MaxVMSizeTask',    get_max_entry,   'MaxVMSizeTask',    True  ],
+    [ 'MaxDiskReadNode',  get_max_entry,   'MaxDiskReadNode',  True  ],
+    [ 'MaxDiskReadTask',  get_max_entry,   'MaxDiskReadTask',  True  ],
+    [ 'MaxDiskWriteNode', get_max_entry,   'MaxDiskWriteNode', True  ],
+    [ 'MaxDiskWriteTask', get_max_entry,   'MaxDiskWriteTask', True  ],
 ]
 
 # Convert list of lists into list of dictionaries.
@@ -324,36 +345,36 @@ dict_keys = [
 
 # Output lines
 job_output = [
-    [ 'Job ID',               ['JobID'],                            '{}',       True],
-    [ 'Name',                 ['JobName'],                          '{}',       True],
-    [ 'User',                 ['User'],                             '{}',       True],
-    [ 'Partition',            ['Partition'],                        '{}',       True],
-    [ 'Nodes',                ['NodeList'],                         '{}',       True],
-    [ 'Number of Nodes',      ['NNodes'],                           '{}',       True],
-    [ 'Cores',                ['NCPUs'],                            '{}',       True],
-    [ 'Number of Tasks',      ['NTasks'],                           '{}',       True],
-    [ 'State',                ['State', 'reason', 'dependencies'],  '{} {} {}', True],
-    [ 'Submit',               ['Submit'],                           '{}',       True],
-    [ 'Start',                ['Start'],                            '{}',       True],
-    [ 'End',                  ['End'],                              '{}',       True],
-    [ 'Reserved walltime',    ['Timelimit'],                        '{}',       True],
-    [ 'Used walltime',        ['Elapsed'],                          '{}',       True],
-    [ 'Used walltime*CPUs',   ['CPUTime'],                          '{}',       False],
-    [ 'Used CPU time',        ['TotalCPU','Efficiency'],            '{} {}',    True],
-    [ '% User (Computation)', ['UserCPU'],                          '{}',       True],
-    [ '% System (I/O)',       ['SystemCPU'],                        '{}',       True],
-    [ 'Mem reserved',         ['ReqMem'],                           '{}',       True],
-    [ 'Max Mem (Node/step)',  ['MaxRSS', 'MaxRSSNode'],             '{} ({})',  True],
-    [ 'TotalMem',             ['TotalMem'],                         '{}',       True],
-    [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})',  False],
-    [ 'Requested GPUs',       ['ReqGPUs'],                          '{}',       False],
-    [ 'Allocated GPUs',       ['AllocGPUs'],                        '{}',       False],
-    [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',       False],
-    [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',       False],
-    [ 'TotalDiskRead',        ['TotalDiskRead'],                    '{}',       False],
-    [ 'TotalDiskWrite',       ['TotalDiskWrite'],                   '{}',       False],
-    [ 'Max Disk Read',        ['MaxDiskRead', 'MaxDiskReadNode'],   '{} ({})',  True],
-    [ 'Max Disk Write',       ['MaxDiskWrite', 'MaxDiskWriteNode'], '{} ({})',  True],
+    [ 'Job ID',                           ['JobID'],                            '{}',       True],
+    [ 'Name',                             ['JobName'],                          '{}',       True],
+    [ 'User',                             ['User'],                             '{}',       True],
+    [ 'Partition',                        ['Partition'],                        '{}',       True],
+    [ 'Nodes',                            ['NodeList'],                         '{}',       True],
+    [ 'Number of Nodes',                  ['NNodes'],                           '{}',       True],
+    [ 'Cores',                            ['NCPUs'],                            '{}',       True],
+    [ 'Number of Tasks',                  ['NTasks'],                           '{}',       True],
+    [ 'State',                            ['State', 'reason', 'dependencies'],  '{} {} {}', True],
+    [ 'Submit',                           ['Submit'],                           '{}',       True],
+    [ 'Start',                            ['Start'],                            '{}',       True],
+    [ 'End',                              ['End'],                              '{}',       True],
+    [ 'Reserved walltime',                ['Timelimit'],                        '{}',       True],
+    [ 'Used walltime',                    ['Elapsed'],                          '{}',       True],
+    [ 'Used walltime*CPUs',               ['CPUTime'],                          '{}',       False],
+    [ 'Used CPU time',                    ['TotalCPU','Efficiency'],            '{} {}',    True],
+    [ '% User (Computation)',             ['UserCPU'],                          '{}',       True],
+    [ '% System (I/O)',                   ['SystemCPU'],                        '{}',       True],
+    [ 'Mem reserved',                     ['ReqMem'],                           '{}',       True],
+    [ 'Max Mem (node,task)',              ['MaxRSS', 'MaxRSSNode','MaxRSSTask'],                   '{} ({},{})',  True],
+    [ 'MaxVMSize',                        ['MaxVMSize', 'MaxVMSizeNode', 'MaxVMSizeTask'],         '{} ({},{})',  False],
+    [ 'TotalMem',                         ['TotalMem'],                         '{}',       True],
+    [ 'Requested GPUs',                   ['ReqGPUs'],                          '{}',       False],
+    [ 'Allocated GPUs',                   ['AllocGPUs'],                        '{}',       False],
+    [ 'Max GPU utilization',              ['GPUUtilization'],                   '{}',       False],
+    [ 'Max GPU memory used',              ['GPUMemory'],                        '{}',       False],
+    [ 'TotalDiskRead',                    ['TotalDiskRead'],                    '{}',       False],
+    [ 'TotalDiskWrite',                   ['TotalDiskWrite'],                   '{}',       False],
+    [ 'Max Disk Read (node,task)',        ['MaxDiskRead', 'MaxDiskReadNode','MaxDiskReadTask'],    '{} ({},{})',  True],
+    [ 'Max Disk Write (node,task)',       ['MaxDiskWrite', 'MaxDiskWriteNode','MaxDiskWriteTask'], '{} ({},{})',  True],
 ]
 
 # Convert list of lists into list of dictionaries.
