@@ -324,14 +324,14 @@ dict_keys = [
 
 # Output lines
 job_output = [
-    [ 'JobId',                ['JobID'],                            '{}',       True],
-    [ 'JobName',              ['JobName'],                          '{}',       True],
+    [ 'Job ID',               ['JobID'],                            '{}',       True],
+    [ 'Name',                 ['JobName'],                          '{}',       True],
     [ 'User',                 ['User'],                             '{}',       True],
     [ 'Partition',            ['Partition'],                        '{}',       True],
-    [ 'NodeList',             ['NodeList'],                         '{}',       True],
+    [ 'Nodes',                ['NodeList'],                         '{}',       True],
     [ 'Number of Nodes',      ['NNodes'],                           '{}',       True],
     [ 'Cores',                ['NCPUs'],                            '{}',       True],
-    [ 'Number of Tasks',      ['NTasks'],                           '{}',       False],
+    [ 'Number of Tasks',      ['NTasks'],                           '{}',       True],
     [ 'State',                ['State', 'reason', 'dependencies'],  '{} {} {}', True],
     [ 'Submit',               ['Submit'],                           '{}',       True],
     [ 'Start',                ['Start'],                            '{}',       True],
@@ -344,16 +344,16 @@ job_output = [
     [ '% System (I/O)',       ['SystemCPU'],                        '{}',       True],
     [ 'Mem reserved',         ['ReqMem'],                           '{}',       True],
     [ 'Max Mem (Node/step)',  ['MaxRSS', 'MaxRSSNode'],             '{} ({})',  True],
+    [ 'TotalMem',             ['TotalMem'],                         '{}',       True],
     [ 'MaxVMSize',            ['MaxVMSize', 'MaxVMSizeNode'],       '{} ({})',  False],
     [ 'Requested GPUs',       ['ReqGPUs'],                          '{}',       False],
     [ 'Allocated GPUs',       ['AllocGPUs'],                        '{}',       False],
     [ 'Max GPU utilization',  ['GPUUtilization'],                   '{}',       False],
     [ 'Max GPU memory used',  ['GPUMemory'],                        '{}',       False],
-    [ 'TotalMem',             ['TotalMem'],                         '{}',       False],
     [ 'TotalDiskRead',        ['TotalDiskRead'],                    '{}',       False],
     [ 'TotalDiskWrite',       ['TotalDiskWrite'],                   '{}',       False],
-    [ 'MaxDiskRead',          ['MaxDiskRead', 'MaxDiskReadNode'],   '{} ({})',  True],
-    [ 'MaxDiskWrite',         ['MaxDiskWrite', 'MaxDiskWriteNode'], '{} ({})',  True],
+    [ 'Max Disk Read',        ['MaxDiskRead', 'MaxDiskReadNode'],   '{} ({})',  True],
+    [ 'Max Disk Write',       ['MaxDiskWrite', 'MaxDiskWriteNode'], '{} ({})',  True],
 ]
 
 # Convert list of lists into list of dictionaries.
