@@ -263,7 +263,7 @@ def get_max_entry(jobstate, name, fieldname):
            step = line['JobID'].split('.')[1] if '.' in line['JobID'] else '-'
     if value < 0:
         entry = missing_data
-    if 'Node' in fieldname:
+    if 'Task' in fieldname:
         entry = entry + ',' + step
     return entry
 
@@ -368,7 +368,7 @@ job_output = [
     [ '% User (Computation)',             ['UserCPU'],                          '{}',       True],
     [ '% System (I/O)',                   ['SystemCPU'],                        '{}',       True],
     [ 'Total memory reserved',            ['ReqMem'],                           '{}',       True],
-    [ 'Max Mem (node,step,task)',         ['MaxRSS', 'MaxRSSNode','MaxRSSTask'],                   '{} ({},{})',  False],
+    [ 'Max Mem (node,task,step)',         ['MaxRSS', 'MaxRSSNode','MaxRSSTask'],                   '{} ({},{})',  False],
     [ 'MaxVMSize',                        ['MaxVMSize', 'MaxVMSizeNode', 'MaxVMSizeTask'],         '{} ({},{})',  False],
     [ 'Maximum memory used',              ['TotalMem'],                         '{}',       True],
     [ 'Requested GPUs',                   ['ReqGPUs'],                          '{}',       False],
@@ -377,8 +377,8 @@ job_output = [
     [ 'Max GPU memory used',              ['GPUMemory'],                        '{}',       False],
     [ 'Total Disk Read',                  ['TotalDiskRead'],                    '{}',       False],
     [ 'Total Disk Write',                 ['TotalDiskWrite'],                   '{}',       False],
-    [ 'Max Disk Read (node,step,task)',   ['MaxDiskRead', 'MaxDiskReadNode','MaxDiskReadTask'],    '{} ({},{})',  False],
-    [ 'Max Disk Write (node,step,task)',  ['MaxDiskWrite', 'MaxDiskWriteNode','MaxDiskWriteTask'], '{} ({},{})',  False],
+    [ 'Max Disk Read (node,task,step)',   ['MaxDiskRead', 'MaxDiskReadNode','MaxDiskReadTask'],    '{} ({},{})',  False],
+    [ 'Max Disk Write (node,task,step)',  ['MaxDiskWrite', 'MaxDiskWriteNode','MaxDiskWriteTask'], '{} ({},{})',  False],
 ]
 
 # Convert list of lists into list of dictionaries.
@@ -478,7 +478,19 @@ def get_hints(output_data):
 
     hints = []
 
-    # CPU efficiency
+    # Check GPU efficiency
+    if gpu_partition_label in output_data['Partition']:
+        gpu_utilization = float(output_data['GPUUtilization'].strip('%'))
+        if gpu_utilization < 0.001:
+            hints.append(
+                ["You are running on a GPU node without actually using the GPU, please fix this."]
+            )
+        elif gpu_utilization < 25.0:
+            hints.append(
+                ["The GPU utlization is low, please check if your code can be optimized,",
+                 "or if you can move your input data to fast local storage."]
+           )
+    # Check CPU efficiency
     ncpus = int(output_data['NCPUs'])
     efficiency = 100 * cputime / (ncpus * elapsed)
     # Only show efficiency hints when the efficiency is below 75% and the
@@ -522,17 +534,6 @@ def get_hints(output_data):
                 ["You requested much more CPU memory than your program used.",
                  "Please reduce the requested amount of memory."]
             )
-    if gpu_partition_label in output_data['Partition']:
-        gpu_utilization = float(output_data['GPUUtilization'].strip('%'))
-        if gpu_utilization < 0.001:
-            hints.append(
-                ["You are running on a GPU node without actually using the GPU, please fix this."]
-            )
-        elif gpu_utilization < 25.0:
-            hints.append(
-                ["The GPU utlization is low, please check if your code can be optimized,",
-                 "or if you can move your input data to fast local storage."]
-           )
 
     if len(hints) > 0:
         print("Hints and tips      :")
