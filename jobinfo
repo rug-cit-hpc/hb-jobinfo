@@ -332,6 +332,7 @@ job_data = [
     [ 'MaxDiskReadTask',  get_max_entry,   'MaxDiskReadTask',  True  ],
     [ 'MaxDiskWriteNode', get_max_entry,   'MaxDiskWriteNode', True  ],
     [ 'MaxDiskWriteTask', get_max_entry,   'MaxDiskWriteTask', True  ],
+    [ 'Comment',          get_first,       'Comment',          False ],
 ]
 
 # Convert list of lists into list of dictionaries.
@@ -379,6 +380,7 @@ job_output = [
     [ 'Total Disk Write',                 ['TotalDiskWrite'],                   '{}',       False],
     [ 'Max Disk Read (node,task,step)',   ['MaxDiskRead', 'MaxDiskReadNode','MaxDiskReadTask'],    '{} ({},{})',  False],
     [ 'Max Disk Write (node,task,step)',  ['MaxDiskWrite', 'MaxDiskWriteNode','MaxDiskWriteTask'], '{} ({},{})',  False],
+    [ 'Comment',                          ['Comment'],                          '{}',       False],
 ]
 
 # Convert list of lists into list of dictionaries.
