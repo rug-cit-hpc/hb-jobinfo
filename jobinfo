@@ -315,8 +315,8 @@ job_data = [
     [ 'ReqMem',           get_first,       'ReqMem',           False ],
     [ 'MaxRSS',           get_max_byte,    'MaxRSS',           True  ],
     [ 'MaxVMSize',        get_max_byte,    'MaxVMSize',        True  ],
-    [ 'ReqGPUs',          get_gpu_tres,    'ReqTRES',          True  ],
-    [ 'AllocGPUs',        get_gpu_tres,    'AllocTRES',        True  ],
+    [ 'ReqGPUs',          get_gpu_tres,    'ReqTRES',          False ],
+    [ 'AllocGPUs',        get_gpu_tres,    'AllocTRES',        False ],
     [ 'GPUUtilization',   get_max_gpuutil, 'TRESUsageInMax',   True  ],
     [ 'GPUMemory',        get_max_gpumem,  'TRESUsageInMax',   True  ],
     [ 'TotalMem',         get_max_mem,     'TRESUsageInTot',   True  ],
@@ -339,7 +339,12 @@ job_data = [
 job_data = list(map(lambda x: dict(zip(dict_keys, x)), job_data))
 
 FIELD_NAMES = [ x['fieldname'] for x in job_data]
+# Only keep unique items
+FIELD_NAMES = list(dict.fromkeys(FIELD_NAMES))
 FIELD_NAMES_LIVE = [ x['fieldname'] for x in job_data if x['prefer_live']]
+# Only keep unique items
+FIELD_NAMES_LIVE = list(dict.fromkeys(FIELD_NAMES_LIVE))
+
 
 FORMAT_STR = '--format={}'.format(','.join(FIELD_NAMES))
 FORMAT_STR_LIVE = '--format={}'.format(','.join(FIELD_NAMES_LIVE))
@@ -574,10 +579,7 @@ to give a uniform interface for both current and historical jobs.'''
     long  = args['long']
     return args['jobid']
     
-def main():
-    # Get job id for which to get job information
-    jobid = parse_arguments()
-
+def main(jobid):
     # Retrieve job information fromt the Slurm sacct tool
     jobstate, job_status = get_values_sacct(jobid)
 
@@ -655,4 +657,6 @@ Report problems to hpc@rug.nl'''
     print(usage_msg, file=pipe)
 
 if __name__ == '__main__':
-    main()
+    # Get job id for which to get job information
+    jobid = parse_arguments()
+    main(jobid)
