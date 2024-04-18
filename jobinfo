@@ -606,20 +606,21 @@ def main(jobid):
         output_data[job_item['name']] = output
 
     # Add information from squeue from jobs that are still pending
+    dependencies = ''
+    reason = ''
     if job_status == 'PENDING':
         if debug:
             print('** Getting values from squeue')
         info = subprocess.Popen(
             ['squeue', '--format=%E;%R;%C', '--noheader', '-a', '-j', jobid],
             stdout=subprocess.PIPE)
-        dependencies, reason, ncpus = info.stdout.readline().decode('utf-8').strip().split(";")
-        output_data['NCPUs'] = ncpus
-        # Don't display (null) as a dependency
-        if dependencies == '(null)':
-            dependencies = ''
-    else:
-       dependencies = ''
-       reason = ''
+        squeue_data = info.stdout.readline().decode('utf-8').strip().split(";")
+        if len(squeue_data) == 3:
+           dependencies, reason, ncpus = squeue_data
+           output_data['NCPUs'] = ncpus
+           # Don't display (null) as a dependency
+           if dependencies == '(null)':
+               dependencies = ''
     # Add the additional information to the dictionary
     output_data['dependencies'] = dependencies
     output_data['reason'] = reason
