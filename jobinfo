@@ -413,7 +413,7 @@ def get_values_sacct(jobid):
 
 def get_values_sstat(jobid):
     sstat_cmd = [
-        'sstat', FORMAT_STR_LIVE, '--parsable', '--noheader', '-j', jobid
+        'sstat', FORMAT_STR_LIVE, '--parsable', '--noheader', '-a', '-j', jobid
     ]
     info = subprocess.Popen(
         map(lambda s: s.encode('utf-8'), sstat_cmd),
@@ -558,7 +558,7 @@ def get_hints(output_data):
 
 def parse_arguments():
     global debug
-    global long
+    global long_output
 
     parser = argparse.ArgumentParser(prog = 'jobinfo', 
                             description = \
@@ -569,14 +569,14 @@ to give a uniform interface for both current and historical jobs.'''
     parser.add_argument('-d', '--debug', dest='debug', default=False, action='store_true',
                       help="Shows extra information about how the data is gathered")
 
-    parser.add_argument('-l', '--long', dest='long', default=False, action='store_true',
+    parser.add_argument('-l', '--long', dest='long_output', default=False, action='store_true',
                       help="Shows more information about the job")
 
     parser.add_argument('jobid', metavar='jobid', help='the jobid to query')
 
     args = vars(parser.parse_args())
     debug = args['debug']
-    long  = args['long']
+    long_output = args['long_output']
     return args['jobid']
     
 def main(jobid):
@@ -635,7 +635,7 @@ def main(jobid):
 
     # Display the information gathered in the format described by job_output
     for item in job_output:
-        if item['show'] or long:
+        if item['show'] or long_output:
            data = [ output_data[x] for x in item['fieldnames'] ]
            print(name_format.format(item['description']),item['format'].format(*data))
 
