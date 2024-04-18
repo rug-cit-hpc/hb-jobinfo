@@ -1,0 +1,31 @@
+Job ID                         : 2360179
+Name                           : G09LI59
+User                           : user44
+Partition                      : regularmedium
+Nodes                          : node33
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T18:58:14
+Start                          : 2023-06-02T21:11:11
+End                            : 2023-06-03T02:03:09
+Reserved walltime              : 1-00:00:00
+Used walltime                  :   04:51:58
+Used walltime*CPUs             :   04:51:58
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 20000M
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

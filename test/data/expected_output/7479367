@@ -1,0 +1,31 @@
+Job ID                         : 7479367
+Name                           : QDH4F2WV58CI
+User                           : user29
+Partition                      : regularshort
+Nodes                          : node98
+Number of Nodes                : 1
+Cores                          : 11
+Number of Tasks                : 11
+State                          : COMPLETED  
+Submit                         : 2024-03-03T14:05:35
+Start                          : 2024-03-03T14:05:36
+End                            : 2024-03-03T14:06:48
+Reserved walltime              : 00:30:00
+Used walltime                  : 00:01:12
+Used walltime*CPUs             : 00:13:12
+Used CPU time                  : 00:01:48 (Efficiency: 13.60%)
+% User (Computation)           : 82.44%
+% System (I/O)                 : 17.56%
+Total memory reserved          : 22000M
+Max Mem (node,task,step)       : 29.66M (node98,6,0)
+MaxVMSize                      : 29.66M (node98,6,0)
+Maximum memory used            : 323.82M
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 396.15M
+Total Disk Write               : 988.12K
+Max Disk Read (node,task,step) : 37.64M (node98,7,0)
+Max Disk Write (node,task,step): 112.64K (node98,7,0)
+Comment                        : 

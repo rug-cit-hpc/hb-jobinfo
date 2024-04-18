@@ -1,0 +1,31 @@
+Job ID                         : 4046412
+Name                           : HTBGYP6XUIOP
+User                           : user5
+Partition                      : gpulong
+Nodes                          : a100gpu1
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 
+State                          : CANCELLED by 10304007  
+Submit                         : 2023-09-01T09:15:03
+Start                          : 2023-09-04T17:05:14
+End                            : 2023-09-05T15:31:53
+Reserved walltime              : 1-05:50:00
+Used walltime                  :   22:26:39
+Used walltime*CPUs             : 7-11:33:12
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 199G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

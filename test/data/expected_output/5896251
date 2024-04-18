@@ -1,0 +1,31 @@
+Job ID                         : 5896251
+Name                           : JKCKAA2KF6H
+User                           : user18
+Partition                      : gpumedium
+Nodes                          : a100gpu5
+Number of Nodes                : 1
+Cores                          : 12
+Number of Tasks                : 
+State                          : FAILED  
+Submit                         : 2023-11-01T23:07:09
+Start                          : 2023-11-03T08:11:36
+End                            : 2023-11-03T10:31:54
+Reserved walltime              : 20:00:00
+Used walltime                  : 02:20:18
+Used walltime*CPUs             : 04:03:36
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 90G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

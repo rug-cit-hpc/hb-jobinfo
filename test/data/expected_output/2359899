@@ -1,0 +1,31 @@
+Job ID                         : 2359899
+Name                           : ND8M5I9DJZUKUG
+User                           : user44
+Partition                      : regularmedium
+Nodes                          : node85
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T18:57:59
+Start                          : 2023-06-02T20:35:56
+End                            : 2023-06-03T00:53:31
+Reserved walltime              : 1-00:00:00
+Used walltime                  :   04:17:35
+Used walltime*CPUs             :   04:17:35
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 20000M
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

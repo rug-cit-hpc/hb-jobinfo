@@ -1,0 +1,31 @@
+Job ID                         : 8181476_31
+Name                           : SHTORFEVR5TBRT
+User                           : user16
+Partition                      : regularmedium
+Nodes                          : node78
+Number of Nodes                : 1
+Cores                          : 12
+Number of Tasks                : 1
+State                          : RUNNING  
+Submit                         : 2024-04-16T09:48:26
+Start                          : 2024-04-16T09:48:27
+End                            : --
+Reserved walltime              : 2-23:59:00
+Used walltime                  :   06:38:47
+Used walltime*CPUs             : 3-07:45:24
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 24000M
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

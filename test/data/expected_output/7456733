@@ -1,0 +1,36 @@
+Job ID                         : 7456733
+Name                           : HDPZL4MABEM
+User                           : user1
+Partition                      : himemlong
+Nodes                          : memory1
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-03-01T17:45:43
+Start                          : 2024-03-11T20:38:55
+End                            : 2024-03-12T01:49:31
+Reserved walltime              : 5-00:00:00
+Used walltime                  :   05:10:36
+Used walltime*CPUs             :   05:10:36
+Used CPU time                  :   05:07:40 (Efficiency: 99.06%)
+% User (Computation)           : 98.97%
+% System (I/O)                 :  1.03%
+Total memory reserved          : 70G
+Max Mem (node,task,step)       : 23.43G (memory1,0,extern)
+MaxVMSize                      : 23.72G (memory1,0,extern)
+Maximum memory used            : 23.43G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 2.36G
+Total Disk Write               : 803.78M
+Max Disk Read (node,task,step) : 2.36G (memory1,0,extern)
+Max Disk Write (node,task,step): 803.78M (memory1,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

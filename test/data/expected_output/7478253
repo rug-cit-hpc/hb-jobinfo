@@ -1,0 +1,31 @@
+Job ID                         : 7478253
+Name                           : R2C
+User                           : user29
+Partition                      : regularshort
+Nodes                          : node96
+Number of Nodes                : 1
+Cores                          : 11
+Number of Tasks                : 11
+State                          : COMPLETED  
+Submit                         : 2024-03-03T13:44:13
+Start                          : 2024-03-03T13:44:14
+End                            : 2024-03-03T13:45:20
+Reserved walltime              : 00:30:00
+Used walltime                  : 00:01:06
+Used walltime*CPUs             : 00:12:06
+Used CPU time                  : 00:02:04 (Efficiency: 17.03%)
+% User (Computation)           : 80.74%
+% System (I/O)                 : 19.26%
+Total memory reserved          : 22000M
+Max Mem (node,task,step)       : 29.64M (node96,5,0)
+MaxVMSize                      : 29.64M (node96,5,0)
+Maximum memory used            : 323.64M
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 397.99M
+Total Disk Write               : 1012.12K
+Max Disk Read (node,task,step) : 37.47M (node96,10,0)
+Max Disk Write (node,task,step): 112.64K (node96,5,0)
+Comment                        : 

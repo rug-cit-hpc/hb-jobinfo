@@ -1,0 +1,31 @@
+Job ID                         : 6708912
+Name                           : P9SF
+User                           : user13
+Partition                      : parallelmedium
+Nodes                          : omni[11-12]
+Number of Nodes                : 2
+Cores                          : 256
+Number of Tasks                : 256
+State                          : CANCELLED,COMPLETED,FAILED,TIMEOUT  
+Submit                         : 2024-01-01T10:45:27
+Start                          : 2024-01-01T10:45:28
+End                            : 2024-01-04T10:45:56
+Reserved walltime              :  3-00:00:00
+Used walltime                  :  3-00:00:26
+Used walltime*CPUs             : 768-01:50:56
+Used CPU time                  : 762-08:12:51 (Efficiency: 99.25%)
+% User (Computation)           : 96.90%
+% System (I/O)                 :  3.10%
+Total memory reserved          : 200G
+Max Mem (node,task,step)       : 77.26M (omni11,0,0)
+MaxVMSize                      : 10.55G (omni11,0,0)
+Maximum memory used            : 11.00G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 5.12G
+Total Disk Write               : 43.79G
+Max Disk Read (node,task,step) : 4.90G (omni11,0,0)
+Max Disk Write (node,task,step): 18.63G (omni11,0,0)
+Comment                        : 

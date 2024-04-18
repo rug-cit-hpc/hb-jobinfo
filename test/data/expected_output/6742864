@@ -1,0 +1,31 @@
+Job ID                         : 6742864
+Name                           : BF53B5Z65CMS4MA
+User                           : user10
+Partition                      : parallelshort
+Nodes                          : omni22
+Number of Nodes                : 1
+Cores                          : 2
+Number of Tasks                : 2
+State                          : COMPLETED,FAILED  
+Submit                         : 2024-01-05T11:09:31
+Start                          : 2024-01-05T11:09:31
+End                            : 2024-01-05T11:09:42
+Reserved walltime              : 00:10:00
+Used walltime                  : 00:00:11
+Used walltime*CPUs             : 00:00:22
+Used CPU time                  : 00:00:08 (Efficiency: 34.53%)
+% User (Computation)           : 92.13%
+% System (I/O)                 :  0.00%
+Total memory reserved          : 10G
+Max Mem (node,task,step)       : 53.58M (omni22,0,0)
+MaxVMSize                      : 57.72M (omni22,0,0)
+Maximum memory used            : 53.58M
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 1.67M
+Total Disk Write               : 791.00 
+Max Disk Read (node,task,step) : 1.67M (omni22,0,0)
+Max Disk Write (node,task,step): 0.00  (omni22,0,0)
+Comment                        : 

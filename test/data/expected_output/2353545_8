@@ -1,0 +1,31 @@
+Job ID                         : 2353545_8
+Name                           : JF2PL
+User                           : user24
+Partition                      : regularlong
+Nodes                          : node18
+Number of Nodes                : 1
+Cores                          : 6
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T16:28:30
+Start                          : 2023-06-05T13:28:47
+End                            : 2023-06-05T21:24:40
+Reserved walltime              : 9-23:59:00
+Used walltime                  :   07:55:53
+Used walltime*CPUs             : 1-23:35:18
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 64G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

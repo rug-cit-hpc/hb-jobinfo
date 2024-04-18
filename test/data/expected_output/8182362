@@ -1,0 +1,36 @@
+Job ID                         : 8182362
+Name                           : 00KE7P8RT
+User                           : user35
+Partition                      : regularmedium
+Nodes                          : node87
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-04-16T10:25:55
+Start                          : 2024-04-16T10:26:03
+End                            : 2024-04-16T15:59:24
+Reserved walltime              : 10:00:00
+Used walltime                  : 05:33:21
+Used walltime*CPUs             : 05:33:21
+Used CPU time                  : 05:30:38 (Efficiency: 99.19%)
+% User (Computation)           : 99.96%
+% System (I/O)                 :  0.04%
+Total memory reserved          : 4G
+Max Mem (node,task,step)       : 647.61M (node87,0,extern)
+MaxVMSize                      : 930.52M (node87,0,extern)
+Maximum memory used            : 647.61M
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 722.76M
+Total Disk Write               : 327.08M
+Max Disk Read (node,task,step) : 722.76M (node87,0,extern)
+Max Disk Write (node,task,step): 327.08M (node87,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

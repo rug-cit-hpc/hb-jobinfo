@@ -1,0 +1,31 @@
+Job ID                         : 7477532
+Name                           : CDYYC1DV3NF2R2
+User                           : user9
+Partition                      : regularshort
+Nodes                          : node104
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-03-03T08:38:56
+Start                          : 2024-03-03T08:39:31
+End                            : 2024-03-03T09:10:14
+Reserved walltime              : 06:00:00
+Used walltime                  : 00:30:43
+Used walltime*CPUs             : 00:30:43
+Used CPU time                  : 00:30:26 (Efficiency: 99.09%)
+% User (Computation)           : 77.34%
+% System (I/O)                 : 22.66%
+Total memory reserved          : 6G
+Max Mem (node,task,step)       : 233.82M (node104,0,extern)
+MaxVMSize                      : 5.97G (node104,0,extern)
+Maximum memory used            : 233.82M
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 11.30G
+Total Disk Write               : 12.25G
+Max Disk Read (node,task,step) : 11.30G (node104,0,extern)
+Max Disk Write (node,task,step): 12.25G (node104,0,extern)
+Comment                        : 

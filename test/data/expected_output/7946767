@@ -1,0 +1,31 @@
+Job ID                         : 7946767
+Name                           : 5Z6EUE5QZKO367
+User                           : user48
+Partition                      : gpumedium
+Nodes                          : v100gpu13
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-04-04T10:08:19
+Start                          : 2024-04-05T00:18:37
+End                            : 2024-04-05T11:42:00
+Reserved walltime              : 1-00:00:00
+Used walltime                  :   11:23:23
+Used walltime*CPUs             : 3-19:07:04
+Used CPU time                  :   21:50:44 (Efficiency: 23.98%)
+% User (Computation)           : 93.39%
+% System (I/O)                 :  6.61%
+Total memory reserved          : 8G
+Max Mem (node,task,step)       : 2.95G (v100gpu13,0,extern)
+MaxVMSize                      : 7.66G (v100gpu13,0,extern)
+Maximum memory used            : 2.95G
+Requested GPUs                 : 1
+Allocated GPUs                 : v100=1
+Max GPU utilization            : 54%
+Max GPU memory used            : 7.59G
+Total Disk Read                : 174.42G
+Total Disk Write               : 4.09G
+Max Disk Read (node,task,step) : 174.42G (v100gpu13,0,extern)
+Max Disk Write (node,task,step): 4.09G (v100gpu13,0,extern)
+Comment                        : 

@@ -1,0 +1,31 @@
+Job ID                         : 5908801_3
+Name                           : B22XMA355JDMX
+User                           : user25
+Partition                      : gpulong
+Nodes                          : v100gpu10
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-11-02T13:47:11
+Start                          : 2023-11-02T21:16:50
+End                            : 2023-11-04T01:54:16
+Reserved walltime              : 2-00:00:00
+Used walltime                  : 1-04:37:26
+Used walltime*CPUs             : 9-12:59:28
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 125000M
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

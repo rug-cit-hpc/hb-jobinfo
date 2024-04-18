@@ -1,0 +1,37 @@
+Job ID                         : 7216821_144
+Name                           : TNNJA7IIH
+User                           : user16
+Partition                      : regularmedium
+Nodes                          : node6
+Number of Nodes                : 1
+Cores                          : 12
+Number of Tasks                : 1
+State                          : CANCELLED,COMPLETED,TIMEOUT  
+Submit                         : 2024-02-15T08:44:08
+Start                          : 2024-02-29T16:59:01
+End                            : 2024-03-03T16:58:19
+Reserved walltime              : 2-23:59:00
+Used walltime                  : 2-23:59:18
+Used walltime*CPUs             : 35-23:51:36
+Used CPU time                  : 14-20:49:11 (Efficiency: 41.31%)
+% User (Computation)           : 94.46%
+% System (I/O)                 :  5.54%
+Total memory reserved          : 16000M
+Max Mem (node,task,step)       : 1.59G (node6,0,extern)
+MaxVMSize                      : 1.62G (node6,0,extern)
+Maximum memory used            : 1.59G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 525.01G
+Total Disk Write               : 159.76M
+Max Disk Read (node,task,step) : 525.01G (node6,0,extern)
+Max Disk Write (node,task,step): 159.76M (node6,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) The program efficiency is low. Your program is not using the assigned cores
+    effectively. Please check if you are using all the cores you requested.
+    You may also need to check the file in- and output pattern of your program.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

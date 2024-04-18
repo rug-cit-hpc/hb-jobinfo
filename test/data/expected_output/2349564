@@ -1,0 +1,31 @@
+Job ID                         : 2349564
+Name                           : ASPPNCR
+User                           : user22
+Partition                      : regularmedium
+Nodes                          : node[81-83]
+Number of Nodes                : 3
+Cores                          : 24
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T13:47:47
+Start                          : 2023-06-02T20:35:56
+End                            : 2023-06-04T11:05:23
+Reserved walltime              : 2-00:00:00
+Used walltime                  : 1-14:29:27
+Used walltime*CPUs             : 38-11:46:48
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 192G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

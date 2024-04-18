@@ -1,0 +1,31 @@
+Job ID                         : 4034541
+Name                           : 9J3MI
+User                           : user5
+Partition                      : gpumedium
+Nodes                          : a100gpu2
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 
+State                          : CANCELLED by 10304007  
+Submit                         : 2023-08-31T12:29:47
+Start                          : 2023-09-01T05:51:10
+End                            : 2023-09-01T09:25:23
+Reserved walltime              : 19:50:00
+Used walltime                  : 03:34:13
+Used walltime*CPUs             : 04:33:44
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 199G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

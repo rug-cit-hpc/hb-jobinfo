@@ -1,0 +1,39 @@
+Job ID                         : 7482715
+Name                           : 844033CA7NGUMQF
+User                           : user15
+Partition                      : regularmedium
+Nodes                          : node81
+Number of Nodes                : 1
+Cores                          : 32
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-03-03T17:51:13
+Start                          : 2024-03-10T05:21:16
+End                            : 2024-03-10T07:00:15
+Reserved walltime              : 3-00:00:00
+Used walltime                  :   01:38:59
+Used walltime*CPUs             : 2-04:47:28
+Used CPU time                  :   09:25:21 (Efficiency: 17.85%)
+% User (Computation)           : 40.30%
+% System (I/O)                 : 59.70%
+Total memory reserved          : 100G
+Max Mem (node,task,step)       : 11.78G (node81,0,extern)
+MaxVMSize                      : 11.78G (node81,0,extern)
+Maximum memory used            : 11.78G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 690.67M
+Total Disk Write               : 4.66M
+Max Disk Read (node,task,step) : 690.67M (node81,0,extern)
+Max Disk Write (node,task,step): 4.66M (node81,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) The program efficiency is low. Your program is not using the assigned cores
+    effectively. Please check if you are using all the cores you requested.
+    You may also need to check the file in- and output pattern of your program.
+ 2) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

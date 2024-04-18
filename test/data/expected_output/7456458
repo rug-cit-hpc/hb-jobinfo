@@ -1,0 +1,36 @@
+Job ID                         : 7456458
+Name                           : 996G4OPB4GRKBUI
+User                           : user1
+Partition                      : himemlong
+Nodes                          : memory1
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-03-01T17:45:32
+Start                          : 2024-03-10T05:45:32
+End                            : 2024-03-10T15:28:19
+Reserved walltime              : 5-00:00:00
+Used walltime                  :   09:42:47
+Used walltime*CPUs             :   09:42:47
+Used CPU time                  :   09:28:02 (Efficiency: 97.47%)
+% User (Computation)           : 99.13%
+% System (I/O)                 :  0.87%
+Total memory reserved          : 70G
+Max Mem (node,task,step)       : 39.59G (memory1,0,extern)
+MaxVMSize                      : 39.88G (memory1,0,extern)
+Maximum memory used            : 39.59G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 2.48G
+Total Disk Write               : 1.43G
+Max Disk Read (node,task,step) : 2.48G (memory1,0,extern)
+Max Disk Write (node,task,step): 1.43G (memory1,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

@@ -1,0 +1,31 @@
+Job ID                         : 2250708
+Name                           : 3PFTP
+User                           : user18
+Partition                      : gpumedium
+Nodes                          : a100gpu5
+Number of Nodes                : 1
+Cores                          : 12
+Number of Tasks                : 
+State                          : FAILED  
+Submit                         : 2023-05-28T18:21:15
+Start                          : 2023-06-07T12:21:55
+End                            : 2023-06-07T21:51:59
+Reserved walltime              : 12:00:00
+Used walltime                  : 09:30:04
+Used walltime*CPUs             : 18:00:48
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 80G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

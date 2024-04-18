@@ -1,0 +1,36 @@
+Job ID                         : 7479092
+Name                           : IDE69PYNJ
+User                           : user6
+Partition                      : regularshort
+Nodes                          : node40
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-03-03T14:00:28
+Start                          : 2024-03-03T15:11:41
+End                            : 2024-03-03T15:46:00
+Reserved walltime              : 00:59:00
+Used walltime                  : 00:34:19
+Used walltime*CPUs             : 00:34:19
+Used CPU time                  : 00:33:59 (Efficiency: 99.03%)
+% User (Computation)           : 99.97%
+% System (I/O)                 :  0.03%
+Total memory reserved          : 10G
+Max Mem (node,task,step)       : 243.54M (node40,0,extern)
+MaxVMSize                      : 243.59M (node40,0,extern)
+Maximum memory used            : 243.54M
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 40.47M
+Total Disk Write               : 299.90K
+Max Disk Read (node,task,step) : 40.47M (node40,0,extern)
+Max Disk Write (node,task,step): 296.96K (node40,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

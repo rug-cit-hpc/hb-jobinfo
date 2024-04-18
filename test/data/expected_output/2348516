@@ -1,0 +1,31 @@
+Job ID                         : 2348516
+Name                           : 1KRYU1TJ
+User                           : user3
+Partition                      : regularmedium
+Nodes                          : node59
+Number of Nodes                : 1
+Cores                          : 4
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T12:02:14
+Start                          : 2023-06-02T15:50:12
+End                            : 2023-06-03T02:12:51
+Reserved walltime              : 2-00:00:00
+Used walltime                  :   10:22:39
+Used walltime*CPUs             : 1-17:30:36
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 1G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

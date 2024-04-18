@@ -1,0 +1,31 @@
+Job ID                         : 8163609
+Name                           : 20G9JJP
+User                           : user39
+Partition                      : regularlong
+Nodes                          : node49
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 1
+State                          : RUNNING  
+Submit                         : 2024-04-15T12:06:09
+Start                          : 2024-04-15T12:08:14
+End                            : --
+Reserved walltime              : 10-00:00:00
+Used walltime                  : 1-04:18:59
+Used walltime*CPUs             : 1-04:18:59
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 20G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

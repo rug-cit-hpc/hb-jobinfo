@@ -1,0 +1,31 @@
+Job ID                         : 7965768
+Name                           : P7WYGV7QAUP
+User                           : user2
+Partition                      : gpulong
+Nodes                          : v100gpu16
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 1
+State                          : CANCELLED,CANCELLED by 10314909,COMPLETED  
+Submit                         : 2024-04-04T19:29:45
+Start                          : 2024-04-04T21:45:17
+End                            : 2024-04-05T13:13:40
+Reserved walltime              : 1-23:59:00
+Used walltime                  :   15:28:23
+Used walltime*CPUs             : 5-03:47:04
+Used CPU time                  :   15:33:59 (Efficiency: 12.58%)
+% User (Computation)           : 97.52%
+% System (I/O)                 :  2.48%
+Total memory reserved          : 10G
+Max Mem (node,task,step)       : 1.23G (v100gpu16,0,extern)
+MaxVMSize                      : 9.90G (v100gpu16,0,extern)
+Maximum memory used            : 1.23G
+Requested GPUs                 : 1
+Allocated GPUs                 : v100=1
+Max GPU utilization            : 90%
+Max GPU memory used            : 19.55G
+Total Disk Read                : 891.27M
+Total Disk Write               : 215.00G
+Max Disk Read (node,task,step) : 891.26M (v100gpu16,0,extern)
+Max Disk Write (node,task,step): 215.00G (v100gpu16,0,extern)
+Comment                        : 

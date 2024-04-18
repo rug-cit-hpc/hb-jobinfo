@@ -1,0 +1,31 @@
+Job ID                         : 7480703
+Name                           : YUSKDV6
+User                           : user30
+Partition                      : regularshort
+Nodes                          : node11
+Number of Nodes                : 1
+Cores                          : 2
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-03-03T16:19:19
+Start                          : 2024-03-03T16:19:19
+End                            : 2024-03-03T16:20:07
+Reserved walltime              : 01:00:00
+Used walltime                  : 00:00:48
+Used walltime*CPUs             : 00:01:36
+Used CPU time                  : 00:01:28 (Efficiency: 91.34%)
+% User (Computation)           : 99.46%
+% System (I/O)                 :  0.54%
+Total memory reserved          : 4000M
+Max Mem (node,task,step)       : 32.14M (node11,0,extern)
+MaxVMSize                      : 70.59M (node11,0,extern)
+Maximum memory used            : 32.14M
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 40.01M
+Total Disk Write               : 29.57M
+Max Disk Read (node,task,step) : 40.01M (node11,0,extern)
+Max Disk Write (node,task,step): 29.57M (node11,0,extern)
+Comment                        : 

@@ -1,0 +1,31 @@
+Job ID                         : 7951810
+Name                           : 5B68XVGC2ROB9
+User                           : user11
+Partition                      : parallelmedium
+Nodes                          : None assigned
+Number of Nodes                : 2
+Cores                          : 128
+Number of Tasks                : 
+State                          : PENDING (Priority) 
+Submit                         : 2024-04-04T12:10:33
+Start                          : --
+End                            : --
+Reserved walltime              : 3-00:00:00
+Used walltime                  : --
+Used walltime*CPUs             : --
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 32G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

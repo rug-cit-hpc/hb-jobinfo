@@ -1,0 +1,36 @@
+Job ID                         : 7483822
+Name                           : KN7G
+User                           : user8
+Partition                      : regularmedium
+Nodes                          : node11
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-03-03T22:39:20
+Start                          : 2024-03-03T22:40:26
+End                            : 2024-03-03T22:48:12
+Reserved walltime              : 3-00:00:00
+Used walltime                  :   00:07:46
+Used walltime*CPUs             :   00:07:46
+Used CPU time                  :   00:07:31 (Efficiency: 96.80%)
+% User (Computation)           : 13.07%
+% System (I/O)                 : 86.93%
+Total memory reserved          : 8G
+Max Mem (node,task,step)       : 1.47G (node11,0,extern)
+MaxVMSize                      : 1.48G (node11,0,extern)
+Maximum memory used            : 1.47G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 338.92M
+Total Disk Write               : 27.41K
+Max Disk Read (node,task,step) : 338.92M (node11,0,extern)
+Max Disk Write (node,task,step): 30.72K (node11,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

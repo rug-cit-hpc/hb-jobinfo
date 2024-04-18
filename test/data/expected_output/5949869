@@ -1,0 +1,31 @@
+Job ID                         : 5949869
+Name                           : HZVURX15MMNW51
+User                           : user34
+Partition                      : gpumedium
+Nodes                          : a100gpu2
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-11-03T19:10:08
+Start                          : 2023-11-03T19:10:09
+End                            : 2023-11-03T19:12:46
+Reserved walltime              : 06:00:00
+Used walltime                  : 00:02:37
+Used walltime*CPUs             : 00:20:56
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 64G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

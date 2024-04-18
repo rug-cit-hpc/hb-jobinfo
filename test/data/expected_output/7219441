@@ -1,0 +1,31 @@
+Job ID                         : 7219441
+Name                           : MOTSQ6GK2H
+User                           : user13
+Partition                      : parallelmedium
+Nodes                          : None assigned
+Number of Nodes                : 3
+Cores                          : 384
+Number of Tasks                : 
+State                          : PENDING (Dependency) afterany:7219440(unfulfilled)
+Submit                         : 2024-02-15T13:40:43
+Start                          : --
+End                            : --
+Reserved walltime              : 3-00:00:00
+Used walltime                  : --
+Used walltime*CPUs             : --
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 300G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

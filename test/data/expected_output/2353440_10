@@ -1,0 +1,31 @@
+Job ID                         : 2353440_10
+Name                           : 6GS65F0MNK33
+User                           : user24
+Partition                      : regularlong
+Nodes                          : node49
+Number of Nodes                : 1
+Cores                          : 6
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T16:24:57
+Start                          : 2023-06-03T21:37:44
+End                            : 2023-06-04T01:23:51
+Reserved walltime              : 9-23:59:00
+Used walltime                  :   03:46:07
+Used walltime*CPUs             :   22:36:42
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 64G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

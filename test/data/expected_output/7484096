@@ -1,0 +1,36 @@
+Job ID                         : 7484096
+Name                           : LY7031
+User                           : user8
+Partition                      : regularmedium
+Nodes                          : node20
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-03-03T22:52:11
+Start                          : 2024-03-03T23:13:05
+End                            : 2024-03-03T23:50:40
+Reserved walltime              : 3-00:00:00
+Used walltime                  :   00:37:35
+Used walltime*CPUs             :   00:37:35
+Used CPU time                  :   00:37:09 (Efficiency: 98.85%)
+% User (Computation)           :  8.25%
+% System (I/O)                 : 91.75%
+Total memory reserved          : 8G
+Max Mem (node,task,step)       : 1.47G (node20,0,extern)
+MaxVMSize                      : 1.47G (node20,0,extern)
+Maximum memory used            : 1.47G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 340.57M
+Total Disk Write               : 27.42K
+Max Disk Read (node,task,step) : 340.57M (node20,0,extern)
+Max Disk Write (node,task,step): 30.72K (node20,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

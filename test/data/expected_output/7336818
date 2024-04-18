@@ -1,0 +1,31 @@
+Job ID                         : 7336818
+Name                           : O0OY
+User                           : user27
+Partition                      : regularlong
+Nodes                          : None assigned
+Number of Nodes                : 1
+Cores                          : 20
+Number of Tasks                : 
+State                          : NODE_FAIL  
+Submit                         : 2024-02-26T19:06:44
+Start                          : None
+End                            : 2024-03-19T22:45:33
+Reserved walltime              : 10-00:00:00
+Used walltime                  : --
+Used walltime*CPUs             : --
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 320G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

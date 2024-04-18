@@ -1,0 +1,31 @@
+Job ID                         : 5919551
+Name                           : QI8NOFXN5ECXV
+User                           : user23
+Partition                      : gpushort
+Nodes                          : v100gpu34
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-11-02T19:53:43
+Start                          : 2023-11-03T00:51:41
+End                            : 2023-11-03T01:02:45
+Reserved walltime              : 02:00:00
+Used walltime                  : 00:11:04
+Used walltime*CPUs             : 01:28:32
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 32G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

@@ -1,0 +1,31 @@
+Job ID                         : 8180204
+Name                           : LXN8NM0
+User                           : user22
+Partition                      : regularmedium
+Nodes                          : node[11,14,18]
+Number of Nodes                : 3
+Cores                          : 8
+Number of Tasks                : 3
+State                          : RUNNING  
+Submit                         : 2024-04-16T08:42:08
+Start                          : 2024-04-16T08:42:09
+End                            : --
+Reserved walltime              : 2-12:00:00
+Used walltime                  :   07:45:05
+Used walltime*CPUs             : 7-18:02:00
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 192G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

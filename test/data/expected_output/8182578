@@ -1,0 +1,31 @@
+Job ID                         : 8182578
+Name                           : 8AHU6
+User                           : user11
+Partition                      : parallelshort
+Nodes                          : omni[22-23]
+Number of Nodes                : 2
+Cores                          : 64
+Number of Tasks                : 2
+State                          : RUNNING  
+Submit                         : 2024-04-16T10:29:55
+Start                          : 2024-04-16T10:29:56
+End                            : --
+Reserved walltime              : 08:00:00
+Used walltime                  : 05:57:20
+Used walltime*CPUs             : 18:18:40
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 32G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

@@ -1,0 +1,31 @@
+Job ID                         : 7818766
+Name                           : SILNBBG9
+User                           : user11
+Partition                      : parallellong
+Nodes                          : omni[2-3]
+Number of Nodes                : 2
+Cores                          : 64
+Number of Tasks                : 2
+State                          : COMPLETED  
+Submit                         : 2024-03-28T16:26:53
+Start                          : 2024-04-02T09:05:14
+End                            : 2024-04-03T15:51:56
+Reserved walltime              :  5-00:00:00
+Used walltime                  :  1-06:46:42
+Used walltime*CPUs             : 82-01:48:48
+Used CPU time                  : 163-00:18:41 (Efficiency: 198.61%)
+% User (Computation)           : 98.82%
+% System (I/O)                 :  1.18%
+Total memory reserved          : 32G
+Max Mem (node,task,step)       : 52.34M (omni2,5,0)
+MaxVMSize                      : 3.55G (omni2,0,0)
+Maximum memory used            : 5.95G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 150.96M
+Total Disk Write               : 4.75G
+Max Disk Read (node,task,step) : 27.69M (omni2,0,0)
+Max Disk Write (node,task,step): 4.73G (omni2,0,0)
+Comment                        : 

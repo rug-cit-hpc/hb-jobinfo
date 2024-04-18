@@ -1,0 +1,31 @@
+Job ID                         : 8185697_2
+Name                           : ENTTDL
+User                           : user40
+Partition                      : gelifesshort
+Nodes                          : gelifes3
+Number of Nodes                : 1
+Cores                          : 1
+Number of Tasks                : 1
+State                          : RUNNING  
+Submit                         : 2024-04-16T14:28:48
+Start                          : 2024-04-16T14:28:51
+End                            : --
+Reserved walltime              : 05:00:00
+Used walltime                  : 01:58:22
+Used walltime*CPUs             : 01:58:22
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 2G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

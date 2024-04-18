@@ -1,0 +1,31 @@
+Job ID                         : 2344448_100
+Name                           : KPM98HP
+User                           : user46
+Partition                      : regularmedium
+Nodes                          : node81
+Number of Nodes                : 1
+Cores                          : 24
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T08:32:09
+Start                          : 2023-06-03T17:07:54
+End                            : 2023-06-03T18:40:28
+Reserved walltime              : 12:00:00
+Used walltime                  : 01:32:34
+Used walltime*CPUs             : 13:01:36
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 4G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

@@ -1,0 +1,31 @@
+Job ID                         : 7456179
+Name                           : IN5HB4OP
+User                           : user20
+Partition                      : euclidmedium
+Nodes                          : None assigned
+Number of Nodes                : 1
+Cores                          : 0
+Number of Tasks                : 
+State                          : CANCELLED by 20113751  
+Submit                         : 2024-03-01T17:45:20
+Start                          : None
+End                            : 2024-03-04T09:36:16
+Reserved walltime              : 1-00:00:00
+Used walltime                  : --
+Used walltime*CPUs             : --
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 36000M
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

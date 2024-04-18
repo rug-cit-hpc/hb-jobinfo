@@ -1,0 +1,37 @@
+Job ID                         : 7399253_769
+Name                           : INL3
+User                           : user17
+Partition                      : regularshort
+Nodes                          : node103
+Number of Nodes                : 1
+Cores                          : 24
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-02-28T15:01:12
+Start                          : 2024-03-03T05:12:06
+End                            : 2024-03-03T05:44:50
+Reserved walltime              : 02:59:00
+Used walltime                  : 00:32:44
+Used walltime*CPUs             : 13:05:36
+Used CPU time                  : 08:02:28 (Efficiency: 61.41%)
+% User (Computation)           : 61.09%
+% System (I/O)                 : 38.91%
+Total memory reserved          : 32G
+Max Mem (node,task,step)       : 18.24G (node103,0,extern)
+MaxVMSize                      : 19.74G (node103,0,extern)
+Maximum memory used            : 18.24G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 2.18G
+Total Disk Write               : 2.22G
+Max Disk Read (node,task,step) : 2.18G (node103,0,extern)
+Max Disk Write (node,task,step): 2.22G (node103,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) The program efficiency is low. Your program is not using the assigned cores
+    effectively. Please check if you are using all the cores you requested.
+    You may also need to check the file in- and output pattern of your program.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

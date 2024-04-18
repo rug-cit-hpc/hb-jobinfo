@@ -1,0 +1,31 @@
+Job ID                         : 2353495_4
+Name                           : IKU
+User                           : user24
+Partition                      : regularlong
+Nodes                          : node31
+Number of Nodes                : 1
+Cores                          : 6
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T16:26:48
+Start                          : 2023-06-04T13:46:33
+End                            : 2023-06-04T19:42:39
+Reserved walltime              : 9-23:59:00
+Used walltime                  :   05:56:06
+Used walltime*CPUs             : 1-11:36:36
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 64G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

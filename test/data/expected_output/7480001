@@ -1,0 +1,31 @@
+Job ID                         : 7480001
+Name                           : GHRSZ5YEYVS356
+User                           : user29
+Partition                      : regularshort
+Nodes                          : node104
+Number of Nodes                : 1
+Cores                          : 11
+Number of Tasks                : 11
+State                          : COMPLETED  
+Submit                         : 2024-03-03T15:54:25
+Start                          : 2024-03-03T15:54:26
+End                            : 2024-03-03T15:55:33
+Reserved walltime              : 00:30:00
+Used walltime                  : 00:01:07
+Used walltime*CPUs             : 00:12:17
+Used CPU time                  : 00:01:08 (Efficiency:  9.21%)
+% User (Computation)           : 82.72%
+% System (I/O)                 : 17.28%
+Total memory reserved          : 22000M
+Max Mem (node,task,step)       : 29.69M (node104,7,0)
+MaxVMSize                      : 29.69M (node104,7,0)
+Maximum memory used            : 323.68M
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 397.09M
+Total Disk Write               : 1004.24K
+Max Disk Read (node,task,step) : 37.68M (node104,7,0)
+Max Disk Write (node,task,step): 112.64K (node104,7,0)
+Comment                        : 

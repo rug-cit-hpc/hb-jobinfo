@@ -1,0 +1,31 @@
+Job ID                         : 2348340
+Name                           : 0ZN0
+User                           : user3
+Partition                      : regularmedium
+Nodes                          : node60
+Number of Nodes                : 1
+Cores                          : 4
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T12:00:35
+Start                          : 2023-06-02T12:00:35
+End                            : 2023-06-03T00:49:16
+Reserved walltime              : 2-00:00:00
+Used walltime                  :   12:48:41
+Used walltime*CPUs             : 2-03:14:44
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 1G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

@@ -1,0 +1,31 @@
+Job ID                         : 7635166
+Name                           : 676Z
+User                           : user13
+Partition                      : parallelmedium
+Nodes                          : None assigned
+Number of Nodes                : 2
+Cores                          : 256
+Number of Tasks                : 
+State                          : PENDING (Dependency) afterany:7635165(unfulfilled)
+Submit                         : 2024-03-12T14:54:16
+Start                          : --
+End                            : --
+Reserved walltime              : 3-00:00:00
+Used walltime                  : --
+Used walltime*CPUs             : --
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 200G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

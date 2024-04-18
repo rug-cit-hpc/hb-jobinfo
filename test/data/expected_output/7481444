@@ -1,0 +1,31 @@
+Job ID                         : 7481444
+Name                           : CM6LUYC6
+User                           : user36
+Partition                      : regularshort
+Nodes                          : node2
+Number of Nodes                : 1
+Cores                          : 2
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-03-03T17:13:54
+Start                          : 2024-03-03T17:13:55
+End                            : 2024-03-03T17:14:19
+Reserved walltime              : 01:00:00
+Used walltime                  : 00:00:24
+Used walltime*CPUs             : 00:00:48
+Used CPU time                  : 00:00:38 (Efficiency: 80.17%)
+% User (Computation)           : 99.01%
+% System (I/O)                 :  0.99%
+Total memory reserved          : 4000M
+Max Mem (node,task,step)       : 2.51M (node2,0,extern)
+MaxVMSize                      : 25.30M (node2,0,extern)
+Maximum memory used            : 2.51M
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 2.28K
+Total Disk Write               : 2.00 
+Max Disk Read (node,task,step) : 0.00  (node2,0,extern)
+Max Disk Write (node,task,step): 0.00  (node2,0,extern)
+Comment                        : 

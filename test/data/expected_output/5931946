@@ -1,0 +1,31 @@
+Job ID                         : 5931946
+Name                           : HJUL2RPET
+User                           : user23
+Partition                      : gpushort
+Nodes                          : None assigned
+Number of Nodes                : 1
+Cores                          : 0
+Number of Tasks                : 
+State                          : CANCELLED by 10312373  
+Submit                         : 2023-11-03T06:07:58
+Start                          : None
+End                            : 2023-11-03T06:08:21
+Reserved walltime              : 02:00:00
+Used walltime                  : --
+Used walltime*CPUs             : --
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 32G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

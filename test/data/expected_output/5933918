@@ -1,0 +1,31 @@
+Job ID                         : 5933918
+Name                           : 6J9O8LZNV9
+User                           : user37
+Partition                      : gpushort
+Nodes                          : a100gpu3
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 
+State                          : CANCELLED by 33677923  
+Submit                         : 2023-11-03T09:11:46
+Start                          : 2023-11-03T09:14:31
+End                            : 2023-11-03T09:18:37
+Reserved walltime              : 04:00:00
+Used walltime                  : 00:04:06
+Used walltime*CPUs             : 00:32:48
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 32G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

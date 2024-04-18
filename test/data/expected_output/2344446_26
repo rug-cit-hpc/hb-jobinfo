@@ -1,0 +1,31 @@
+Job ID                         : 2344446_26
+Name                           : 2RFPKG3P
+User                           : user46
+Partition                      : regularmedium
+Nodes                          : node[34,37]
+Number of Nodes                : 2
+Cores                          : 24
+Number of Tasks                : 
+State                          : COMPLETED  
+Submit                         : 2023-06-02T08:32:09
+Start                          : 2023-06-03T05:10:35
+End                            : 2023-06-03T11:44:17
+Reserved walltime              : 12:00:00
+Used walltime                  : 06:33:42
+Used walltime*CPUs             : 13:28:48
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 4G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

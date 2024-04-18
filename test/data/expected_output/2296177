@@ -1,0 +1,31 @@
+Job ID                         : 2296177
+Name                           : 7KZBPN
+User                           : user14
+Partition                      : parallellong
+Nodes                          : omni[1,10-12]
+Number of Nodes                : 4
+Cores                          : 448
+Number of Tasks                : 
+State                          : TIMEOUT  
+Submit                         : 2023-05-30T16:27:24
+Start                          : 2023-06-09T15:45:44
+End                            : 2023-06-14T15:46:08
+Reserved walltime              : 5-00:00:00
+Used walltime                  : 5-00:00:24
+Used walltime*CPUs             : 2240-02:59:12
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 256G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 
