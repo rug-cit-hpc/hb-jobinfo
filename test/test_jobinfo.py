@@ -11,6 +11,7 @@ test_script_dir = os.path.dirname(os.path.realpath(__file__))
 
 # Directory that contains the input files for the tests.
 DATA_DIR = os.path.join(test_script_dir, 'data')
+EXPECTED_OUTPUT_DIR = os.path.join(DATA_DIR, 'expected_output')
 # Filenames of the input files.
 SACCT_FILE = 'sacct.txt'
 SSTAT_FILE = 'sstat.txt'
@@ -158,8 +159,21 @@ def find_all_jobids():
 
 
 @pytest.mark.parametrize('jobid', find_all_jobids())
-def test_jobinfo(jobid, mocker):
+def test_jobinfo(jobid, mocker,capsys):
     '''Test jobinfo on a given jobid.'''
     mocker.patch('subprocess.Popen', side_effect=popen_side_effect)
     mocker.patch('os.getuid', return_value=0)
+    output_file_path = os.path.join(EXPECTED_OUTPUT_DIR, jobid)
+    if os.path.isfile(output_file_path):
+        with open(output_file_path, 'rb') as output_file:
+            output_lines = output_file.readlines()
+    else:
+        output_lines = None
     jobinfo.main(jobid)
+    captured = capsys.readouterr()
+    if output_lines:
+       for current_line,stored_line in zip(captured.out.encode('UTF-8').splitlines(), output_lines):
+          assert  current_line.strip() == stored_line.strip()
+    else:
+       with open(output_file_path, 'wb') as output_file:
+          output_file.write(captured.out.encode('UTF-8'))
