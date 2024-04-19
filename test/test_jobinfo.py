@@ -23,7 +23,8 @@ jobinfo_loader = importlib.machinery.SourceFileLoader(
 )
 jobinfo = jobinfo_loader.load_module()
 
-
+# Explicitly set debug
+jobinfo.debug = False
 # Set long output to test all options
 jobinfo.long_output = True
 
