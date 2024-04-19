@@ -166,7 +166,7 @@ def get_min_date(jobstate, name, fieldname):
        value = missing_data
     return value
 
-# Get maximum time value
+# Get maximum date value
 def get_max_date(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
@@ -180,6 +180,21 @@ def get_max_date(jobstate, name, fieldname):
     if str(value).lower() == 'unknown':
        value = missing_data
     return value
+
+# Get maximum time value
+def get_max_time(jobstate, name, fieldname):
+    if debug:
+        print('** Debugging output for {} using {}'.format(name, fieldname))
+    value = -1
+    data = missing_data
+    for line in jobstate:
+        item = line[fieldname]
+        if debug:
+            print('{}: {}'.format(line['JobID'], item))
+        if item != '':
+           value = time_max(value, timestring_to_seconds(item))
+           data = item
+    return data
 
 # Parse the GPU tres values
 def get_gpu_tres(jobstate, name, fieldname):
@@ -309,10 +324,10 @@ job_data = [
     [ 'End',              get_max_date,    'End',              False ],
     [ 'Timelimit',        get_max_date,    'Timelimit',        False ],
     [ 'Elapsed',          get_max_date,    'Elapsed',          False ],
-    [ 'TotalCPU',         get_max,         'TotalCPU',         False ],
-    [ 'CPUTime',          get_max,         'CPUTime',          False ],
-    [ 'UserCPU',          get_max,         'UserCPU',          False ],
-    [ 'SystemCPU',        get_max,         'SystemCPU',        False ],
+    [ 'TotalCPU',         get_max_time,    'TotalCPU',         False ],
+    [ 'CPUTime',          get_max_time,    'CPUTime',          False ],
+    [ 'UserCPU',          get_max_time,    'UserCPU',          False ],
+    [ 'SystemCPU',        get_max_time,    'SystemCPU',        False ],
     [ 'ReqMem',           get_first,       'ReqMem',           False ],
     [ 'MaxRSS',           get_max_byte,    'MaxRSS',           True  ],
     [ 'MaxVMSize',        get_max_byte,    'MaxVMSize',        True  ],
