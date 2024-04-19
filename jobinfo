@@ -32,8 +32,10 @@ gpu_partition_label = 'gpu'
 
 # Convert values with suffix to bytes
 def byte_size(s=None):
+    # Legacy checks of unknown origin
     if s is None or s == "16?":
         return -1.0
+    # Return 0 if we have an empty string
     if s == '':
         return 0
     m = {'K': 10, 'M': 20, 'G': 30, 'T': 40, 'P': 50, 'E': 60}
@@ -42,6 +44,7 @@ def byte_size(s=None):
         s = s[:-1]
     return scale * float(s)
 
+# Format number as bytes with suffix
 def format_bs(x):
     if x == missing_data:
         return x
@@ -49,6 +52,7 @@ def format_bs(x):
     e = int(math.log(x + 1, 2) / 10)
     return "{:.2f}{}".format(x / 2**(10 * e), postfix[e])
 
+# Format time, where most displayed times will be aligned with respect to the maximum value
 def f_time(x, output_data):
     all_times = [output_data['Timelimit'], output_data['Elapsed'], output_data['TotalCPU'], '-']
     days_len = max(len(y.split('-')[0]) for y in all_times if '-' in y)
@@ -65,6 +69,7 @@ def f_time(x, output_data):
         return missing_data
     return res
 
+# Transform a dd-hh:mm:ss value into days, hours, minutes and seconds
 def parse_time(t):
     # Format: [DD-[hh:]]mm:ss
     time_parts = re.compile(r'\s*(((?P<days>\d+)-)?(?P<hours>\d\d):)?' +
@@ -78,10 +83,12 @@ def parse_time(t):
     dd = int(m.group('days') or '0')
     return ss, mm, hh, dd
 
+# Transform a dd-hh:mm:ss value into a seconds floating point value
 def timestring_to_seconds(timestring):
     ss, mm, hh, dd = parse_time(timestring)
     return dd * 24 * 60 * 60 + hh * 60 * 60 + mm * 60 + ss
 
+# Return the maximum time value
 def time_max(a, b):
     if 'UNLIMITED' in [a, b]:
         return 'UNLIMITED'
@@ -191,11 +198,13 @@ def get_max_time(jobstate, name, fieldname):
     data = missing_data
     for line in jobstate:
         item = line[fieldname]
+        if item == 'UNLIMITED':
+            return item
         if debug:
             print('{}: {}'.format(line['JobID'], item))
-        if item != '' and timestring_to_seconds(item) > value:
-           value = timestring_to_seconds(item)
-           data = item
+        if item != '' and item != 'INVALID' and timestring_to_seconds(item) > value:
+            value = timestring_to_seconds(item)
+            data = item
     return data
 
 # Parse the GPU tres values
