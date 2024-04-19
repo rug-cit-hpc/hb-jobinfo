@@ -35,50 +35,6 @@ Request = namedtuple('Request', ['content'])
 # GPU usage values for mocked call to Prometheus
 GPU_USAGE_VALUES = b'[[0,"50"], [1,"100"]]'
 
-## Job structure for tests
-#testjob = jobinfo.Meta(
-#    JobID=123,
-#    JobName='test',
-#    User='testuser',
-#    Partition='cpu',
-#    NodeList='test-node[001-003]',
-#    NNodes=3,
-#    ncpus=6,
-#    NTasks=3,
-#    State='RUNNING',
-#    Submit='2020-01-01T11:00:00',
-#    start='2020-01-01T12:00:00',
-#    end='2020-01-01T13:00:00',
-#    timelimit='01:00:00',
-#    elapsed='01:00:00',
-#    TotalCPU='06:00:00',
-#    UserCPU=1,
-#    SystemCPU=1,
-#    ReqMem='1Gn',
-#    MaxRSS='1G',
-#    TRESUsageInTot=(6*1024**3, 0),
-#    TRESUsageOutTot='',
-#    MaxDiskWrite='',
-#    MaxDiskRead='',
-#    MaxRSSNode='',
-#    MaxDiskWriteNode='',
-#    MaxDiskReadNode='',
-#    Comment='',
-#    MaxMemPerTask='',
-#    MaxDiskWritePerTask='',
-#    MaxDiskReadPerTask='',
-#    dependencies='',
-#    reason='',
-#)
-
-CPU_HINTS = [
-    "Check the file in- and output pattern of your application.",
-    "The program efficiency is very low.",
-    "The program efficiency is low. Your program is not using the assigned cores",
-]
-MEMORY_HINT = "You requested much more memory than your program used."
-
-
 def sacct_output(jobid):
     '''Mock call to sacct by reading from a file.'''
 
@@ -165,10 +121,10 @@ def test_jobinfo(jobid, mocker,capsys):
     else:
         output_lines = None
     jobinfo.main(jobid)
-    captured = capsys.readouterr()
+    captured_output = capsys.readouterr().out.encode('UTF-8')
     if output_lines:
-       for current_line,stored_line in zip(captured.out.encode('UTF-8').splitlines(), output_lines):
+       for current_line,stored_line in zip(captured_output.splitlines(), output_lines):
           assert  current_line.strip() == stored_line.strip()
     else:
        with open(output_file_path, 'wb') as output_file:
-          output_file.write(captured.out.encode('UTF-8'))
+          output_file.write(captured_output)
