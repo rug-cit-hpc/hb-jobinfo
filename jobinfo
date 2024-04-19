@@ -98,6 +98,7 @@ def time_max(a, b):
         return a
     return max(a, b)
 
+# Search for 'key=value' in string and return numeric value, potentially with suffix.
 def tres_key(key, s=None):
     if s is None or s == '':
         return None
@@ -107,9 +108,11 @@ def tres_key(key, s=None):
     else:
        return byte_size(value.group(1))
 
+# Search for gpu requests in the form of gres/gpu:type=count or gres/gpu=count
 def tres_gpu(s=None):
     if s is None or s == '':
         return None
+    # This assumes gres/gpu:type=count is always before gres/gpu=count
     value = re.search(r'(?<=,gres/gpu[:=])([^,]+)[,$]', s)
     if value == None:
        return None
