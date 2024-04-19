@@ -1,0 +1,39 @@
+Job ID                         : 8168940
+Name                           : 9FE8YR6J5EEH
+User                           : user50
+Partition                      : regularshort
+Nodes                          : node[1-2]
+Number of Nodes                : 2
+Cores                          : 8
+Number of Tasks                : 4
+State                          : COMPLETED  
+Submit                         : 2024-04-15T14:20:04
+Start                          : 2024-04-15T14:20:05
+End                            : 2024-04-15T14:26:57
+Reserved walltime              : 00:10:00
+Used walltime                  : 00:06:52
+Used walltime*CPUs             : 00:54:56
+Used CPU time                  : 00:00:10 (Efficiency:  0.31%)
+% User (Computation)           : 37.00%
+% System (I/O)                 : 63.00%
+Total memory reserved          : 20G
+Max Mem (node,task,step)       : 2.00G (node2,3,1)
+MaxVMSize                      : 2.01G (node2,3,1)
+Maximum memory used            : 8.02G
+Requested GPUs                 : --
+Allocated GPUs                 : --
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : 143.91M
+Total Disk Write               : 816.46K
+Max Disk Read (node,task,step) : 16.48M (node1,1,1)
+Max Disk Write (node,task,step): 737.28K (node1,0,1)
+Comment                        : 
+Hints and tips      :
+ 1) The program efficiency is very low. Your program does not seem to run in
+    parallel. Please check the program documentation to see how to make the
+    program run in parallel.
+    If you can't find information about this, the program will not run in
+    parallel! Stop requesting multiple CPU cores if that is the case.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints
