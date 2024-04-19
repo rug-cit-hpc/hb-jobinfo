@@ -28,7 +28,7 @@ Total Disk Read                : 802.85M
 Total Disk Write               : 638.72M
 Max Disk Read (node,task,step) : 802.84M (node99,0,extern)
 Max Disk Write (node,task,step): 638.72M (node99,0,extern)
-Comment                        : 
+Comment                        : --
 Hints and tips      :
  1) The program efficiency is low. Your program is not using the assigned cores
     effectively. Please check if you are using all the cores you requested.

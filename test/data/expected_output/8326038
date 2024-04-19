@@ -5,7 +5,7 @@ Partition                      : gpumedium
 Nodes                          : None assigned
 Number of Nodes                : 1
 Cores                          : 1
-Number of Tasks                : 
+Number of Tasks                : --
 State                          : PENDING (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) 
 Submit                         : 2024-04-19T12:01:20
 Start                          : --
@@ -28,4 +28,4 @@ Total Disk Read                : --
 Total Disk Write               : --
 Max Disk Read (node,task,step) : -- (--,--,--)
 Max Disk Write (node,task,step): -- (--,--,--)
-Comment                        : 
+Comment                        : --

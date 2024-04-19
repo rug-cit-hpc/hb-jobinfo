@@ -28,7 +28,7 @@ Total Disk Read                : 52.98G
 Total Disk Write               : 15.04M
 Max Disk Read (node,task,step) : 52.98G (node82,0,extern)
 Max Disk Write (node,task,step): 15.04M (node82,0,extern)
-Comment                        : 
+Comment                        : --
 Hints and tips      :
  1) The program efficiency is low. Your program is not using the assigned cores
     effectively. Please check if you are using all the cores you requested.

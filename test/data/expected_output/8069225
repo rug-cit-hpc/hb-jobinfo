@@ -28,7 +28,7 @@ Total Disk Read                : 9.81T
 Total Disk Write               : 43.75G
 Max Disk Read (node,task,step) : 9.81T (v100gpu26,0,extern)
 Max Disk Write (node,task,step): 43.75G (v100gpu26,0,extern)
-Comment                        : 
+Comment                        : --
 Hints and tips      :
  1) The GPU utilization is low, please check if your code can be optimized,
     or if you can move your input data to fast local storage.

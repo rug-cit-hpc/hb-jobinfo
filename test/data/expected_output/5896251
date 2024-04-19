@@ -5,7 +5,7 @@ Partition                      : gpumedium
 Nodes                          : a100gpu5
 Number of Nodes                : 1
 Cores                          : 12
-Number of Tasks                : 
+Number of Tasks                : --
 State                          : FAILED  
 Submit                         : 2023-11-01T23:07:09
 Start                          : 2023-11-03T08:11:36
@@ -28,4 +28,4 @@ Total Disk Read                : --
 Total Disk Write               : --
 Max Disk Read (node,task,step) : -- (--,--,--)
 Max Disk Write (node,task,step): -- (--,--,--)
-Comment                        : 
+Comment                        : --

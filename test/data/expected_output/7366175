@@ -28,7 +28,7 @@ Total Disk Read                : 4.46M
 Total Disk Write               : 5.33M
 Max Disk Read (node,task,step) : 4.46M (node22,0,extern)
 Max Disk Write (node,task,step): 5.33M (node22,0,extern)
-Comment                        : 
+Comment                        : --
 Hints and tips      :
  1) You requested much more CPU memory than your program used.
     Please reduce the requested amount of memory.

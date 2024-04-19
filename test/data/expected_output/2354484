@@ -5,7 +5,7 @@ Partition                      : regularlong
 Nodes                          : node20
 Number of Nodes                : 1
 Cores                          : 1
-Number of Tasks                : 
+Number of Tasks                : --
 State                          : COMPLETED  
 Submit                         : 2023-06-02T16:57:10
 Start                          : 2023-06-02T17:25:53
@@ -28,4 +28,4 @@ Total Disk Read                : --
 Total Disk Write               : --
 Max Disk Read (node,task,step) : -- (--,--,--)
 Max Disk Write (node,task,step): -- (--,--,--)
-Comment                        : 
+Comment                        : --

@@ -28,7 +28,7 @@ Total Disk Read                : 666.40G
 Total Disk Write               : 699.25K
 Max Disk Read (node,task,step) : 666.40G (node93,0,extern)
 Max Disk Write (node,task,step): 696.32K (node93,0,extern)
-Comment                        : 
+Comment                        : --
 Hints and tips      :
  1) The program efficiency is low.
     Check the file in- and output pattern of your application.

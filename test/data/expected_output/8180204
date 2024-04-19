@@ -28,7 +28,7 @@ Total Disk Read                : 70.51T
 Total Disk Write               : 70.51T
 Max Disk Read (node,task,step) : 3.35T (node14,8,0)
 Max Disk Write (node,task,step): 3.79T (node11,0,0)
-Comment                        : 
+Comment                        : --
 Hints and tips      :
  1) You requested much more CPU memory than your program used.
     Please reduce the requested amount of memory.

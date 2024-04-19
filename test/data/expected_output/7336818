@@ -5,7 +5,7 @@ Partition                      : regularlong
 Nodes                          : None assigned
 Number of Nodes                : 1
 Cores                          : 20
-Number of Tasks                : 
+Number of Tasks                : --
 State                          : NODE_FAIL  
 Submit                         : 2024-02-26T19:06:44
 Start                          : None
@@ -28,4 +28,4 @@ Total Disk Read                : --
 Total Disk Write               : --
 Max Disk Read (node,task,step) : -- (--,--,--)
 Max Disk Write (node,task,step): -- (--,--,--)
-Comment                        : 
+Comment                        : --

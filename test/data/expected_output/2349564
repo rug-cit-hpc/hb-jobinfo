@@ -5,7 +5,7 @@ Partition                      : regularmedium
 Nodes                          : node[81-83]
 Number of Nodes                : 3
 Cores                          : 24
-Number of Tasks                : 
+Number of Tasks                : --
 State                          : COMPLETED  
 Submit                         : 2023-06-02T13:47:47
 Start                          : 2023-06-02T20:35:56
@@ -28,4 +28,4 @@ Total Disk Read                : --
 Total Disk Write               : --
 Max Disk Read (node,task,step) : -- (--,--,--)
 Max Disk Write (node,task,step): -- (--,--,--)
-Comment                        : 
+Comment                        : --
