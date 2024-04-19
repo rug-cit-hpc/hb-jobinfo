@@ -15,7 +15,7 @@ Used walltime                  : 00:00:25
 Used walltime*CPUs             : 00:00:50
 Used CPU time                  : 00:00:40 (Efficiency: 80.58%)
 % User (Computation)           : 99.06%
-% System (I/O)                 :  0.00%
+% System (I/O)                 :  0.94%
 Total memory reserved          : 4000M
 Max Mem (node,task,step)       : 2.45M (node2,0,extern)
 MaxVMSize                      : 24.56M (node2,0,extern)

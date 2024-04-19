@@ -4,8 +4,8 @@ User                           : user50
 Partition                      : regularmedium
 Nodes                          : node[11,14,18]
 Number of Nodes                : 3
-Cores                          : 8
-Number of Tasks                : 3
+Cores                          : 24
+Number of Tasks                : 24
 State                          : CANCELLED,COMPLETED,TIMEOUT  
 Submit                         : 2024-04-16T08:42:08
 Start                          : 2024-04-16T08:42:09
@@ -13,7 +13,7 @@ End                            : 2024-04-18T20:42:20
 Reserved walltime              :  2-12:00:00
 Used walltime                  :  2-12:00:11
 Used walltime*CPUs             : 60-00:04:24
-Used CPU time                  : 58-06:44:30 (Efficiency: 291.39%)
+Used CPU time                  : 58-06:44:30 (Efficiency: 97.13%)
 % User (Computation)           : 35.80%
 % System (I/O)                 : 64.20%
 Total memory reserved          : 192G

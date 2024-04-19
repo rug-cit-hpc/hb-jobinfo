@@ -4,7 +4,7 @@ User                           : user46
 Partition                      : gpulong
 Nodes                          : a100gpu[2,4]
 Number of Nodes                : 2
-Cores                          : 8
+Cores                          : 16
 Number of Tasks                : 2
 State                          : COMPLETED,FAILED  
 Submit                         : 2024-04-05T00:34:52
@@ -13,7 +13,7 @@ End                            : 2024-04-05T16:19:32
 Reserved walltime              : 3-00:00:00
 Used walltime                  :   00:03:53
 Used walltime*CPUs             :   01:02:08
-Used CPU time                  :   00:00:30 (Efficiency:  1.63%)
+Used CPU time                  :   00:00:30 (Efficiency:  0.82%)
 % User (Computation)           : 65.72%
 % System (I/O)                 : 34.28%
 Total memory reserved          : 64G
