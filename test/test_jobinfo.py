@@ -18,12 +18,6 @@ SSTAT_FILE = 'sstat.txt'
 SQUEUE_FILE = 'squeue.txt'
 SCONTROL_FILE = 'scontrol.txt'
 
-# This is not a proper module, so use importlib to load the sources.
-pynumparser_loader = importlib.machinery.SourceFileLoader(
-    'pynumparser', os.path.join(test_script_dir, '../pynumparser.py')
-)
-pynumparser = pynumparser_loader.load_module()
-
 jobinfo_loader = importlib.machinery.SourceFileLoader(
     'jobinfo', os.path.join(test_script_dir, '../jobinfo')
 )
