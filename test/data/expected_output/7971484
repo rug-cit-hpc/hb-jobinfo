@@ -1,6 +1,6 @@
 Job ID                         : 7971484
-Name                           : 856D0
-User                           : user34
+Name                           : 86I
+User                           : user46
 Partition                      : gpulong
 Nodes                          : a100gpu[2,4]
 Number of Nodes                : 2
