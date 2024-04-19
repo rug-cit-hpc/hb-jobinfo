@@ -577,7 +577,7 @@ def get_hints(output_data):
         used_memory = byte_size(output_data['TotalMem'])
     # Check if at least 75% of the memory has been used and that less than MIN_MEMORY
     # per core has been left unused
-        if used_memory != missing_data and req_memory != missing_data and \
+        if used_memory != missing_data and req_memory != missing_data and req_memory > 0.01 and \
                 (used_memory / req_memory) < MIN_MEMORY_FRACTION and \
                 (req_memory - used_memory) > (1024**3 * MIN_MEMORY * ncpus) and \
                 (gpu_partition_label not in output_data['Partition'] or req_memory > 1024**3 * MIN_GPU_MEMORY):
