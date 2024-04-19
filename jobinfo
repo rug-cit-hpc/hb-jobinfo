@@ -34,6 +34,8 @@ gpu_partition_label = 'gpu'
 def byte_size(s=None):
     if s is None or s == "16?":
         return -1.0
+    if s == '':
+        return 0
     m = {'K': 10, 'M': 20, 'G': 30, 'T': 40, 'P': 50, 'E': 60}
     scale = 2**m.get(s[-1], 0)
     if scale != 1:
@@ -401,6 +403,7 @@ job_output = [
 # Convert list of lists into list of dictionaries.
 job_output = list(map(lambda x: dict(zip(dict_keys, x)), job_output))
 
+# Get the job data from sacct
 def get_values_sacct(jobid):
     field_sep = u'\u2603'
     sacct_cmd = [
@@ -418,6 +421,7 @@ def get_values_sacct(jobid):
     job_status = sacct_job_data[0]['State']
     return sacct_job_data, job_status
 
+# Get the job data from sstat
 def get_values_sstat(jobid):
     sstat_cmd = [
         'sstat', FORMAT_STR_LIVE, '--parsable', '--noheader', '-a', '-j', jobid
@@ -430,6 +434,8 @@ def get_values_sstat(jobid):
        sstat_job_data.append(dict(zip(FIELD_NAMES_LIVE, line.decode('utf-8').strip().split('|'))))
     return sstat_job_data
 
+# Function to display multiple timings using the same spacing
+# and to calculate the job efficiency
 def format_timings(output_data):
     elapsed = timestring_to_seconds(output_data['Elapsed'])
     elapsed_cpu = timestring_to_seconds(output_data['CPUTime'])
@@ -452,12 +458,14 @@ def format_timings(output_data):
     output_data['CPUTime'] = f_time(output_data['CPUTime'], output_data)
     output_data['TotalCPU'] = f_time(output_data['TotalCPU'], output_data)
 
+# Show GPU information for the GPU parition or when a GPU was requested.
 def format_gpu(output_data, job_output):
     if gpu_partition_label in output_data['Partition'] or output_data['ReqGPUs'] != missing_data:
         for i in range(len(job_output)):
             if 'GPU' in job_output[i]['description']:
                 job_output[i]['show'] =  True
 
+# Determine the number of cpus in a node
 def get_cpus_node(nodenames):
     nodename = nodenames.split(',')[-1]
     info = subprocess.Popen(['scontrol', 'show', '-o', 'node', nodename], stdout=subprocess.PIPE)
@@ -466,13 +474,6 @@ def get_cpus_node(nodenames):
         return int(num_cpus_match.group(1))
     else:
         return 1
-
-def get_total_memory_request(memory_spec, ncpus, nnodes):
-    # Convert memory_spec to bytes, ignoring the c or n at the end
-    if (memory_spec == ''):
-       return missing_data
-    else:
-       return byte_size(memory_spec)
 
 def get_hints(output_data):
     if output_data['End'].lower() == missing_data:
@@ -534,7 +535,7 @@ def get_hints(output_data):
     # the memory because all the memory is available.
     if cores_per_node < cores_max_node:
     # Calculate the total amount of memory requested
-        req_memory = get_total_memory_request(output_data['ReqMem'], ncpus, nnodes)
+        req_memory = byte_size(output_data['ReqMem'])
         used_memory = byte_size(output_data['TotalMem'])
     # Check if at least 75% of the memory has been used and that less than MIN_MEMORY
     # per core has been left unused
