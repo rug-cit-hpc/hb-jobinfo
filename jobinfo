@@ -113,22 +113,19 @@ def tres_gpu(s=None):
 def get_first(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
-    result = '-'
     for line in jobstate:
         result = line[fieldname]
         if debug:
             print('{}: {}'.format(line['JobID'], result))
         if result != '' and result != None:
-           return result 
-    return result
-    
-    return value
+           return result
+    return missing_data
 
 # Return the maximum value from the list of job steps
 def get_max(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
-    value = ''
+    value = missing_data
     for line in jobstate:
         item = line[fieldname]
         if debug:
