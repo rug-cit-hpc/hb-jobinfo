@@ -401,9 +401,6 @@ job_output = [
 # Convert list of lists into list of dictionaries.
 job_output = list(map(lambda x: dict(zip(dict_keys, x)), job_output))
 
-
-debug = False
-
 def get_values_sacct(jobid):
     field_sep = u'\u2603'
     sacct_cmd = [
