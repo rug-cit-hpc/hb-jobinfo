@@ -10,8 +10,8 @@ State                          : CANCELLED,COMPLETED,FAILED,TIMEOUT
 Submit                         : 2024-01-01T10:45:27
 Start                          : 2024-01-01T10:45:28
 End                            : 2024-01-04T10:45:56
-Reserved walltime              :  3-00:00:00
-Used walltime                  :  3-00:00:26
+Reserved walltime              :   3-00:00:00
+Used walltime                  :   3-00:00:26
 Used walltime*CPUs             : 768-01:50:56
 Used CPU time                  : 762-08:12:51 (Efficiency: 99.25%)
 % User (Computation)           : 96.90%

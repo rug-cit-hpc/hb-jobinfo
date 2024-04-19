@@ -50,7 +50,7 @@ def format_bs(x):
     return "{:.2f}{}".format(x / 2**(10 * e), postfix[e])
 
 def f_time(x, output_data):
-    all_times = [output_data['Timelimit'], output_data['Elapsed'], output_data['CPUTime'],output_data['TotalCPU'],'-']
+    all_times = [output_data['Timelimit'], output_data['Elapsed'], output_data['TotalCPU'], '-']
     days_len = max(len(y.split('-')[0]) for y in all_times if '-' in y)
     ss, mm, hh, dd = parse_time(x)
     if days_len == 0:

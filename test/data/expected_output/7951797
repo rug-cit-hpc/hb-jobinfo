@@ -10,7 +10,7 @@ State                          : COMPLETED
 Submit                         : 2024-04-04T12:10:33
 Start                          : 2024-04-10T17:52:42
 End                            : 2024-04-11T11:33:31
-Reserved walltime              : 3-00:00:00
+Reserved walltime              :  3-00:00:00
 Used walltime                  :    17:40:49
 Used walltime*CPUs             : 94-07:04:32
 Used CPU time                  : 93-16:09:43 (Efficiency: 198.68%)

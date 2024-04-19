@@ -11,9 +11,9 @@ Submit                         : 2024-02-28T10:02:30
 Start                          : 2024-03-02T01:47:53
 End                            : 2024-03-09T06:11:47
 Reserved walltime              : 10-00:00:00
-Used walltime                  : 7-04:23:54
-Used walltime*CPUs             : 7-04:23:54
-Used CPU time                  : 7-03:08:50 (Efficiency: 99.27%)
+Used walltime                  :  7-04:23:54
+Used walltime*CPUs             :  7-04:23:54
+Used CPU time                  :  7-03:08:50 (Efficiency: 99.27%)
 % User (Computation)           : 100.00%
 % System (I/O)                 :  0.00%
 Total memory reserved          : 2000M
