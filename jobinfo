@@ -475,7 +475,16 @@ def get_cpus_node(nodenames):
     else:
         return 1
 
+def gpu_util_float(utilization):
+    try:
+        gpu_utilization = float(utilization.strip('%'))
+        return gpu_utilization
+    except ValueError:
+        return 0
+
+# Determine which hints to show
 def get_hints(output_data):
+    # Don't show hints for jobs that have not yet finished
     if output_data['End'].lower() == missing_data:
         return
 
@@ -486,11 +495,12 @@ def get_hints(output_data):
     if cputime == 0 or elapsed < MIN_WALLTIME:
         return
 
+    # Initialize hints as an empty list
     hints = []
 
     # Check GPU efficiency
     if gpu_partition_label in output_data['Partition']:
-        gpu_utilization = float(output_data['GPUUtilization'].strip('%'))
+        gpu_utilization = gpu_util_float(output_data['GPUUtilization'])
         if gpu_utilization < 0.001:
             hints.append(
                 ["You are running on a GPU node without actually using the GPU, please fix this."]
@@ -500,6 +510,7 @@ def get_hints(output_data):
                 ["The GPU utlization is low, please check if your code can be optimized,",
                  "or if you can move your input data to fast local storage."]
            )
+
     # Check CPU efficiency
     ncpus = int(output_data['NCPUs'])
     efficiency = 100 * cputime / (ncpus * elapsed)
@@ -525,6 +536,7 @@ def get_hints(output_data):
                  "effectively. Please check if you are using all the cores you requested.",
                  "You may also need to check the file in- and output pattern of your program."]
             )
+
     # Memory efficiency
     # Calculate the average number of cores per node used
     nnodes = int(output_data['NNodes'])
@@ -548,6 +560,7 @@ def get_hints(output_data):
                  "Please reduce the requested amount of memory."]
             )
 
+    # Display the gathered hints
     if len(hints) > 0:
         print("Hints and tips      :")
         hint_number = 1
@@ -564,6 +577,7 @@ def get_hints(output_data):
         print("    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints")
 
 
+# Parse the command line arguments
 def parse_arguments():
     global debug
     global long_output
@@ -586,7 +600,8 @@ to give a uniform interface for both current and historical jobs.'''
     debug = args['debug']
     long_output = args['long_output']
     return args['jobid']
-    
+
+# Main function
 def main(jobid):
     # Retrieve job information fromt the Slurm sacct tool
     jobstate, job_status = get_values_sacct(jobid)
@@ -652,6 +667,7 @@ def main(jobid):
     get_hints(output_data)
 
 
+# Show program usage
 def usage(pipe):
     usage_msg = \
     '''jobinfo - collates job information from the 'sstat', 'sacct' and
