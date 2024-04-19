@@ -29,8 +29,3 @@ Total Disk Write               : 5.16G
 Max Disk Read (node,task,step) : 5.00T (omni24,0,extern)
 Max Disk Write (node,task,step): 5.16G (omni24,0,extern)
 Comment                        : --
-Hints and tips      :
- 1) You requested much more CPU memory than your program used.
-    Please reduce the requested amount of memory.
- *) For more information on these issues see:
-    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints
