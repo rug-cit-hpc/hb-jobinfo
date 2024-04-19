@@ -468,7 +468,7 @@ def get_total_memory_request(memory_spec, ncpus, nnodes):
        return byte_size(memory_spec)
 
 def get_hints(output_data):
-    if output_data['End'].lower() == 'unknown':
+    if output_data['End'].lower() == missing_data:
         return
 
     cputime = timestring_to_seconds(output_data['TotalCPU'])
