@@ -507,7 +507,7 @@ def get_hints(output_data):
             )
         elif gpu_utilization < 25.0:
             hints.append(
-                ["The GPU utlization is low, please check if your code can be optimized,",
+                ["The GPU utilization is low, please check if your code can be optimized,",
                  "or if you can move your input data to fast local storage."]
            )
 
