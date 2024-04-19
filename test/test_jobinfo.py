@@ -108,6 +108,13 @@ def find_all_jobids():
     # convert to set to remove duplicates
     return set(jobids)
 
+# zip two lists to the same length adding blank lines to the shortest one
+def zip_to_max_length(a , b):
+    max_length = max(len(a), len(b))
+    a.extend([''] * (max_length - len(a)))
+    b.extend([''] * (max_length - len(b)))
+    return zip(a,b)
+
 
 @pytest.mark.parametrize('jobid', find_all_jobids())
 def test_jobinfo(jobid, mocker,capsys):
@@ -123,7 +130,7 @@ def test_jobinfo(jobid, mocker,capsys):
     jobinfo.main(jobid)
     captured_output = capsys.readouterr().out.encode('UTF-8')
     if output_lines:
-       for current_line,stored_line in zip(captured_output.splitlines(), output_lines):
+       for current_line,stored_line in zip_to_max_length(captured_output.splitlines(), output_lines):
           assert  current_line.strip() == stored_line.strip()
     else:
        with open(output_file_path, 'wb') as output_file:
