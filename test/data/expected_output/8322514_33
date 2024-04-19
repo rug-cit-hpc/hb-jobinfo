@@ -1,22 +1,22 @@
-Job ID                         : 5908801_3
-Name                           : SOPN37W3A1R
-User                           : user35
-Partition                      : gpulong
-Nodes                          : v100gpu10
+Job ID                         : 8322514_33
+Name                           : SEBY
+User                           : user15
+Partition                      : gelifesshort
+Nodes                          : gelifes3
 Number of Nodes                : 1
 Cores                          : 8
-Number of Tasks                : 
-State                          : COMPLETED  
-Submit                         : 2023-11-02T13:47:11
-Start                          : 2023-11-02T21:16:50
-End                            : 2023-11-04T01:54:16
-Reserved walltime              : 2-00:00:00
-Used walltime                  : 1-04:37:26
-Used walltime*CPUs             : 9-12:59:28
+Number of Tasks                : 1
+State                          : RUNNING  
+Submit                         : 2024-04-19T09:39:57
+Start                          : 2024-04-19T09:39:58
+End                            : --
+Reserved walltime              : 05:00:00
+Used walltime                  : 03:31:51
+Used walltime*CPUs             : 04:14:48
 Used CPU time                  : -- 
 % User (Computation)           : --
 % System (I/O)                 : --
-Total memory reserved          : 125000M
+Total memory reserved          : 4048M
 Max Mem (node,task,step)       : -- (--,--,--)
 MaxVMSize                      : -- (--,--,--)
 Maximum memory used            : --

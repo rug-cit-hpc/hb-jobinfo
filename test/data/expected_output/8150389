@@ -1,31 +1,31 @@
 Job ID                         : 8150389
-Name                           : E2ELB8LJHVTDR
-User                           : user4
+Name                           : VN02R42V
+User                           : user20
 Partition                      : gpulong
 Nodes                          : a100gpu3
 Number of Nodes                : 1
 Cores                          : 16
 Number of Tasks                : 1
-State                          : RUNNING  
+State                          : CANCELLED,CANCELLED by 33128806,COMPLETED  
 Submit                         : 2024-04-13T18:49:00
 Start                          : 2024-04-13T20:33:32
-End                            : --
+End                            : 2024-04-16T17:42:49
 Reserved walltime              : 3-00:00:00
-Used walltime                  : 2-19:53:43
-Used walltime*CPUs             : 45-06:19:28
-Used CPU time                  : -- 
-% User (Computation)           : --
-% System (I/O)                 : --
+Used walltime                  : 2-21:09:17
+Used walltime*CPUs             : 46-02:28:32
+Used CPU time                  : 6-07:49:15 (Efficiency: 13.72%)
+% User (Computation)           : 91.53%
+% System (I/O)                 :  8.47%
 Total memory reserved          : 32G
-Max Mem (node,task,step)       : -- (--,--,--)
-MaxVMSize                      : -- (--,--,--)
-Maximum memory used            : --
+Max Mem (node,task,step)       : 23.93G (a100gpu3,0,extern)
+MaxVMSize                      : 31.46G (a100gpu3,0,extern)
+Maximum memory used            : 23.93G
 Requested GPUs                 : a100=2
 Allocated GPUs                 : a100=2
-Max GPU utilization            : --
-Max GPU memory used            : --
-Total Disk Read                : --
-Total Disk Write               : --
-Max Disk Read (node,task,step) : -- (--,--,--)
-Max Disk Write (node,task,step): -- (--,--,--)
+Max GPU utilization            : 100%
+Max GPU memory used            : 37.07G
+Total Disk Read                : 419.81G
+Total Disk Write               : 7.13G
+Max Disk Read (node,task,step) : 419.81G (a100gpu3,0,extern)
+Max Disk Write (node,task,step): 7.13G (a100gpu3,0,extern)
 Comment                        : 

@@ -1,31 +1,39 @@
 Job ID                         : 8181476_31
-Name                           : SHTORFEVR5TBRT
-User                           : user16
+Name                           : 0MNY7GT
+User                           : user51
 Partition                      : regularmedium
 Nodes                          : node78
 Number of Nodes                : 1
 Cores                          : 12
 Number of Tasks                : 1
-State                          : RUNNING  
+State                          : CANCELLED,COMPLETED,TIMEOUT  
 Submit                         : 2024-04-16T09:48:26
 Start                          : 2024-04-16T09:48:27
-End                            : --
+End                            : 2024-04-19T09:47:29
 Reserved walltime              : 2-23:59:00
-Used walltime                  :   06:38:47
-Used walltime*CPUs             : 3-07:45:24
-Used CPU time                  : -- 
-% User (Computation)           : --
-% System (I/O)                 : --
+Used walltime                  : 2-23:59:02
+Used walltime*CPUs             : 35-23:48:24
+Used CPU time                  : 3-21:34:44 (Efficiency: 10.83%)
+% User (Computation)           : 62.60%
+% System (I/O)                 : 37.40%
 Total memory reserved          : 24000M
-Max Mem (node,task,step)       : -- (--,--,--)
-MaxVMSize                      : -- (--,--,--)
-Maximum memory used            : --
+Max Mem (node,task,step)       : 1.31G (node78,0,extern)
+MaxVMSize                      : 1.35G (node78,0,extern)
+Maximum memory used            : 1.31G
 Requested GPUs                 : --
 Allocated GPUs                 : --
 Max GPU utilization            : --
 Max GPU memory used            : --
-Total Disk Read                : --
-Total Disk Write               : --
-Max Disk Read (node,task,step) : -- (--,--,--)
-Max Disk Write (node,task,step): -- (--,--,--)
+Total Disk Read                : 685.26G
+Total Disk Write               : 1.03G
+Max Disk Read (node,task,step) : 685.26G (node78,0,extern)
+Max Disk Write (node,task,step): 1.03G (node78,0,extern)
 Comment                        : 
+Hints and tips      :
+ 1) The program efficiency is low. Your program is not using the assigned cores
+    effectively. Please check if you are using all the cores you requested.
+    You may also need to check the file in- and output pattern of your program.
+ 2) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

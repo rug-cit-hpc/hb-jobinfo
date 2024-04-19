@@ -1,12 +1,10 @@
-7951810|(null);(Priority);128
-8163609|(null);node49;1
-8180204|(null);node[11,14,18];24
-8185133|(null);node92;1
-8162707|(null);node93;1
-8181476_31|(null);node78;12
 7219441|afterany:7219440(unfulfilled);(Dependency);384
 7635166|afterany:7635165(unfulfilled);(Dependency);256
 8094007|afterany:8094006(unfulfilled);(Dependency);256
 7859587|(null);(Priority);128
-8150389|(null);a100gpu3;16
-8182578|(null);omni[22-23];128
+8323312|(null);(Priority);1
+8322514_33|(null);gelifes3;8
+8326038|(null);(Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions);1
+8208860|(null);(Priority);256
+8298012|(null);v100gpu21;8
+8202099|(null);a100gpu3;8

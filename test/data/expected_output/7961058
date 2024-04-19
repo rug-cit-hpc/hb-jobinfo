@@ -1,0 +1,37 @@
+Job ID                         : 7961058
+Name                           : 9WQD
+User                           : user21
+Partition                      : gpulong
+Nodes                          : a100gpu2
+Number of Nodes                : 1
+Cores                          : 4
+Number of Tasks                : 1
+State                          : COMPLETED  
+Submit                         : 2024-04-04T16:37:44
+Start                          : 2024-04-06T18:45:47
+End                            : 2024-04-06T19:26:06
+Reserved walltime              : 1-23:59:00
+Used walltime                  :   00:40:19
+Used walltime*CPUs             :   02:41:16
+Used CPU time                  :   01:29:18 (Efficiency: 55.37%)
+% User (Computation)           : 71.97%
+% System (I/O)                 : 28.03%
+Total memory reserved          : 200G
+Max Mem (node,task,step)       : 17.02G (a100gpu2,0,extern)
+MaxVMSize                      : 199.48G (a100gpu2,0,extern)
+Maximum memory used            : 17.02G
+Requested GPUs                 : 2
+Allocated GPUs                 : a100=2
+Max GPU utilization            : 0%
+Max GPU memory used            : 0.00 
+Total Disk Read                : 309.31G
+Total Disk Write               : 433.51G
+Max Disk Read (node,task,step) : 309.31G (a100gpu2,0,extern)
+Max Disk Write (node,task,step): 433.51G (a100gpu2,0,extern)
+Comment                        : 
+Hints and tips      :
+ 1) You are running on a GPU node without actually using the GPU, please fix this.
+ 2) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

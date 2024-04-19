@@ -1,31 +1,31 @@
 Job ID                         : 8163609
-Name                           : 20G9JJP
-User                           : user39
+Name                           : VBFZL5OGPC7
+User                           : user1
 Partition                      : regularlong
 Nodes                          : node49
 Number of Nodes                : 1
 Cores                          : 1
 Number of Tasks                : 1
-State                          : RUNNING  
+State                          : COMPLETED,FAILED  
 Submit                         : 2024-04-15T12:06:09
 Start                          : 2024-04-15T12:08:14
-End                            : --
+End                            : 2024-04-18T13:52:20
 Reserved walltime              : 10-00:00:00
-Used walltime                  : 1-04:18:59
-Used walltime*CPUs             : 1-04:18:59
-Used CPU time                  : -- 
-% User (Computation)           : --
-% System (I/O)                 : --
+Used walltime                  : 3-01:44:06
+Used walltime*CPUs             : 3-01:44:06
+Used CPU time                  : 3-01:05:19 (Efficiency: 99.12%)
+% User (Computation)           : 99.86%
+% System (I/O)                 :  0.14%
 Total memory reserved          : 20G
-Max Mem (node,task,step)       : -- (--,--,--)
-MaxVMSize                      : -- (--,--,--)
-Maximum memory used            : --
+Max Mem (node,task,step)       : 15.64G (node49,0,extern)
+MaxVMSize                      : 15.64G (node49,0,extern)
+Maximum memory used            : 15.64G
 Requested GPUs                 : --
 Allocated GPUs                 : --
 Max GPU utilization            : --
 Max GPU memory used            : --
-Total Disk Read                : --
-Total Disk Write               : --
-Max Disk Read (node,task,step) : -- (--,--,--)
-Max Disk Write (node,task,step): -- (--,--,--)
+Total Disk Read                : 540.08M
+Total Disk Write               : 19.29M
+Max Disk Read (node,task,step) : 540.08M (node49,0,extern)
+Max Disk Write (node,task,step): 19.29M (node49,0,extern)
 Comment                        : 

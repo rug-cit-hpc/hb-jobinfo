@@ -1,26 +1,26 @@
-Job ID                         : 5896251
-Name                           : N8EWQ3E8JO82OW4
-User                           : user12
+Job ID                         : 8326038
+Name                           : TVDVE
+User                           : user7
 Partition                      : gpumedium
-Nodes                          : a100gpu5
+Nodes                          : None assigned
 Number of Nodes                : 1
-Cores                          : 12
+Cores                          : 1
 Number of Tasks                : 
-State                          : FAILED  
-Submit                         : 2023-11-01T23:07:09
-Start                          : 2023-11-03T08:11:36
-End                            : 2023-11-03T10:31:54
-Reserved walltime              : 20:00:00
-Used walltime                  : 02:20:18
-Used walltime*CPUs             : 04:03:36
+State                          : PENDING (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) 
+Submit                         : 2024-04-19T12:01:20
+Start                          : --
+End                            : --
+Reserved walltime              : 06:00:00
+Used walltime                  : --
+Used walltime*CPUs             : --
 Used CPU time                  : -- 
 % User (Computation)           : --
 % System (I/O)                 : --
-Total memory reserved          : 90G
+Total memory reserved          : 6G
 Max Mem (node,task,step)       : -- (--,--,--)
 MaxVMSize                      : -- (--,--,--)
 Maximum memory used            : --
-Requested GPUs                 : --
+Requested GPUs                 : 1
 Allocated GPUs                 : --
 Max GPU utilization            : --
 Max GPU memory used            : --

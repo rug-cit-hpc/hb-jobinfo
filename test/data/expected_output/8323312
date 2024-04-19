@@ -1,26 +1,26 @@
-Job ID                         : 2360179
-Name                           : 4M0T0QH71
-User                           : user2
-Partition                      : regularmedium
-Nodes                          : node33
+Job ID                         : 8323312
+Name                           : H6P7XUJOI
+User                           : user40
+Partition                      : gpushort
+Nodes                          : None assigned
 Number of Nodes                : 1
 Cores                          : 1
 Number of Tasks                : 
-State                          : COMPLETED  
-Submit                         : 2023-06-02T18:58:14
-Start                          : 2023-06-02T21:11:11
-End                            : 2023-06-03T02:03:09
-Reserved walltime              : 1-00:00:00
-Used walltime                  :   04:51:58
-Used walltime*CPUs             :   04:51:58
+State                          : PENDING (Priority) 
+Submit                         : 2024-04-19T10:10:44
+Start                          : --
+End                            : --
+Reserved walltime              : 04:00:00
+Used walltime                  : --
+Used walltime*CPUs             : --
 Used CPU time                  : -- 
 % User (Computation)           : --
 % System (I/O)                 : --
-Total memory reserved          : 20000M
+Total memory reserved          : 8G
 Max Mem (node,task,step)       : -- (--,--,--)
 MaxVMSize                      : -- (--,--,--)
 Maximum memory used            : --
-Requested GPUs                 : --
+Requested GPUs                 : 1
 Allocated GPUs                 : --
 Max GPU utilization            : --
 Max GPU memory used            : --

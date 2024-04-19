@@ -1,22 +1,22 @@
-Job ID                         : 2344446_26
-Name                           : 8ZW26NC
-User                           : user13
-Partition                      : regularmedium
-Nodes                          : node[34,37]
+Job ID                         : 8208860
+Name                           : 3HXSCHOY65
+User                           : user24
+Partition                      : parallellong
+Nodes                          : None assigned
 Number of Nodes                : 2
-Cores                          : 24
+Cores                          : 256
 Number of Tasks                : 
-State                          : COMPLETED  
-Submit                         : 2023-06-02T08:32:09
-Start                          : 2023-06-03T05:10:35
-End                            : 2023-06-03T11:44:17
-Reserved walltime              : 12:00:00
-Used walltime                  : 06:33:42
-Used walltime*CPUs             : 13:28:48
+State                          : PENDING (Priority) 
+Submit                         : 2024-04-17T09:24:41
+Start                          : --
+End                            : --
+Reserved walltime              : 5-00:00:00
+Used walltime                  : --
+Used walltime*CPUs             : --
 Used CPU time                  : -- 
 % User (Computation)           : --
 % System (I/O)                 : --
-Total memory reserved          : 4G
+Total memory reserved          : 500G
 Max Mem (node,task,step)       : -- (--,--,--)
 MaxVMSize                      : -- (--,--,--)
 Maximum memory used            : --

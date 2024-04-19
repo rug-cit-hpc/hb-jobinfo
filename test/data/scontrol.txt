@@ -4,6 +4,11 @@ NodeName=a100gpu3 CfgTRES=cpu=64,mem=514404M,billing=64,gres/gpu=4,gres/gpu:a100
 NodeName=a100gpu4 CfgTRES=cpu=64,mem=514404M,billing=64,gres/gpu=4,gres/gpu:a100=4
 NodeName=a100gpu5 CfgTRES=cpu=64,mem=514404M,billing=64,gres/gpu=4,gres/gpu:a100=4
 NodeName=a100gpu6 CfgTRES=cpu=64,mem=514404M,billing=64,gres/gpu=4,gres/gpu:a100=4
+NodeName=euclid1 CfgTRES=cpu=128,mem=514542M,billing=128
+NodeName=euclid2 CfgTRES=cpu=128,mem=514542M,billing=128
+NodeName=euclid3 CfgTRES=cpu=128,mem=514542M,billing=128
+NodeName=euclid4 CfgTRES=cpu=128,mem=514542M,billing=128
+NodeName=euclid5 CfgTRES=cpu=128,mem=514542M,billing=128
 NodeName=gelifes1 CfgTRES=cpu=128,mem=514542M,billing=128
 NodeName=gelifes2 CfgTRES=cpu=128,mem=514542M,billing=128
 NodeName=gelifes3 CfgTRES=cpu=128,mem=514542M,billing=128

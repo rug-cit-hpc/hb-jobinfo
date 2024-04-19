@@ -1,0 +1,31 @@
+Job ID                         : 8298012
+Name                           : 71LZV6
+User                           : user5
+Partition                      : gpulong
+Nodes                          : v100gpu21
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 1
+State                          : RUNNING  
+Submit                         : 2024-04-18T22:06:40
+Start                          : 2024-04-19T06:37:48
+End                            : --
+Reserved walltime              : 1-06:00:00
+Used walltime                  :   06:34:03
+Used walltime*CPUs             : 2-04:32:24
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 50G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : 1
+Allocated GPUs                 : v100=1
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

@@ -1,31 +1,36 @@
 Job ID                         : 8185697_2
-Name                           : ENTTDL
-User                           : user40
+Name                           : 19QGAR
+User                           : user19
 Partition                      : gelifesshort
 Nodes                          : gelifes3
 Number of Nodes                : 1
 Cores                          : 1
 Number of Tasks                : 1
-State                          : RUNNING  
+State                          : COMPLETED  
 Submit                         : 2024-04-16T14:28:48
 Start                          : 2024-04-16T14:28:51
-End                            : --
+End                            : 2024-04-16T16:29:40
 Reserved walltime              : 05:00:00
-Used walltime                  : 01:58:22
-Used walltime*CPUs             : 01:58:22
-Used CPU time                  : -- 
-% User (Computation)           : --
-% System (I/O)                 : --
+Used walltime                  : 02:00:49
+Used walltime*CPUs             : 02:00:49
+Used CPU time                  : 01:59:57 (Efficiency: 99.28%)
+% User (Computation)           : 98.97%
+% System (I/O)                 :  1.03%
 Total memory reserved          : 2G
-Max Mem (node,task,step)       : -- (--,--,--)
-MaxVMSize                      : -- (--,--,--)
-Maximum memory used            : --
+Max Mem (node,task,step)       : 157.80M (gelifes3,0,extern)
+MaxVMSize                      : 157.85M (gelifes3,0,extern)
+Maximum memory used            : 157.80M
 Requested GPUs                 : --
 Allocated GPUs                 : --
 Max GPU utilization            : --
 Max GPU memory used            : --
-Total Disk Read                : --
-Total Disk Write               : --
-Max Disk Read (node,task,step) : -- (--,--,--)
-Max Disk Write (node,task,step): -- (--,--,--)
+Total Disk Read                : 17.03M
+Total Disk Write               : 255.62K
+Max Disk Read (node,task,step) : 17.03M (gelifes3,0,extern)
+Max Disk Write (node,task,step): 256.00K (gelifes3,0,extern)
 Comment                        : 
+Hints and tips      :
+ 1) You requested much more CPU memory than your program used.
+    Please reduce the requested amount of memory.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

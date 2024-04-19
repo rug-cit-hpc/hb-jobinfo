@@ -1,0 +1,31 @@
+Job ID                         : 8202099
+Name                           : RNIY7QQ
+User                           : user10
+Partition                      : gpulong
+Nodes                          : a100gpu3
+Number of Nodes                : 1
+Cores                          : 8
+Number of Tasks                : 1
+State                          : RUNNING  
+Submit                         : 2024-04-16T22:49:43
+Start                          : 2024-04-17T22:53:53
+End                            : --
+Reserved walltime              : 3-00:00:00
+Used walltime                  : 1-14:17:59
+Used walltime*CPUs             : 12-18:23:52
+Used CPU time                  : -- 
+% User (Computation)           : --
+% System (I/O)                 : --
+Total memory reserved          : 30G
+Max Mem (node,task,step)       : -- (--,--,--)
+MaxVMSize                      : -- (--,--,--)
+Maximum memory used            : --
+Requested GPUs                 : a100=1
+Allocated GPUs                 : a100=1
+Max GPU utilization            : --
+Max GPU memory used            : --
+Total Disk Read                : --
+Total Disk Write               : --
+Max Disk Read (node,task,step) : -- (--,--,--)
+Max Disk Write (node,task,step): -- (--,--,--)
+Comment                        : 

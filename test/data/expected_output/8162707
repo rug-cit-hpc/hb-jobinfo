@@ -1,31 +1,36 @@
 Job ID                         : 8162707
-Name                           : BA0S62S4GQNNE7
-User                           : user47
+Name                           : M2Z72EXMUY4VKE6
+User                           : user49
 Partition                      : regularmedium
 Nodes                          : node93
 Number of Nodes                : 1
 Cores                          : 1
 Number of Tasks                : 1
-State                          : RUNNING  
+State                          : CANCELLED,CANCELLED by 10309238,COMPLETED  
 Submit                         : 2024-04-15T11:42:02
 Start                          : 2024-04-15T11:42:44
-End                            : --
+End                            : 2024-04-17T11:44:40
 Reserved walltime              : 2-11:00:00
-Used walltime                  : 1-04:44:30
-Used walltime*CPUs             : 1-04:44:30
-Used CPU time                  : -- 
-% User (Computation)           : --
-% System (I/O)                 : --
+Used walltime                  : 2-00:01:56
+Used walltime*CPUs             : 2-00:01:56
+Used CPU time                  :   01:20:09 (Efficiency:  2.78%)
+% User (Computation)           : 63.13%
+% System (I/O)                 : 36.87%
 Total memory reserved          : 300M
-Max Mem (node,task,step)       : -- (--,--,--)
-MaxVMSize                      : -- (--,--,--)
-Maximum memory used            : --
+Max Mem (node,task,step)       : 40.96M (node93,0,extern)
+MaxVMSize                      : 44.06M (node93,0,extern)
+Maximum memory used            : 40.96M
 Requested GPUs                 : --
 Allocated GPUs                 : --
 Max GPU utilization            : --
 Max GPU memory used            : --
-Total Disk Read                : --
-Total Disk Write               : --
-Max Disk Read (node,task,step) : -- (--,--,--)
-Max Disk Write (node,task,step): -- (--,--,--)
+Total Disk Read                : 666.40G
+Total Disk Write               : 699.25K
+Max Disk Read (node,task,step) : 666.40G (node93,0,extern)
+Max Disk Write (node,task,step): 696.32K (node93,0,extern)
 Comment                        : 
+Hints and tips      :
+ 1) The program efficiency is low.
+    Check the file in- and output pattern of your application.
+ *) For more information on these issues see:
+    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints

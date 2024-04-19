@@ -1,31 +1,31 @@
 Job ID                         : 7951810
-Name                           : 5B68XVGC2ROB9
-User                           : user11
+Name                           : G3KIFOOK
+User                           : user46
 Partition                      : parallelmedium
-Nodes                          : None assigned
+Nodes                          : omni[15,18]
 Number of Nodes                : 2
-Cores                          : 128
-Number of Tasks                : 
-State                          : PENDING (Priority) 
+Cores                          : 64
+Number of Tasks                : 2
+State                          : COMPLETED  
 Submit                         : 2024-04-04T12:10:33
-Start                          : --
-End                            : --
+Start                          : 2024-04-17T14:42:44
+End                            : 2024-04-18T04:36:41
 Reserved walltime              : 3-00:00:00
-Used walltime                  : --
-Used walltime*CPUs             : --
-Used CPU time                  : -- 
-% User (Computation)           : --
-% System (I/O)                 : --
+Used walltime                  :    13:53:57
+Used walltime*CPUs             : 74-03:05:36
+Used CPU time                  : 73-13:17:45 (Efficiency: 198.45%)
+% User (Computation)           : 99.48%
+% System (I/O)                 :  0.52%
 Total memory reserved          : 32G
-Max Mem (node,task,step)       : -- (--,--,--)
-MaxVMSize                      : -- (--,--,--)
-Maximum memory used            : --
+Max Mem (node,task,step)       : 50.25M (omni18,65,0)
+MaxVMSize                      : 2.86G (omni15,0,0)
+Maximum memory used            : 5.76G
 Requested GPUs                 : --
 Allocated GPUs                 : --
 Max GPU utilization            : --
 Max GPU memory used            : --
-Total Disk Read                : --
-Total Disk Write               : --
-Max Disk Read (node,task,step) : -- (--,--,--)
-Max Disk Write (node,task,step): -- (--,--,--)
+Total Disk Read                : 149.66M
+Total Disk Write               : 4.74G
+Max Disk Read (node,task,step) : 27.82M (omni15,0,0)
+Max Disk Write (node,task,step): 4.73G (omni15,0,0)
 Comment                        : 
