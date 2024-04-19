@@ -122,16 +122,18 @@ def get_first(jobstate, name, fieldname):
     return missing_data
 
 # Return the maximum value from the list of job steps
-def get_max(jobstate, name, fieldname):
+def get_max_int(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
-    value = missing_data
+    value = -1
     for line in jobstate:
         item = line[fieldname]
         if debug:
             print('{}: {}'.format(line['JobID'], item))
         if item != '':
-           value = max(item, value)
+           value = max(int(item), value)
+    if value < 0:
+       value = missing_data
     return value
 
 # Append values from the list of job steps
@@ -170,7 +172,7 @@ def get_min_date(jobstate, name, fieldname):
 def get_max_date(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
-    value = ''
+    value = missing_data
     for line in jobstate:
         item = line[fieldname]
         if debug:
@@ -185,14 +187,14 @@ def get_max_date(jobstate, name, fieldname):
 def get_max_time(jobstate, name, fieldname):
     if debug:
         print('** Debugging output for {} using {}'.format(name, fieldname))
-    value = -1
+    value = -1.0
     data = missing_data
     for line in jobstate:
         item = line[fieldname]
         if debug:
             print('{}: {}'.format(line['JobID'], item))
-        if item != '':
-           value = time_max(value, timestring_to_seconds(item))
+        if item != '' and timestring_to_seconds(item) > value:
+           value = timestring_to_seconds(item)
            data = item
     return data
 
@@ -315,15 +317,15 @@ job_data = [
     [ 'User',             get_first,       'User',             False ],
     [ 'Partition',        get_first,       'Partition',        False ],
     [ 'NodeList',         get_first,       'NodeList',         False ],
-    [ 'NNodes',           get_max,         'NNodes',           False ],
-    [ 'NCPUs',            get_max,         'NCPUs',            False ],
-    [ 'NTasks',           get_max,         'NTasks',           True  ],
+    [ 'NNodes',           get_max_int,     'NNodes',           False ],
+    [ 'NCPUs',            get_max_int,     'NCPUs',            False ],
+    [ 'NTasks',           get_max_int,     'NTasks',           True  ],
     [ 'State',            get_append,      'State',            False ],
     [ 'Submit',           get_first,       'Submit',           False ],
     [ 'Start',            get_min_date,    'Start',            False ],
     [ 'End',              get_max_date,    'End',              False ],
-    [ 'Timelimit',        get_max_date,    'Timelimit',        False ],
-    [ 'Elapsed',          get_max_date,    'Elapsed',          False ],
+    [ 'Timelimit',        get_max_time,    'Timelimit',        False ],
+    [ 'Elapsed',          get_max_time,    'Elapsed',          False ],
     [ 'TotalCPU',         get_max_time,    'TotalCPU',         False ],
     [ 'CPUTime',          get_max_time,    'CPUTime',          False ],
     [ 'UserCPU',          get_max_time,    'UserCPU',          False ],
