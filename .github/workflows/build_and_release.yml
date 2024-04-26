@@ -20,7 +20,7 @@ jobs:
       - name: create tarball
         shell: bash
         run: |
-          version="$(grep Version jobinfo.spec | awk '{print $2}')"
+          version="$(grep Version hb-jobinfo.spec | awk '{print $2}')"
           mkdir SOURCES
           mkdir SPECS
           cp hb-jobinfo.spec SPECS
