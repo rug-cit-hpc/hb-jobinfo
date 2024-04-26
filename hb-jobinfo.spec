@@ -1,5 +1,5 @@
 Name: hb-jobinfo
-Version: 0.9.0
+Version: 0.9.1
 Release: 1%{?dist}
 Summary: Collect job information from SLURM in nicely readable format.
 Obsoletes: jobinfo <= 2.1.0
