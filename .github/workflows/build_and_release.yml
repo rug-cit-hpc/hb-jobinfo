@@ -67,8 +67,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.find_version.outputs.version }}
-          name: slurm-jobinfo ${{ steps.find_version.outputs.version }}
+          name: hb-jobinfo ${{ steps.find_version.outputs.version }}
           body: >
-            slurm-jobinfo release ${{ steps.find_version.outputs.version }}
+            hb-jobinfo release ${{ steps.find_version.outputs.version }}
           files: ${{ steps.find_filenames.outputs.package_filenames }}
           gzip: false
+          allow_override: true
