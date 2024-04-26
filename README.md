@@ -1,2 +1,5 @@
-# slurm-jobinfo3
-Tool for giving a quick overview of Slurm job statistics
+# hb-jobinfo
+Tool for giving a quick overview of Slurm job statistics.
+
+Inspired by https://github.com/birc-aeh/slurm-utils/blob/master/jobinfo
+from Anders Halager  <aeh@birc.au.dk>
