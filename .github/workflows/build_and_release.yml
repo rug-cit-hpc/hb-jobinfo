@@ -23,10 +23,10 @@ jobs:
           version="$(grep Version jobinfo.spec | awk '{print $2}')"
           mkdir SOURCES
           mkdir SPECS
-          cp jobinfo.spec SPECS
-          mkdir jobinfo-${version}
-          cp jobinfo jobinfo-${version}
-          tar -czf SOURCES/hb-jobinfo-${version}.tar.gz jobinfo-${version}
+          cp hb-jobinfo.spec SPECS
+          mkdir hb-jobinfo-${version}
+          cp hb-jobinfo jobinfo-${version}
+          tar -czf SOURCES/hb-jobinfo-${version}.tar.gz hb-jobinfo-${version}
 
       - name: rpmbuild rockylinux8
         uses: ./.github/actions/rpmbuild-rockylinux8/
@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: RPM package
-          path: ${{ github.workspace }}/noarch/jobinfo*.rpm
+          path: ${{ github.workspace }}/noarch/hb-jobinfo*.rpm
 
   create-release:
     needs: [build-rpms]
@@ -61,7 +61,7 @@ jobs:
         shell: bash
         run: |
           ls -1 -R .
-          echo ::set-output name=package_filenames::$(find ./build_artifacts -name jobinfo*.rpm)
+          echo ::set-output name=package_filenames::$(find ./build_artifacts -name hb-jobinfo*.rpm)
 
       - uses: meeDamian/github-release@2.0
         with:
