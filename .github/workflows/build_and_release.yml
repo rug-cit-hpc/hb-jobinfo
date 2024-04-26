@@ -26,7 +26,7 @@ jobs:
           cp jobinfo.spec SPECS
           mkdir jobinfo-${version}
           cp jobinfo jobinfo-${version}
-          tar -czf SOURCES/jobinfo-${version}.tar.gz jobinfo-${version}
+          tar -czf SOURCES/hb-jobinfo-${version}.tar.gz jobinfo-${version}
 
       - name: rpmbuild rockylinux8
         uses: ./.github/actions/rpmbuild-rockylinux8/
