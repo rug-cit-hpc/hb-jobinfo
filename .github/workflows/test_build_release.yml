@@ -32,13 +32,18 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: find release version in tag
+        id: find_version
+        run: |
+          echo ::set-output name=version::${GITHUB_REF#refs/tags/}
+
       - name: create tarball
         shell: bash
         run: |
-          version="$(grep Version hb-jobinfo.spec | awk '{print $2}')"
+          version=$(echo ${{ steps.find_version.outputs.version }} | tr -d 'v')
           mkdir SOURCES
           mkdir SPECS
-          cp hb-jobinfo.spec SPECS
+          cat hb-jobinfo.spec | sed s/HB_JOBINFO_VERSION/$version/ > SPECS/hb-jobinfo.spec
           mkdir hb-jobinfo-${version}
           cp jobinfo hb-jobinfo-${version}
           tar -czf SOURCES/hb-jobinfo-${version}.tar.gz hb-jobinfo-${version}
