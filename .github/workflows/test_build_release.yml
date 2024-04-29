@@ -32,15 +32,17 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: find release version in tag
-        id: find_version
-        run: |
-          echo ::set-output name=version::${GITHUB_REF#refs/tags/}
+
+      - name: Get tag or commit id
+        id: get-version-id
+        uses: iawia002/get-tag-or-commit-id@v1
+        with:
+          length: 7
 
       - name: create tarball
         shell: bash
         run: |
-          version=$(echo ${{ steps.find_version.outputs.version }} | tr -d 'v')
+          version=$(echo ${{ steps.get-version-id.outputs.id }} | tr -d 'v')
           mkdir SOURCES
           mkdir SPECS
           cat hb-jobinfo.spec | sed s/HB_JOBINFO_VERSION/$version/ > SPECS/hb-jobinfo.spec
