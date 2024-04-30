@@ -31,8 +31,8 @@ missing_data = '--'
 # Label that should be in GPU partitions
 gpu_partition_label = 'gpu'
 
-# Convert values with suffix to bytes
 def byte_size(s=None):
+    """Convert values with suffix to bytes"""
     # Legacy checks of unknown origin
     if s is None or s == "16?":
         return -1.0
@@ -45,16 +45,16 @@ def byte_size(s=None):
         s = s[:-1]
     return scale * float(s)
 
-# Format number as bytes with suffix
 def format_bs(x):
+    """Format x as bytes with the appropriate suffix"""
     if x == missing_data:
         return x
     postfix = ' KMGTPE'
     e = int(math.log(x + 1, 2) / 10)
     return "{:.2f}{}".format(x / 2**(10 * e), postfix[e])
 
-# Format time, where most displayed times will be aligned with respect to the maximum value
 def f_time(x, output_data):
+    """Format the time value in x aligned to the other time values in output_data"""
     all_times = [output_data['Timelimit'], output_data['Elapsed'], output_data['TotalCPU'], '-']
     days_len = max(len(y.split('-')[0]) for y in all_times if '-' in y)
     ss, mm, hh, dd = parse_time(x)
@@ -70,8 +70,8 @@ def f_time(x, output_data):
         return missing_data
     return res
 
-# Transform a dd-hh:mm:ss value into days, hours, minutes and seconds
 def parse_time(t):
+    """Transform a dd-hh:mm:ss value into days, hours, minutes and seconds"""
     # Format: [DD-[hh:]]mm:ss
     time_parts = re.compile(r'\s*(((?P<days>\d+)-)?(?P<hours>\d\d):)?' +
                             r'(?P<minutes>\d\d):(?P<seconds>\d\d(\.\d+)?)')
@@ -84,13 +84,13 @@ def parse_time(t):
     dd = int(m.group('days') or '0')
     return ss, mm, hh, dd
 
-# Transform a dd-hh:mm:ss value into a seconds floating point value
 def timestring_to_seconds(timestring):
+    """Transform a dd-hh:mm:ss value into seconds as a floating point value"""
     ss, mm, hh, dd = parse_time(timestring)
     return dd * 24 * 60 * 60 + hh * 60 * 60 + mm * 60 + ss
 
-# Return the maximum time value
-def time_max(a, b):
+def date_max(a, b):
+    """Return the maximum date value, allowing for 'UNLIMITED' or 'INVALID'"""
     if 'UNLIMITED' in [a, b]:
         return 'UNLIMITED'
     if a in ['', 'INVALID']:
@@ -99,8 +99,8 @@ def time_max(a, b):
         return a
     return max(a, b)
 
-# Search for 'key=value' in string and return numeric value, potentially with suffix.
 def tres_key(key, s=None):
+    """Search for 'key=value' in string s and return numeric value, potentially with suffix"""
     if s is None or s == '':
         return None
     value = re.search(fr'(?<=,{key}=)([0-9\.]+[KMGTPE]?)'.format(key), s)
@@ -109,8 +109,8 @@ def tres_key(key, s=None):
     else:
        return byte_size(value.group(1))
 
-# Search for gpu requests in the form of gres/gpu:type=count or gres/gpu=count
 def tres_gpu(s=None):
+    """Search for gpu requests in is of the form gres/gpu:type=count or gres/gpu=count"""
     if s is None or s == '':
         return None
     # This assumes gres/gpu:type=count is always before gres/gpu=count
@@ -120,8 +120,8 @@ def tres_gpu(s=None):
     else:
        return value.group(1)
 
-# Return first value from the list of job steps
 def get_first(jobstate, name, fieldname):
+    """Return first value for fieldname from the list of job steps"""
     if debug:
         print('** Debugging output for {} using {} getting first value'.format(name, fieldname))
         for line in jobstate:
@@ -136,8 +136,8 @@ def get_first(jobstate, name, fieldname):
         print('Returning: {}', missing_data)
     return missing_data
 
-# Return the maximum value from the list of job steps
 def get_max_int(jobstate, name, fieldname):
+    """Return the maximum value for fieldname from the list of job steps"""
     if debug:
         print('** Debugging output for {} using {} getting maximum value'.format(name, fieldname))
     value = -1
@@ -153,8 +153,8 @@ def get_max_int(jobstate, name, fieldname):
          print('Returning: {}'.format(value))
     return value
 
-# Append values from the list of job steps
 def get_append(jobstate, name,  fieldname):
+    """Append unique values from fieldname from the list of jobsteps"""
     if debug:
         print('** Debugging output for {} using {} appending values'.format(name, fieldname))
     output = ''
@@ -172,8 +172,8 @@ def get_append(jobstate, name,  fieldname):
         print('Returning: {}'.format(output))
     return output          
 
-# Get lowest time value
 def get_min_date(jobstate, name, fieldname):
+    """Get lowest date value for fieldname"""
     if debug:
         print('** Debugging output for {} using {} getting lowest value'.format(name, fieldname))
     value = 'z'
@@ -189,8 +189,8 @@ def get_min_date(jobstate, name, fieldname):
         print('Returning: {}'.format(value))
     return value
 
-# Get maximum date value
 def get_max_date(jobstate, name, fieldname):
+    """Get maximum date value for fieldname"""
     if debug:
         print('** Debugging output for {} using {} getting maximum value'.format(name, fieldname))
     value = missing_data
@@ -199,15 +199,15 @@ def get_max_date(jobstate, name, fieldname):
         if debug:
             print('{}: {}'.format(line['JobID'], item))
         if item != '':
-           value = time_max(value, item)
+           value = date_max(value, item)
     if str(value).lower() == 'unknown':
        value = missing_data
     if debug:
        print('Returning: {}'.format(value))
     return value
 
-# Get maximum time value
 def get_max_time(jobstate, name, fieldname):
+    """Get maximum time value from fieldname"""
     if debug:
         print('** Debugging output for {} using {} getting max time'.format(name, fieldname))
     value = -1.0
@@ -227,8 +227,8 @@ def get_max_time(jobstate, name, fieldname):
         print('Returning: {}'.format(data))
     return data
 
-# Parse the GPU tres values
 def get_gpu_tres(jobstate, name, fieldname):
+    """Parse the GPU tres values, searching for *gpu*=value"""
     if debug:
         print('** Debugging output for {} using {} getting first value'.format(name, fieldname))
     for line in jobstate:
@@ -243,8 +243,8 @@ def get_gpu_tres(jobstate, name, fieldname):
         print('Returning: {}'.format(missing_data))
     return missing_data
 
-# Find the maximum positive value from a list of entries with 'keys=value'
 def get_max_key(jobstate, name, fieldname, key):
+    """Find the maximum positive value from a list of values in fieldname with 'key=value'"""
     value = -1.0
     if debug:
         print('** Debugging output for {} using {} getting maximum value'.format(name, fieldname))
@@ -261,23 +261,23 @@ def get_max_key(jobstate, name, fieldname, key):
         print('Returning: {}'.format(value))
     return value
 
-# Get maximum GPU utilization
 def get_max_gpuutil(jobstate, name, fieldname):
+    """Find maximum gpu utilization in fieldname searching for 'gres/gpuutil=value'"""
     value = get_max_key(jobstate, name, fieldname, 'gres/gpuutil')
     if value != missing_data:
        return '{:.0f}%'.format(value)
     return value 
 
-# Get maximum for GPU memory used
 def get_max_gpumem(jobstate, name, fieldname):
+    """Find maximum gpu utilization in fieldname searching for 'gres/gpumem=value'"""
     return format_bs(get_max_key(jobstate, name, fieldname, 'gres/gpumem'))
 
-# Get maximum for memory used
 def get_max_mem(jobstate, name, fieldname):
+    """Get maximum memory used in fieldname searching for 'mem=value'"""
     return format_bs(get_max_key(jobstate, name, fieldname, 'mem'))
 
-# Get maximum value from the job steps for values in byte format
 def get_max_byte(jobstate, name, fieldname):
+    """Get maximum value from the job steps for values in fieldname in byte format"""
     if debug:
         print('** Debugging output for {} using {} getting maximum value'.format(name, fieldname))
     value = -1.0
@@ -295,8 +295,8 @@ def get_max_byte(jobstate, name, fieldname):
         print('Returning: {}'.format(value))
     return value
 
-# get node, task and or step information where the corresponding field has its highest value
 def get_max_entry(jobstate, name, fieldname):
+    """Get node, task and or step information from fieldname where the corresponding value field has its highest value"""
     max_field = fieldname.replace('Node', '')
     max_field = max_field.replace('Task', '')
     if debug:
@@ -321,8 +321,8 @@ def get_max_entry(jobstate, name, fieldname):
         print('Returning: {}'.format(entry))
     return entry
 
-# Sum the values from a list of entries with 'keys=value'
 def get_tot_key(jobstate, name, fieldname, key):
+    """Sum the values from a list of entries in fieldname with 'key=value'"""
     total = -1.0
     if debug:
         print('** Debugging output for {} using {} adding values'.format(name, fieldname))
@@ -341,8 +341,8 @@ def get_tot_key(jobstate, name, fieldname, key):
         print('Returning: {}'.format(total))
     return total
 
-# Get total disk I/O for all job steps combined
 def get_tot_disk(jobstate, name, fieldname):
+    """Get total disk I/O for all job steps combined for 'fs/disk=value' in fieldname"""
     return format_bs(get_tot_key(jobstate, name, fieldname, 'fs/disk'))
 
 # Dictionary keys to use for job_data
@@ -460,8 +460,8 @@ job_output = [
 # Convert list of lists into list of dictionaries.
 job_output = list(map(lambda x: dict(zip(dict_keys, x)), job_output))
 
-# Get the job data from sacct
 def get_values_sacct(jobid):
+    """Get the job data for jobid from the 'sacct' tool"""
     field_sep = u'\u2603'
     sacct_cmd = [
         'sacct', FORMAT_STR, '--parsable', '--noheader', '--delimiter', field_sep, '-j', jobid
@@ -478,8 +478,8 @@ def get_values_sacct(jobid):
     job_status = sacct_job_data[0]['State']
     return sacct_job_data, job_status
 
-# Get the job data from sstat
 def get_values_sstat(jobid):
+    """Get the job data for jobid from the 'sstat' tool"""
     sstat_cmd = [
         'sstat', FORMAT_STR_LIVE, '--parsable', '--noheader', '-a', '-j', jobid
     ]
@@ -491,9 +491,11 @@ def get_values_sstat(jobid):
        sstat_job_data.append(dict(zip(FIELD_NAMES_LIVE, line.decode('utf-8').strip().split('|'))))
     return sstat_job_data
 
-# Function to display multiple timings using the same spacing
-# and to calculate the job efficiency
 def format_timings(output_data):
+    """
+    Function to display multiple timings aligning them at - and :
+    and to calculate the job efficiency
+    """
     elapsed = timestring_to_seconds(output_data['Elapsed'])
     elapsed_cpu = timestring_to_seconds(output_data['CPUTime'])
     cputime = timestring_to_seconds(output_data['TotalCPU'])
@@ -515,15 +517,15 @@ def format_timings(output_data):
     output_data['CPUTime'] = f_time(output_data['CPUTime'], output_data)
     output_data['TotalCPU'] = f_time(output_data['TotalCPU'], output_data)
 
-# Show GPU information for the GPU parition or when a GPU was requested.
 def format_gpu(output_data, job_output):
+    """Function to Show GPU information for the GPU partition or when a GPU was requested"""
     if gpu_partition_label in output_data['Partition'] or output_data['ReqGPUs'] != missing_data:
         for i in range(len(job_output)):
             if 'GPU' in job_output[i]['description']:
                 job_output[i]['show'] =  True
 
-# Determine the number of cpus in a node
 def get_cpus_node(nodenames):
+    """Determine the number of CPUs of the first node in nodenames"""
     nodename = nodenames.split(',')[-1]
     info = subprocess.Popen(['scontrol', 'show', '-o', 'node', nodename], stdout=subprocess.PIPE)
     num_cpus_match = re.search(r'cpu=(\d+)', info.stdout.read().decode('UTF-8'))
@@ -533,14 +535,15 @@ def get_cpus_node(nodenames):
         return 1
 
 def gpu_util_float(utilization):
+    """Return the gpu utilization percentage as a floating point value"""
     try:
         gpu_utilization = float(utilization.strip('%'))
         return gpu_utilization
     except ValueError:
         return 0
 
-# Determine which hints to show
 def get_hints(output_data):
+    """Determine which hints to show based on the job statistics and show these if applicable"""
     # Don't show hints for jobs that have not yet finished
     if output_data['End'].lower() == missing_data:
         return
@@ -635,8 +638,8 @@ def get_hints(output_data):
         print("    https://wiki.hpc.rug.nl/habrok/additional_information/job_hints")
 
 
-# Parse the command line arguments
-def parse_arguments():
+def parse_arguments():   
+    """Parse the command line arguments to determine jobid and options"""
     global debug
     global long_output
 
@@ -659,8 +662,8 @@ to give a uniform interface for both current and historical jobs.'''
     long_output = args['long_output']
     return args['jobid']
 
-# Main function
 def main(jobid):
+    """Main function that will display job statistics for the given jobid"""
     # Retrieve job information fromt the Slurm sacct tool
     jobstate, job_status = get_values_sacct(jobid)
 
@@ -725,8 +728,8 @@ def main(jobid):
     get_hints(output_data)
 
 
-# Show program usage
 def usage(pipe):
+    """Show program usage information"""
     usage_msg = \
     '''jobinfo - collates job information from the 'sstat', 'sacct' and
 'squeue' SLURM commands to give a uniform interface for both current
