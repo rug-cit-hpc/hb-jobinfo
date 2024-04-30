@@ -300,19 +300,21 @@ def get_max_entry(jobstate, name, fieldname):
     max_field = fieldname.replace('Node', '')
     max_field = max_field.replace('Task', '')
     if debug:
-        print('** Debugging output for {} using {} and {} getting maximum value'.format(name, fieldname, max_field))
+        print('** Debugging output for {} getting {} for maximum value of {}, including step for Task'.format(name, fieldname, max_field))
     value = -1.0
-    step = missing_data
     for line in jobstate:
         item = line[max_field]
+        entry_new = line[fieldname]
+        step_new = line['JobID'].split('.')[1] if '.' in line['JobID'] else '-'
         if debug:
-            print('{}: {}'.format(line['JobID'], item))
-        if item != '':
-           value = max(byte_size(item), value)
-           entry = line[fieldname]
-           step = line['JobID'].split('.')[1] if '.' in line['JobID'] else '-'
+            print('{}: {} {} {}'.format(line['JobID'], item, entry_new, step_new))
+        if item != '' and byte_size(item) > value:
+            value = byte_size(item)
+            entry = entry_new
+            step = step_new
     if value < 0:
         entry = missing_data
+        step = missing_data
     if 'Task' in fieldname:
         entry = entry + ',' + step
     if debug:
