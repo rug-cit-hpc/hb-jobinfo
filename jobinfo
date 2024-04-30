@@ -123,19 +123,23 @@ def tres_gpu(s=None):
 # Return first value from the list of job steps
 def get_first(jobstate, name, fieldname):
     if debug:
-        print('** Debugging output for {} using {}'.format(name, fieldname))
+        print('** Debugging output for {} using {} getting first value'.format(name, fieldname))
+        for line in jobstate:
+            print('{}: {}'.format(line['JobID'], line[fieldname]))
     for line in jobstate:
         result = line[fieldname]
-        if debug:
-            print('{}: {}'.format(line['JobID'], result))
         if result != '' and result != None:
+           if debug:
+               print('Returning: {}'.format(result))
            return result
+    if debug:
+        print('Returning: {}', missing_data)
     return missing_data
 
 # Return the maximum value from the list of job steps
 def get_max_int(jobstate, name, fieldname):
     if debug:
-        print('** Debugging output for {} using {}'.format(name, fieldname))
+        print('** Debugging output for {} using {} getting maximum value'.format(name, fieldname))
     value = -1
     for line in jobstate:
         item = line[fieldname]
@@ -145,12 +149,14 @@ def get_max_int(jobstate, name, fieldname):
            value = max(int(item), value)
     if value < 0:
        value = missing_data
+    if debug:
+         print('Returning: {}'.format(value))
     return value
 
 # Append values from the list of job steps
 def get_append(jobstate, name,  fieldname):
     if debug:
-        print('** Debugging output for {} using'.format(name, fieldname))
+        print('** Debugging output for {} using {} appending values'.format(name, fieldname))
     output = ''
     for line in jobstate:
         item = line[fieldname]
@@ -162,12 +168,14 @@ def get_append(jobstate, name,  fieldname):
             else:
                output = ','.join(sorted(set(output.split(',') + [item])))
         item = line[fieldname]
+    if debug:
+        print('Returning: {}'.format(output))
     return output          
 
 # Get lowest time value
 def get_min_date(jobstate, name, fieldname):
     if debug:
-        print('** Debugging output for {} using'.format(name, fieldname))
+        print('** Debugging output for {} using {} getting lowest value'.format(name, fieldname))
     value = 'z'
     for line in jobstate:
         item = line[fieldname]
@@ -177,12 +185,14 @@ def get_min_date(jobstate, name, fieldname):
            value = min(item, value)
     if str(value).lower() == 'unknown':
        value = missing_data
+    if debug:
+        print('Returning: {}'.format(value))
     return value
 
 # Get maximum date value
 def get_max_date(jobstate, name, fieldname):
     if debug:
-        print('** Debugging output for {} using {}'.format(name, fieldname))
+        print('** Debugging output for {} using {} getting maximum value'.format(name, fieldname))
     value = missing_data
     for line in jobstate:
         item = line[fieldname]
@@ -192,42 +202,52 @@ def get_max_date(jobstate, name, fieldname):
            value = time_max(value, item)
     if str(value).lower() == 'unknown':
        value = missing_data
+    if debug:
+       print('Returning: {}'.format(value))
     return value
 
 # Get maximum time value
 def get_max_time(jobstate, name, fieldname):
     if debug:
-        print('** Debugging output for {} using {}'.format(name, fieldname))
+        print('** Debugging output for {} using {} getting max time'.format(name, fieldname))
     value = -1.0
     data = missing_data
     for line in jobstate:
         item = line[fieldname]
         if item == 'UNLIMITED':
+            if debug:
+               print('Returning: {}'.format(item))
             return item
         if debug:
             print('{}: {}'.format(line['JobID'], item))
         if item != '' and item != 'INVALID' and timestring_to_seconds(item) > value:
             value = timestring_to_seconds(item)
             data = item
+    if debug:
+        print('Returning: {}'.format(data))
     return data
 
 # Parse the GPU tres values
 def get_gpu_tres(jobstate, name, fieldname):
     if debug:
-        print('** Debugging output for {} using {}'.format(name, fieldname))
+        print('** Debugging output for {} using {} getting first value'.format(name, fieldname))
     for line in jobstate:
         result = tres_gpu(line[fieldname])
         if debug:
             print('{}: {}'.format(line['JobID'], result))
         if result != '' and result != None:
-           return result
+            if debug:
+                print('Returning: {}'.format(result))
+            return result
+    if debug:
+        print('Returning: {}'.format(missing_data))
     return missing_data
 
 # Find the maximum positive value from a list of entries with 'keys=value'
 def get_max_key(jobstate, name, fieldname, key):
     value = -1.0
     if debug:
-        print('** Debugging output for {} using {}'.format(name, fieldname))
+        print('** Debugging output for {} using {} getting maximum value'.format(name, fieldname))
     for line in jobstate:
         item = line[fieldname]
         if debug:
@@ -237,6 +257,8 @@ def get_max_key(jobstate, name, fieldname, key):
            value = max(value, current_value)
     if value < 0:
         value = missing_data
+    if debug:
+        print('Returning: {}'.format(value))
     return value
 
 # Get maximum GPU utilization
@@ -257,7 +279,7 @@ def get_max_mem(jobstate, name, fieldname):
 # Get maximum value from the job steps for values in byte format
 def get_max_byte(jobstate, name, fieldname):
     if debug:
-        print('** Debugging output for {} using {}'.format(name, fieldname))
+        print('** Debugging output for {} using {} getting maximum value'.format(name, fieldname))
     value = -1.0
     for line in jobstate:
         item = line[fieldname]
@@ -269,6 +291,8 @@ def get_max_byte(jobstate, name, fieldname):
         value = missing_data
     else:
        value = format_bs(value)
+    if debug:
+        print('Returning: {}'.format(value))
     return value
 
 # get node, task and or step information where the corresponding field has its highest value
@@ -276,7 +300,7 @@ def get_max_entry(jobstate, name, fieldname):
     max_field = fieldname.replace('Node', '')
     max_field = max_field.replace('Task', '')
     if debug:
-        print('** Debugging output for {} using {} and {}'.format(name, fieldname, max_field))
+        print('** Debugging output for {} using {} and {} getting maximum value'.format(name, fieldname, max_field))
     value = -1.0
     step = missing_data
     for line in jobstate:
@@ -291,13 +315,15 @@ def get_max_entry(jobstate, name, fieldname):
         entry = missing_data
     if 'Task' in fieldname:
         entry = entry + ',' + step
+    if debug:
+        print('Returning: {}'.format(entry))
     return entry
 
 # Sum the values from a list of entries with 'keys=value'
 def get_tot_key(jobstate, name, fieldname, key):
     total = -1.0
     if debug:
-        print('** Debugging output for {} using {}'.format(name, fieldname))
+        print('** Debugging output for {} using {} adding values'.format(name, fieldname))
     for line in jobstate:
         item = line[fieldname]
         if debug:
@@ -309,6 +335,8 @@ def get_tot_key(jobstate, name, fieldname, key):
         total = missing_data
     else:
        total = total + 1.0
+    if debug:
+        print('Returning: {}'.format(total))
     return total
 
 # Get total disk I/O for all job steps combined
