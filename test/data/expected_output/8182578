@@ -26,6 +26,6 @@ Max GPU utilization            : --
 Max GPU memory used            : --
 Total Disk Read                : 149.52M
 Total Disk Write               : 1.36G
-Max Disk Read (node,task,step) : 26.60M (omni22,0,0)
+Max Disk Read (node,task,step) : 26.60M (omni22,0,batch)
 Max Disk Write (node,task,step): 1.34G (omni22,0,0)
 Comment                        : --

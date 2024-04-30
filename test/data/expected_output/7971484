@@ -27,7 +27,7 @@ Max GPU memory used            : 0.00
 Total Disk Read                : 158.13M
 Total Disk Write               : 505.45K
 Max Disk Read (node,task,step) : 75.06M (a100gpu4,1,0)
-Max Disk Write (node,task,step): 419.84K (a100gpu2,0,0)
+Max Disk Write (node,task,step): 419.84K (a100gpu2,0,batch)
 Comment                        : --
 Hints and tips      :
  1) You are running on a GPU node without actually using the GPU, please fix this.

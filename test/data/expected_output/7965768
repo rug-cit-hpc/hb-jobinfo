@@ -17,8 +17,8 @@ Used CPU time                  :   15:33:59 (Efficiency: 12.58%)
 % User (Computation)           : 97.52%
 % System (I/O)                 :  2.48%
 Total memory reserved          : 10G
-Max Mem (node,task,step)       : 1.23G (v100gpu16,0,extern)
-MaxVMSize                      : 9.90G (v100gpu16,0,extern)
+Max Mem (node,task,step)       : 1.23G (v100gpu16,0,batch)
+MaxVMSize                      : 9.90G (v100gpu16,0,batch)
 Maximum memory used            : 1.23G
 Requested GPUs                 : 1
 Allocated GPUs                 : v100=1
@@ -26,6 +26,6 @@ Max GPU utilization            : 90%
 Max GPU memory used            : 19.55G
 Total Disk Read                : 891.27M
 Total Disk Write               : 215.00G
-Max Disk Read (node,task,step) : 891.26M (v100gpu16,0,extern)
-Max Disk Write (node,task,step): 215.00G (v100gpu16,0,extern)
+Max Disk Read (node,task,step) : 891.26M (v100gpu16,0,batch)
+Max Disk Write (node,task,step): 215.00G (v100gpu16,0,batch)
 Comment                        : --

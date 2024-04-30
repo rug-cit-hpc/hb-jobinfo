@@ -26,7 +26,7 @@ Max GPU utilization            : --
 Max GPU memory used            : --
 Total Disk Read                : 61.56M
 Total Disk Write               : 352.31M
-Max Disk Read (node,task,step) : 59.79M (node92,0,0)
+Max Disk Read (node,task,step) : 59.79M (node92,0,batch)
 Max Disk Write (node,task,step): 345.06M (node92,0,0)
 Comment                        : --
 Hints and tips      :

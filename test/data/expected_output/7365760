@@ -17,8 +17,8 @@ Used CPU time                  :  5-02:16:57 (Efficiency: 99.27%)
 % User (Computation)           : 100.00%
 % System (I/O)                 :  0.00%
 Total memory reserved          : 2000M
-Max Mem (node,task,step)       : 1.88M (node32,0,extern)
-MaxVMSize                      : 6.02M (node32,0,extern)
+Max Mem (node,task,step)       : 1.88M (node32,0,batch)
+MaxVMSize                      : 6.02M (node32,0,batch)
 Maximum memory used            : 1.88M
 Requested GPUs                 : --
 Allocated GPUs                 : --
@@ -26,6 +26,6 @@ Max GPU utilization            : --
 Max GPU memory used            : --
 Total Disk Read                : 4.46M
 Total Disk Write               : 22.94M
-Max Disk Read (node,task,step) : 4.46M (node32,0,extern)
-Max Disk Write (node,task,step): 22.94M (node32,0,extern)
+Max Disk Read (node,task,step) : 4.46M (node32,0,batch)
+Max Disk Write (node,task,step): 22.94M (node32,0,batch)
 Comment                        : --

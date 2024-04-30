@@ -17,8 +17,8 @@ Used CPU time                  : 01:59:57 (Efficiency: 99.28%)
 % User (Computation)           : 98.97%
 % System (I/O)                 :  1.03%
 Total memory reserved          : 2G
-Max Mem (node,task,step)       : 157.80M (gelifes3,0,extern)
-MaxVMSize                      : 157.85M (gelifes3,0,extern)
+Max Mem (node,task,step)       : 157.80M (gelifes3,0,batch)
+MaxVMSize                      : 157.85M (gelifes3,0,batch)
 Maximum memory used            : 157.80M
 Requested GPUs                 : --
 Allocated GPUs                 : --
@@ -26,6 +26,6 @@ Max GPU utilization            : --
 Max GPU memory used            : --
 Total Disk Read                : 17.03M
 Total Disk Write               : 255.62K
-Max Disk Read (node,task,step) : 17.03M (gelifes3,0,extern)
-Max Disk Write (node,task,step): 256.00K (gelifes3,0,extern)
+Max Disk Read (node,task,step) : 17.03M (gelifes3,0,batch)
+Max Disk Write (node,task,step): 256.00K (gelifes3,0,batch)
 Comment                        : --

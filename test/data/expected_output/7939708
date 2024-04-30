@@ -26,6 +26,6 @@ Max GPU utilization            : 0%
 Max GPU memory used            : 0.00 
 Total Disk Read                : 2.28K
 Total Disk Write               : 2.00 
-Max Disk Read (node,task,step) : 0.00  (a100gpu2,0,extern)
-Max Disk Write (node,task,step): 0.00  (a100gpu2,0,extern)
+Max Disk Read (node,task,step) : 0.00  (a100gpu2,0,batch)
+Max Disk Write (node,task,step): 0.00  (a100gpu2,0,batch)
 Comment                        : --
