@@ -53,6 +53,9 @@ jobs:
       - name: rpmbuild rockylinux8
         uses: ./.github/actions/rpmbuild-rockylinux8/
 
+      - name: rpmbuild rockylinux9
+        uses: ./.github/actions/rpmbuild-rockylinux9/
+
       - name: upload rpm package as artifact
         uses: actions/upload-artifact@v4
         with:
