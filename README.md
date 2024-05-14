@@ -8,4 +8,4 @@ from Anders Halager  <aeh@birc.au.dk>
 
 ## v1.0 - 2024-04-15
 
-First production version
+* First production version
