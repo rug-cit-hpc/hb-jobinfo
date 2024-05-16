@@ -23,6 +23,6 @@ optional arguments:
 
 # Release notes:
 
-## v1.0 - 2024-04-15
+## v1.0 - 2024-05-16
 
 * First production version
