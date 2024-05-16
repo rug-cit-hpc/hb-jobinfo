@@ -17,8 +17,8 @@ positional arguments:
 
 optional arguments:
   -h, --help   show this help message and exit
-  -d, --debug  Shows extra information about how the data is gathered
-  -l, --long   Shows more information about the job
+  -d, --debug  show extra information about how the data is gathered
+  -l, --long   show more information about the job
 ```
 
 # Release notes:

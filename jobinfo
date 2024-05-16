@@ -646,10 +646,10 @@ to give a uniform interface for both current and historical jobs.'''
     )
 
     parser.add_argument('-d', '--debug', dest='debug', default=False, action='store_true',
-                      help="Shows extra information about how the data is gathered")
+                      help="show extra information about how the data is gathered")
 
     parser.add_argument('-l', '--long', dest='long_output', default=False, action='store_true',
-                      help="Shows more information about the job")
+                      help="show more information about the job")
 
     parser.add_argument('jobid', metavar='jobid', help='the jobid to query')
 
