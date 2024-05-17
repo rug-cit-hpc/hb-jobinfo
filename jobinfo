@@ -150,21 +150,42 @@ def get_max_int(jobstate, name, fieldname):
          print('Returning: {}'.format(value))
     return value
 
-def get_append(jobstate, name,  fieldname):
+def get_state(jobstate, name,  fieldname):
     """Append unique values from fieldname from the list of jobsteps"""
     if debug:
         print('** Debugging output for {} using {} appending values'.format(name, fieldname))
-    output = ''
+    states = []
     for line in jobstate:
         item = line[fieldname]
         if debug:
             print('{}: {}'.format(line['JobID'], item))
         if item != '':
-            if output == '':
-               output = item
-            else:
-               output = ','.join(sorted(set(output.split(',') + [item])))
-        item = line[fieldname]
+           if item not in states:
+               states.append(item)
+    if len(states) > 1:
+        # Completed should be the only value, if not remove it
+        if 'COMPLETED' in states:
+            states.remove('COMPLETED')
+        # Remove CANCELLED when TIMEOUT is present
+        if 'CANCELLED' in states and 'TIMEOUT' in states:
+            states.remove('CANCELLED')
+    if len(states) > 0:
+        # Find and adjust 'CANCELLED by' and remove 'CANCELLED' if it is also present
+        found_cancelled_by = False
+        for index in range(len(states)):
+            if 'CANCELLED by' in states[index]:
+                 found_cancelled_by = True
+                 # Replace uid by 'user' or 'operator'
+                 uid = int(states[index][12:])
+                 if uid > 10000000:
+                     states[index] = 'CANCELLED by user'
+                 else:
+                     states[index] = 'CANCELLED by operator'
+        if found_cancelled_by and 'CANCELLED' in states:
+            states.remove('CANCELLED')
+        output = ','.join(states)
+    else:
+        output = missing_data
     if debug:
         print('Returning: {}'.format(output))
     return output          
@@ -359,7 +380,7 @@ job_data = [
     [ 'NNodes',           get_max_int,     'NNodes',           False ],
     [ 'NCPUs',            get_max_int,     'NCPUs',            False ],
     [ 'NTasks',           get_max_int,     'NTasks',           True  ],
-    [ 'State',            get_append,      'State',            False ],
+    [ 'State',            get_state,       'State',            False ],
     [ 'Submit',           get_first,       'Submit',           False ],
     [ 'Start',            get_min_date,    'Start',            False ],
     [ 'End',              get_max_date,    'End',              False ],
