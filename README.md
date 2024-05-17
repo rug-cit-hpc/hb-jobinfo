@@ -26,3 +26,4 @@ optional arguments:
 ## v1.0 - 2024-05-16
 
 * First production version
+* Improved handling of State information
