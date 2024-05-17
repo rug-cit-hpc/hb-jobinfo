@@ -6,7 +6,7 @@ Nodes                          : node82
 Number of Nodes                : 1
 Cores                          : 12
 Number of Tasks                : 1
-State                          : COMPLETED,FAILED  
+State                          : FAILED  
 Submit                         : 2024-02-15T08:44:09
 Start                          : 2024-03-04T04:03:02
 End                            : 2024-03-04T11:06:02

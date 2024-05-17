@@ -6,7 +6,7 @@ Nodes                          : a100gpu2
 Number of Nodes                : 1
 Cores                          : 8
 Number of Tasks                : 1
-State                          : COMPLETED,FAILED  
+State                          : FAILED  
 Submit                         : 2024-04-03T20:32:20
 Start                          : 2024-04-03T20:32:21
 End                            : 2024-04-03T20:32:25

@@ -6,7 +6,7 @@ Nodes                          : node93
 Number of Nodes                : 1
 Cores                          : 1
 Number of Tasks                : 1
-State                          : CANCELLED,CANCELLED by 10309238,COMPLETED  
+State                          : CANCELLED by user  
 Submit                         : 2024-04-15T11:42:02
 Start                          : 2024-04-15T11:42:44
 End                            : 2024-04-17T11:44:40

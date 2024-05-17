@@ -6,7 +6,7 @@ Nodes                          : None assigned
 Number of Nodes                : 1
 Cores                          : 0
 Number of Tasks                : --
-State                          : CANCELLED by 10290820  
+State                          : CANCELLED by user  
 Submit                         : 2023-09-01T14:54:50
 Start                          : None
 End                            : 2023-09-01T14:55:57

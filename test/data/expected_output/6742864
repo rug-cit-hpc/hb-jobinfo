@@ -6,7 +6,7 @@ Nodes                          : omni22
 Number of Nodes                : 1
 Cores                          : 2
 Number of Tasks                : 2
-State                          : COMPLETED,FAILED  
+State                          : FAILED  
 Submit                         : 2024-01-05T11:09:31
 Start                          : 2024-01-05T11:09:31
 End                            : 2024-01-05T11:09:42

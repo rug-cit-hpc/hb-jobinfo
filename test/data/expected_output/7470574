@@ -6,7 +6,7 @@ Nodes                          : node51
 Number of Nodes                : 1
 Cores                          : 40
 Number of Tasks                : 1
-State                          : COMPLETED,FAILED  
+State                          : FAILED  
 Submit                         : 2024-03-02T16:12:55
 Start                          : 2024-03-07T09:02:24
 End                            : 2024-03-07T09:02:34

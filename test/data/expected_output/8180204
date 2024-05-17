@@ -6,7 +6,7 @@ Nodes                          : node[11,14,18]
 Number of Nodes                : 3
 Cores                          : 24
 Number of Tasks                : 24
-State                          : CANCELLED,COMPLETED,TIMEOUT  
+State                          : TIMEOUT  
 Submit                         : 2024-04-16T08:42:08
 Start                          : 2024-04-16T08:42:09
 End                            : 2024-04-18T20:42:20
