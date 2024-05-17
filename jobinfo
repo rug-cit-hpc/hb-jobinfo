@@ -177,7 +177,7 @@ def get_state(jobstate, name,  fieldname):
                  found_cancelled_by = True
                  # Replace uid by 'user' or 'operator'
                  uid = int(states[index][12:])
-                 if uid > 10000000:
+                 if uid > 2000:
                      states[index] = 'CANCELLED by user'
                  else:
                      states[index] = 'CANCELLED by operator'
