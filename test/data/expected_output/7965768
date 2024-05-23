@@ -6,7 +6,7 @@ Nodes                          : v100gpu16
 Number of Nodes                : 1
 Cores                          : 8
 Number of Tasks                : 1
-State                          : CANCELLED,CANCELLED by 10314909,COMPLETED  
+State                          : CANCELLED by user  
 Submit                         : 2024-04-04T19:29:45
 Start                          : 2024-04-04T21:45:17
 End                            : 2024-04-05T13:13:40

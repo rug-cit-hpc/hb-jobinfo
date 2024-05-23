@@ -6,7 +6,7 @@ Nodes                          : a100gpu1
 Number of Nodes                : 1
 Cores                          : 8
 Number of Tasks                : --
-State                          : CANCELLED by 10304007  
+State                          : CANCELLED by user  
 Submit                         : 2023-09-01T09:15:03
 Start                          : 2023-09-04T17:05:14
 End                            : 2023-09-05T15:31:53

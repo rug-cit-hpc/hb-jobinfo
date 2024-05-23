@@ -31,14 +31,14 @@ missing_data = '--'
 # Label that should be in GPU partitions
 gpu_partition_label = 'gpu'
 
+# Minimum uid for generic users (not operators)
+min_user_uid = 10000
+
 def byte_size(s=None):
-    """Convert values with suffix to bytes"""
-    # Legacy checks of unknown origin
-    if s is None or s == "16?":
+    """Convert values with suffix to bytes, return -1.0 for missing data"""
+    # Check for missing or strange values
+    if s is None or s == "16?" or s == '--' or s == '':
         return -1.0
-    # Return 0 if we have an empty string
-    if s == '':
-        return 0
     m = {'K': 10, 'M': 20, 'G': 30, 'T': 40, 'P': 50, 'E': 60}
     scale = 2**m.get(s[-1], 0)
     if scale != 1:
@@ -153,21 +153,42 @@ def get_max_int(jobstate, name, fieldname):
          print('Returning: {}'.format(value))
     return value
 
-def get_append(jobstate, name,  fieldname):
+def get_state(jobstate, name,  fieldname):
     """Append unique values from fieldname from the list of jobsteps"""
     if debug:
         print('** Debugging output for {} using {} appending values'.format(name, fieldname))
-    output = ''
+    states = []
     for line in jobstate:
         item = line[fieldname]
         if debug:
             print('{}: {}'.format(line['JobID'], item))
         if item != '':
-            if output == '':
-               output = item
-            else:
-               output = ','.join(sorted(set(output.split(',') + [item])))
-        item = line[fieldname]
+           if item not in states:
+               states.append(item)
+    if len(states) > 1:
+        # Completed should be the only value, if not remove it
+        if 'COMPLETED' in states:
+            states.remove('COMPLETED')
+        # Remove CANCELLED when TIMEOUT is present
+        if 'CANCELLED' in states and 'TIMEOUT' in states:
+            states.remove('CANCELLED')
+    if len(states) > 0:
+        # Find and adjust 'CANCELLED by' and remove 'CANCELLED' if it is also present
+        found_cancelled_by = False
+        for index in range(len(states)):
+            if 'CANCELLED by' in states[index]:
+                 found_cancelled_by = True
+                 # Replace uid by 'user' or 'operator'
+                 uid = int(states[index][12:])
+                 if uid > min_user_uid:
+                     states[index] = 'CANCELLED by user'
+                 else:
+                     states[index] = 'CANCELLED by operator'
+        if found_cancelled_by and 'CANCELLED' in states:
+            states.remove('CANCELLED')
+        output = ','.join(states)
+    else:
+        output = missing_data
     if debug:
         print('Returning: {}'.format(output))
     return output          
@@ -285,8 +306,7 @@ def get_max_byte(jobstate, name, fieldname):
         item = line[fieldname]
         if debug:
             print('{}: {}'.format(line['JobID'], item))
-        if item != '':
-           value = max(byte_size(item), value)
+        value = max(byte_size(item), value)
     if value < 0:
         value = missing_data
     else:
@@ -308,7 +328,7 @@ def get_max_entry(jobstate, name, fieldname):
         step_new = line['JobID'].split('.')[1] if '.' in line['JobID'] else '-'
         if debug:
             print('{}: {} {} {}'.format(line['JobID'], item, entry_new, step_new))
-        if item != '' and byte_size(item) > value:
+        if byte_size(item) > value:
             value = byte_size(item)
             entry = entry_new
             step = step_new
@@ -363,7 +383,7 @@ job_data = [
     [ 'NNodes',           get_max_int,     'NNodes',           False ],
     [ 'NCPUs',            get_max_int,     'NCPUs',            False ],
     [ 'NTasks',           get_max_int,     'NTasks',           True  ],
-    [ 'State',            get_append,      'State',            False ],
+    [ 'State',            get_state,       'State',            False ],
     [ 'Submit',           get_first,       'Submit',           False ],
     [ 'Start',            get_min_date,    'Start',            False ],
     [ 'End',              get_max_date,    'End',              False ],
@@ -611,7 +631,7 @@ def get_hints(output_data):
         used_memory = byte_size(output_data['TotalMem'])
     # Check if at least 75% of the memory has been used, or that that less than MIN_MEMORY_CORE
     # per core has been left unused, or that the request was below MIN_MEMORY
-        if used_memory != missing_data and req_memory != missing_data and req_memory > 0.01 and \
+        if req_memory > 0.01 and used_memory >= 0 and \
                 req_memory > 1024**3 * MIN_MEMORY and \
                 (used_memory / req_memory) < MIN_MEMORY_FRACTION and \
                 (req_memory - used_memory) > (1024**3 * MIN_MEMORY_CORE * ncpus) and \
@@ -650,10 +670,10 @@ to give a uniform interface for both current and historical jobs.'''
     )
 
     parser.add_argument('-d', '--debug', dest='debug', default=False, action='store_true',
-                      help="Shows extra information about how the data is gathered")
+                      help="show extra information about how the data is gathered")
 
     parser.add_argument('-l', '--long', dest='long_output', default=False, action='store_true',
-                      help="Shows more information about the job")
+                      help="show more information about the job")
 
     parser.add_argument('jobid', metavar='jobid', help='the jobid to query')
 

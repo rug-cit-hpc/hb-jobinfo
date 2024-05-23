@@ -6,7 +6,7 @@ Nodes                          : node78
 Number of Nodes                : 1
 Cores                          : 12
 Number of Tasks                : 1
-State                          : CANCELLED,COMPLETED,TIMEOUT  
+State                          : TIMEOUT  
 Submit                         : 2024-04-16T09:48:26
 Start                          : 2024-04-16T09:48:27
 End                            : 2024-04-19T09:47:29
