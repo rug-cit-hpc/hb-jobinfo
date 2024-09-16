@@ -1,3 +1,7 @@
+# Repository moved
+
+The repository for this project has moved to https://gitrepo.service.rug.nl/cit-hpc/hb-jobinfo.
+
 # hb-jobinfo
 Tool for giving a quick overview of Slurm job statistics.
 
